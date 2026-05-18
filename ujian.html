@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Ujian - BINTANG AIUEO</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Ujian</title>
+
+  <link rel="stylesheet" href="ujian.css">
 </head>
+
 <body>
 
-<div class="dashboard">
+<div class="exam-box">
 
-  <div class="sidebar">
-    <h2>BINTANG</h2>
+  <h1 class="exam-title">
+    Ujian Bahasa Inggris
+  </h1>
 
-    <ul>
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="ujian.html">Ujian</a></li>
-      <li>Ranking</li>
-      <li>Profile</li>
-      <li>Logout</li>
-    </ul>
+  <div class="timer">
+    ⏰ 10:00
   </div>
 
-  <div class="content">
+  <div class="question">
 
-   <div class="topbar">
+    <h2>
+      1. What is the correct answer?
+    </h2>
 
-  <h1>Ujian Bahasa Inggris</h1>
+    <div class="option">
+      A. Apple
+    </div>
 
-  <div class="timer" id="timer">
-    10:00
+    <div class="option">
+      B. Car
+    </div>
+
+    <div class="option">
+      C. House
+    </div>
+
+    <div class="option">
+      D. Water
+    </div>
+
   </div>
 
-</div>
-
-    <div class="question-box">
-
-  <h2>
-    1. What is the correct answer?
-  </h2>
-
-  <div class="option">A. Apple</div>
-  <div class="option">B. Car</div>
-  <div class="option">C. House</div>
-  <div class="option">D. Water</div>
-
-  <button class="next-btn"
+  <button
+  class="finish-btn"
   onclick="window.location.href='hasil.html'">
 
     Selesai Ujian
@@ -52,11 +53,5 @@
 
 </div>
 
-    </div>
-
-  </div>
-
-</div>
-<script src="script.js"></script>
 </body>
 </html>
