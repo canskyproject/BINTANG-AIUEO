@@ -70,6 +70,12 @@ body{
   color:#2563eb;
 
   font-weight:bold;
+  
+}.logo-circle img{
+  width:85px;
+  height:85px;
+  object-fit:cover;
+  border-radius:50%;
 }
 
 .auth-box h1{
