@@ -101,4 +101,10 @@ body{
 
   box-shadow:
   0 10px 30px rgba(0,0,0,0.2);
+}.logo-img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:50%;
+  margin-bottom:30px;
 }
