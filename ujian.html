@@ -15,9 +15,9 @@
     Ujian Bahasa Inggris
   </h1>
 
-  <div class="timer">
-    ⏰ 10:00
-  </div>
+  <div class="timer" id="timer">
+  ⏰ 10:00
+</div>
 
   <div class="question">
 
@@ -52,6 +52,41 @@
   </button>
 
 </div>
+<script>
 
+let time = 600;
+
+const timer =
+document.getElementById("timer");
+
+setInterval(() => {
+
+  let minutes =
+  Math.floor(time / 60);
+
+  let seconds =
+  time % 60;
+
+  if(seconds < 10){
+    seconds = "0" + seconds;
+  }
+
+  timer.innerHTML =
+  "⏰ " + minutes + ":" + seconds;
+
+  time--;
+
+  if(time < 0){
+
+    alert("Waktu habis!");
+
+    window.location.href =
+    "hasil.html";
+
+  }
+
+},1000);
+
+</script>
 </body>
 </html>
