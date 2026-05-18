@@ -73,6 +73,8 @@ body{
   cursor:pointer;
 
   transition:0.3s;
+
+  user-select:none;
 }
 
 .option:hover{
