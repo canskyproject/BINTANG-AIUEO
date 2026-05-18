@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Register</title>
+
+  <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+
+<div class="auth-box">
+
+  <div class="logo-circle">
+    ★
+  </div>
+
+  <h1>Buat Akun</h1>
+
+  <p class="subtitle">
+    Daftar untuk mulai ujian
+  </p>
+
+  <div class="input-group">
+
+    <label>Email</label>
+
+    <input
+    type="email"
+    id="email"
+    placeholder="Masukkan email">
+
+  </div>
+
+  <div class="input-group">
+
+    <label>Password</label>
+
+    <input
+    type="password"
+    id="password"
+    placeholder="Masukkan password">
+
+  </div>
+
+  <button
+  class="auth-btn"
+  onclick="register()">
+
+    Register
+
+  </button>
+
+  <p class="bottom-text">
+    Sudah punya akun?
+    <a href="login.html">
+      Login
+    </a>
+  </p>
+
+</div>
+
+<script type="module" src="firebase.js"></script>
+
+<script>
+
+function register(){
+
+  const email =
+  document.getElementById('email').value;
+
+  const password =
+  document.getElementById('password').value;
+
+  registerUser(email,password);
+
+}
+
+</script>
+
+</body>
+</html>

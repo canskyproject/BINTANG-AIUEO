@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+
+  <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+
+<div class="auth-box">
+
+  <div class="logo-circle">
+    ★
+  </div>
+
+  <h1>Masuk Akun</h1>
+
+  <p class="subtitle">
+    Platform Ujian Modern
+  </p>
+
+  <div class="input-group">
+    <label>Email</label>
+
+    <input
+    type="email"
+    id="email"
+    placeholder="Masukkan email">
+  </div>
+
+  <div class="input-group">
+    <label>Password</label>
+
+    <input
+    type="password"
+    id="password"
+    placeholder="Masukkan password">
+  </div>
+
+  <button
+  class="auth-btn"
+  onclick="login()">
+
+    Masuk
+
+  </button>
+
+  <p class="bottom-text">
+    Belum punya akun?
+    <a href="register.html">
+      Daftar
+    </a>
+  </p>
+
+</div>
+
+<script type="module" src="firebase.js"></script>
+
+<script>
+
+function login(){
+
+  const email =
+  document.getElementById('email').value;
+
+  const password =
+  document.getElementById('password').value;
+
+  loginUser(email,password);
+
+}
+
+</script>
+
+</body>
+</html>
