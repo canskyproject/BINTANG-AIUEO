@@ -50,6 +50,10 @@ body{
 
   border-bottom:
   1px solid #e5e7eb;
+
+  position:relative;
+
+  z-index:100;
 }
 
 .top-bar i{
@@ -71,6 +75,8 @@ body{
   position:relative;
 
   margin-top:-60px;
+
+  z-index:1;
 }
 
 .profile-image img{
