@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
   <title>Profile</title>
 
   <link rel="stylesheet" href="profile.css">
@@ -15,11 +17,15 @@
 
 <div class="profile-card">
 
-  <!-- BACK -->
+  <!-- TOP -->
 
   <div class="top-bar">
-    <i class="fa-solid fa-arrow-left"
-    onclick="window.location.href='dashboard.html'"></i>
+
+    <i
+    class="fa-solid fa-arrow-left"
+    onclick="window.location.href='dashboard.html'">
+    </i>
+
   </div>
 
   <!-- FOTO -->
@@ -31,7 +37,9 @@
     src="https://i.pravatar.cc/200?img=12">
 
     <label for="upload-photo">
+
       <i class="fa-solid fa-camera"></i>
+
     </label>
 
     <input
@@ -41,77 +49,91 @@
 
   </div>
 
-  <!-- NAMA -->
+  <!-- CONTENT -->
 
-  <h2 id="username">
-    IQMALL
-  </h2>
+  <div class="profile-content">
 
-  <p class="role">
-    Siswa - SMA
-  </p>
+    <h2 id="username">
+      IQMALL
+    </h2>
 
-  <!-- EDIT NAMA -->
+    <p class="role">
+      Siswa - SMA
+    </p>
 
-  <div class="input-group">
+    <!-- NAMA -->
 
-    <label>Nama Baru</label>
+    <div class="input-group">
 
-    <input
-    type="text"
-    id="new-name"
-    placeholder="Masukkan nama baru">
+      <label>
+        Nama Baru
+      </label>
+
+      <input
+      type="text"
+      id="new-name"
+      placeholder="Masukkan nama baru">
+
+    </div>
+
+    <!-- PASSWORD -->
+
+    <div class="input-group">
+
+      <label>
+        Password Lama
+      </label>
+
+      <input
+      type="password"
+      placeholder="Password lama">
+
+    </div>
+
+    <div class="input-group">
+
+      <label>
+        Password Baru
+      </label>
+
+      <input
+      type="password"
+      placeholder="Password baru">
+
+    </div>
+
+    <div class="input-group">
+
+      <label>
+        Ulangi Password Baru
+      </label>
+
+      <input
+      type="password"
+      placeholder="Ulangi password">
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <button
+    class="save-btn"
+    onclick="saveProfile()">
+
+      Save
+
+    </button>
 
   </div>
-
-  <!-- PASSWORD -->
-
-  <div class="input-group">
-
-    <label>Password Lama</label>
-
-    <input
-    type="password"
-    placeholder="Password lama">
-
-  </div>
-
-  <div class="input-group">
-
-    <label>Password Baru</label>
-
-    <input
-    type="password"
-    placeholder="Password baru">
-
-  </div>
-
-  <div class="input-group">
-
-    <label>Ulangi Password Baru</label>
-
-    <input
-    type="password"
-    placeholder="Ulangi password">
-
-  </div>
-
-  <!-- BUTTON -->
-
-  <button
-  class="save-btn"
-  onclick="saveProfile()">
-
-    Save
-
-  </button>
 
   <!-- LOGOUT -->
 
-  <div class="logout"
+  <div
+  class="logout"
   onclick="logout()">
 
     <i class="fa-solid fa-power-off"></i>
+
     Logout
 
   </div>
