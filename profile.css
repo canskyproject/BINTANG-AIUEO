@@ -48,12 +48,11 @@ body{
 
   padding:25px;
 
-  border-bottom:
-  1px solid #e5e7eb;
-
   position:relative;
 
   z-index:100;
+
+  border:none !important;
 }
 
 .top-bar i{
@@ -123,6 +122,9 @@ body{
 .profile-content{
 
   padding:35px;
+
+  border-top:
+  1px solid #e5e7eb;
 }
 
 h2{
