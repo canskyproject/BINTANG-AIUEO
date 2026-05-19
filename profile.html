@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Profile</title>
+
+  <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+
+<div class="profile-box">
+
+  <img
+  class="profile-photo"
+  src="https://i.pravatar.cc/300?img=12">
+
+  <h1>
+    IQMALL
+  </h1>
+
+  <p class="role">
+    Siswa - SMA
+  </p>
+
+  <div class="input-group">
+
+    <label>
+      Password lama
+    </label>
+
+    <input
+    type="password"
+    placeholder="Password lama">
+
+  </div>
+
+  <div class="input-group">
+
+    <label>
+      Password baru
+    </label>
+
+    <input
+    type="password"
+    placeholder="Password baru">
+
+  </div>
+
+  <div class="input-group">
+
+    <label>
+      Ulangi password baru
+    </label>
+
+    <input
+    type="password"
+    placeholder="Ulangi password baru">
+
+  </div>
+
+  <button class="save-btn">
+    Save
+  </button>
+
+  <button
+  class="logout-btn"
+  onclick="logout()">
+
+    Logout
+
+  </button>
+
+</div>
+
+<script>
+
+function logout(){
+
+  window.location.href =
+  "login.html";
+
+}
+
+</script>
+
+</body>
+</html>
