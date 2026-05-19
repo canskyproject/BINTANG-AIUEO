@@ -1,36 +1,71 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
+
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut,
+  updatePassword
+
 }
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+import {
+
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 const firebaseConfig = {
+
   apiKey: "AIzaSyCwGlCnjTL3DfhbxWWYrQufV8_9uS7agQU",
+
   authDomain: "bintang-aiueo.firebaseapp.com",
+
   projectId: "bintang-aiueo",
+
   storageBucket: "bintang-aiueo.firebasestorage.app",
+
   messagingSenderId: "393513757252",
+
   appId: "1:393513757252:web:c3ecdd339ecb19f615ea11",
+
   measurementId: "G-28F909WEXB"
+
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+export const auth =
+getAuth(app);
 
-window.loginUser = function(email, password){
+export const db =
+getFirestore(app);
 
-  signInWithEmailAndPassword(auth, email, password)
+window.loginUser =
+function(email,password){
+
+  signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  )
 
   .then(() => {
 
     alert("Login berhasil 😄");
 
-    window.location.href = "dashboard.html";
+    window.location.href =
+    "dashboard.html";
 
   })
 
@@ -42,15 +77,32 @@ window.loginUser = function(email, password){
 
 }
 
-window.registerUser = function(email, password){
+window.registerUser =
+function(email,password){
 
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  )
 
-  .then(() => {
+  .then(async(userCredential) => {
+
+    const user =
+    userCredential.user;
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+        name:"User Baru",
+        email:user.email
+      }
+    );
 
     alert("Register berhasil 😄");
 
-    window.location.href = "login.html";
+    window.location.href =
+    "login.html";
 
   })
 
@@ -61,3 +113,13 @@ window.registerUser = function(email, password){
   });
 
 }
+
+export {
+
+  signOut,
+  updatePassword,
+  doc,
+  setDoc,
+  getDoc
+
+};
