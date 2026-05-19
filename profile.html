@@ -1,33 +1,74 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Profile</title>
 
   <link rel="stylesheet" href="profile.css">
+
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
 
-<div class="profile-box">
+<div class="profile-card">
 
-  <img
-  class="profile-photo"
-  src="https://i.pravatar.cc/300?img=12">
+  <!-- BACK -->
 
-  <h1>
+  <div class="top-bar">
+    <i class="fa-solid fa-arrow-left"
+    onclick="window.location.href='dashboard.html'"></i>
+  </div>
+
+  <!-- FOTO -->
+
+  <div class="profile-image">
+
+    <img
+    id="preview"
+    src="https://i.pravatar.cc/200?img=12">
+
+    <label for="upload-photo">
+      <i class="fa-solid fa-camera"></i>
+    </label>
+
+    <input
+    type="file"
+    id="upload-photo"
+    hidden>
+
+  </div>
+
+  <!-- NAMA -->
+
+  <h2 id="username">
     IQMALL
-  </h1>
+  </h2>
 
   <p class="role">
     Siswa - SMA
   </p>
 
+  <!-- EDIT NAMA -->
+
   <div class="input-group">
 
-    <label>
-      Password lama
-    </label>
+    <label>Nama Baru</label>
+
+    <input
+    type="text"
+    id="new-name"
+    placeholder="Masukkan nama baru">
+
+  </div>
+
+  <!-- PASSWORD -->
+
+  <div class="input-group">
+
+    <label>Password Lama</label>
 
     <input
     type="password"
@@ -37,9 +78,7 @@
 
   <div class="input-group">
 
-    <label>
-      Password baru
-    </label>
+    <label>Password Baru</label>
 
     <input
     type="password"
@@ -49,31 +88,73 @@
 
   <div class="input-group">
 
-    <label>
-      Ulangi password baru
-    </label>
+    <label>Ulangi Password Baru</label>
 
     <input
     type="password"
-    placeholder="Ulangi password baru">
+    placeholder="Ulangi password">
 
   </div>
 
-  <button class="save-btn">
-    Save
-  </button>
+  <!-- BUTTON -->
 
   <button
-  class="logout-btn"
-  onclick="logout()">
+  class="save-btn"
+  onclick="saveProfile()">
 
-    Logout
+    Save
 
   </button>
+
+  <!-- LOGOUT -->
+
+  <div class="logout"
+  onclick="logout()">
+
+    <i class="fa-solid fa-power-off"></i>
+    Logout
+
+  </div>
 
 </div>
 
 <script>
+
+const uploadPhoto =
+document.getElementById("upload-photo");
+
+const preview =
+document.getElementById("preview");
+
+uploadPhoto.addEventListener("change", function(){
+
+  const file =
+  this.files[0];
+
+  if(file){
+
+    preview.src =
+    URL.createObjectURL(file);
+
+  }
+
+});
+
+function saveProfile(){
+
+  const newName =
+  document.getElementById("new-name").value;
+
+  if(newName !== ""){
+
+    document.getElementById("username")
+    .innerHTML = newName;
+
+  }
+
+  alert("Profile berhasil diupdate");
+
+}
 
 function logout(){
 
