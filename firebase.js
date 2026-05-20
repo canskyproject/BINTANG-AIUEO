@@ -24,6 +24,8 @@ import {
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+/* FIREBASE CONFIG */
+
 const firebaseConfig = {
 
   apiKey: "AIzaSyCwGlCnjTL3DfhbxWWYrQufV8_9uS7agQU",
@@ -42,14 +44,22 @@ const firebaseConfig = {
 
 };
 
+/* INITIALIZE */
+
 const app =
 initializeApp(firebaseConfig);
+
+/* AUTH */
 
 export const auth =
 getAuth(app);
 
+/* DATABASE */
+
 export const db =
 getFirestore(app);
+
+/* LOGIN */
 
 window.loginUser =
 function(email,password){
@@ -77,6 +87,8 @@ function(email,password){
 
 }
 
+/* REGISTER */
+
 window.registerUser =
 function(email,password){
 
@@ -91,11 +103,16 @@ function(email,password){
     const user =
     userCredential.user;
 
+    /* SIMPAN USER KE DATABASE */
+
     await setDoc(
       doc(db,"users",user.uid),
       {
+
         name:"User Baru",
+
         email:user.email
+
       }
     );
 
@@ -113,6 +130,8 @@ function(email,password){
   });
 
 }
+
+/* EXPORT */
 
 export {
 
