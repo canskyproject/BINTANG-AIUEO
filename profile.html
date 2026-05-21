@@ -146,14 +146,21 @@ import {
 
   auth,
   db,
-  doc,
-  setDoc,
-  getDoc,
   signOut
 
 }
 
 from "./firebase.js";
+
+import {
+
+  ref,
+  set,
+  get
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 /* ELEMENT */
 
@@ -171,23 +178,22 @@ document.getElementById("preview");
 
 /* LOAD PROFILE */
 
-async function loadProfile(){
+setTimeout(async() => {
 
   const user =
   auth.currentUser;
 
   if(user){
 
-    const docRef =
-    doc(db,"users",user.uid);
+    const snapshot =
+    await get(
+      ref(db,"users/" + user.uid)
+    );
 
-    const docSnap =
-    await getDoc(docRef);
-
-    if(docSnap.exists()){
+    if(snapshot.exists()){
 
       const data =
-      docSnap.data();
+      snapshot.val();
 
       username.innerHTML =
       data.name;
@@ -198,12 +204,6 @@ async function loadProfile(){
     }
 
   }
-
-}
-
-setTimeout(() => {
-
-  loadProfile();
 
 },1000);
 
@@ -217,15 +217,17 @@ async function(){
 
   if(user){
 
-    await setDoc(
-      doc(db,"users",user.uid),
+    await set(
+
+      ref(db,"users/" + user.uid),
+
       {
 
-        name:newName.value
+        name:newName.value,
 
-      },
+        email:user.email
 
-      { merge:true }
+      }
 
     );
 
