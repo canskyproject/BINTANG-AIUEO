@@ -18,8 +18,7 @@ import {
   getDatabase,
   ref,
   set,
-  get,
-  child
+  get
 
 }
 
@@ -33,15 +32,16 @@ const firebaseConfig = {
 
   authDomain: "bintang-aiueo.firebaseapp.com",
 
+  databaseURL:
+  "https://bintang-aiueo-default-rtdb.asia-southeast1.firebasedatabase.app",
+
   projectId: "bintang-aiueo",
 
   storageBucket: "bintang-aiueo.firebasestorage.app",
 
   messagingSenderId: "393513757252",
 
-  appId: "1:393513757252:web:c3ecdd339ecb19f615ea11",
-
-  measurementId: "G-28F909WEXB"
+  appId: "1:393513757252:web:c3ecdd339ecb19f615ea11"
 
 };
 
@@ -104,21 +104,20 @@ function(email,password){
     const user =
     userCredential.user;
 
-    /* SIMPAN USER KE DATABASE */
-
     await set(
 
-  ref(db,"users/" + user.uid),
+      ref(db,"users/" + user.uid),
 
-  {
+      {
 
-    name:"User Baru",
+        name:"User Baru",
 
-    email:user.email
+        email:user.email
 
-  }
+      }
 
-);
+    );
+
     alert("Register berhasil 😄");
 
     window.location.href =
@@ -140,8 +139,8 @@ export {
 
   signOut,
   updatePassword,
-  doc,
-  setDoc,
-  getDoc
+  ref,
+  set,
+  get
 
 };
