@@ -140,7 +140,28 @@
 
 </div>
 
-<script>
+<script type="module">
+
+import {
+
+  auth,
+  db,
+  doc,
+  setDoc,
+  getDoc,
+  signOut
+
+}
+
+from "./firebase.js";
+
+/* ELEMENT */
+
+const username =
+document.getElementById("username");
+
+const newName =
+document.getElementById("new-name");
 
 const uploadPhoto =
 document.getElementById("upload-photo");
@@ -148,7 +169,78 @@ document.getElementById("upload-photo");
 const preview =
 document.getElementById("preview");
 
-uploadPhoto.addEventListener("change", function(){
+/* LOAD PROFILE */
+
+async function loadProfile(){
+
+  const user =
+  auth.currentUser;
+
+  if(user){
+
+    const docRef =
+    doc(db,"users",user.uid);
+
+    const docSnap =
+    await getDoc(docRef);
+
+    if(docSnap.exists()){
+
+      const data =
+      docSnap.data();
+
+      username.innerHTML =
+      data.name;
+
+      newName.value =
+      data.name;
+
+    }
+
+  }
+
+}
+
+setTimeout(() => {
+
+  loadProfile();
+
+},1000);
+
+/* SAVE PROFILE */
+
+window.saveProfile =
+async function(){
+
+  const user =
+  auth.currentUser;
+
+  if(user){
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+
+        name:newName.value
+
+      },
+
+      { merge:true }
+
+    );
+
+    username.innerHTML =
+    newName.value;
+
+    alert("Profile berhasil disimpan 😄");
+
+  }
+
+}
+
+/* FOTO */
+
+uploadPhoto.addEventListener("change",function(){
 
   const file =
   this.files[0];
@@ -162,23 +254,12 @@ uploadPhoto.addEventListener("change", function(){
 
 });
 
-function saveProfile(){
+/* LOGOUT */
 
-  const newName =
-  document.getElementById("new-name").value;
+window.logout =
+async function(){
 
-  if(newName !== ""){
-
-    document.getElementById("username")
-    .innerHTML = newName;
-
-  }
-
-  alert("Profile berhasil diupdate");
-
-}
-
-function logout(){
+  await signOut(auth);
 
   window.location.href =
   "login.html";

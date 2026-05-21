@@ -15,14 +15,15 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
 
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
+  getDatabase,
+  ref,
+  set,
+  get,
+  child
 
 }
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 /* FIREBASE CONFIG */
 
@@ -57,7 +58,7 @@ getAuth(app);
 /* DATABASE */
 
 export const db =
-getFirestore(app);
+getDatabase(app);
 
 /* LOGIN */
 
@@ -105,17 +106,19 @@ function(email,password){
 
     /* SIMPAN USER KE DATABASE */
 
-    await setDoc(
-      doc(db,"users",user.uid),
-      {
+    await set(
 
-        name:"User Baru",
+  ref(db,"users/" + user.uid),
 
-        email:user.email
+  {
 
-      }
-    );
+    name:"User Baru",
 
+    email:user.email
+
+  }
+
+);
     alert("Register berhasil 😄");
 
     window.location.href =
