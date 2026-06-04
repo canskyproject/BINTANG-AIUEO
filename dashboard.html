@@ -16,26 +16,42 @@
 
   <!-- TOPBAR -->
 
-  <div class="top-nav">
+  <div class="top-header">
 
-    <div class="logo">
-      BINTANG AIUEO
-    </div>
+  <div class="logo-area">
 
-    <div
-class="profile"
-onclick="window.location.href='profile.html'">
-
-  <img src="https://i.pravatar.cc/150?img=12">
-
-</div>
-
-    <div class="nav-icons">
-      <i class="fa-solid fa-bell"></i>
-      
-    </div>
+    <img
+    src="logo.jpg"
+    alt="Logo">
 
   </div>
+
+  <div
+  class="profile-center"
+  onclick="window.location.href='profile.html'">
+
+    <img
+    src="https://i.pravatar.cc/150?img=12">
+
+  </div>
+
+  <div class="header-icons">
+
+    <i class="fa-solid fa-cart-shopping"></i>
+
+    <i class="fa-solid fa-bell"></i>
+
+    <i
+    class="fa-solid fa-sun"
+    id="theme-toggle"></i>
+
+    <i
+    class="fa-solid fa-expand"
+    onclick="toggleFullscreen()"></i>
+
+  </div>
+
+</div>
 
   <!-- CONTENT -->
 
@@ -137,6 +153,62 @@ onclick="window.location.href='profile.html'">
   </div>
 
 </div>
+<script>
 
+const themeBtn =
+document.getElementById("theme-toggle");
+
+themeBtn.onclick = () => {
+
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+
+    themeBtn.classList.remove("fa-sun");
+    themeBtn.classList.add("fa-moon");
+
+    localStorage.setItem(
+      "theme",
+      "dark"
+    );
+
+  }else{
+
+    themeBtn.classList.remove("fa-moon");
+    themeBtn.classList.add("fa-sun");
+
+    localStorage.setItem(
+      "theme",
+      "light"
+    );
+
+  }
+
+};
+
+if(localStorage.getItem("theme") === "dark"){
+
+  document.body.classList.add("dark");
+
+  themeBtn.classList.remove("fa-sun");
+  themeBtn.classList.add("fa-moon");
+
+}
+
+function toggleFullscreen(){
+
+  if(!document.fullscreenElement){
+
+    document.documentElement.requestFullscreen();
+
+  }else{
+
+    document.exitFullscreen();
+
+  }
+
+}
+
+</script>
 </body>
 </html>
