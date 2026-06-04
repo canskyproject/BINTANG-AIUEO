@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>BINTANG AIUEO</title>
-  <link rel="stylesheet" href="dashboard.css">
+<html lang="id">
 
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>BINTANG AIUEO</title>
+
+<link
+rel="stylesheet"
+href="dashboard.css">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -14,201 +25,237 @@
 
 <div class="app">
 
-  <!-- TOPBAR -->
+<!-- HEADER -->
 
-  <div class="top-header">
+<div class="top-header">
 
-  <div class="logo-area">
+<div class="logo-area">
 
-    <img
-    src="logo.jpg"
-    alt="Logo">
-
-  </div>
-
-  <div
-  class="profile-center"
-  onclick="window.location.href='profile.html'">
-
-    <img
-    src="https://i.pravatar.cc/150?img=12">
-
-  </div>
-
-  <div class="header-icons">
-
-    <i class="fa-solid fa-cart-shopping"></i>
-
-    <i class="fa-solid fa-bell"></i>
-
-    <i
-    class="fa-solid fa-sun"
-    id="theme-toggle"></i>
-
-    <i
-    class="fa-solid fa-expand"
-    onclick="toggleFullscreen()"></i>
-
-  </div>
+<img
+src="logo.jpg"
+alt="Logo">
 
 </div>
 
-  <!-- CONTENT -->
+<div
+class="profile-center"
+onclick="window.location.href='profile.html'">
 
-  <div class="main-content">
-
-  <h2 class="title">
-    Semua Kompetisi
-  </h2>
-
-  <div class="competition-grid">
-
-    <!-- CARD 1 -->
-
-    <div class="event-card">
-
-      <div class="status">
-        Online
-      </div>
-
-      <img
-      class="banner"
-      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
-
-      <div class="card-content">
-
-        <h3>
-          Olimpiade BINTANG 2026
-        </h3>
-
-        <p class="date">
-          Minggu, 30 Mei 2026
-        </p>
-
-        <button onclick="window.location.href='ujian.html'">
-          Masuk Kompetisi
-        </button>
-
-      </div>
-
-    </div>
-
-       <!-- CARD 2 -->
-
-    <div class="event-card">
-
-      <div class="status">
-        Online
-      </div>
-
-      <img
-      class="banner"
-      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-
-      <div class="card-content">
-
-        <h3>
-          Kompetisi AI Nasional
-        </h3>
-
-        <p class="date">
-          Minggu, 12 Juni 2026
-        </p>
-
-        <button>
-          Masuk Kompetisi
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
+<img
+src="https://i.pravatar.cc/150?img=12">
 
 </div>
 
-</div> 
+<div class="header-icons">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<i class="fa-solid fa-bell"></i>
+
+<i
+id="theme-toggle"
+class="fa-solid fa-sun"></i>
+
+<i
+class="fa-solid fa-expand"
+onclick="toggleFullscreen()"></i>
+
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="main-content">
+
+<h2 class="title">
+Semua Kompetisi
+</h2>
+
+<div class="competition-grid">
+
+<!-- CARD 1 -->
+
+<div class="event-card">
+
+<div class="status">
+Online
+</div>
+
+<img
+class="banner"
+src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Olimpiade BINTANG 2026
+</h3>
+
+<p class="date">
+Minggu, 30 Mei 2026
+</p>
+
+<button
+onclick="window.location.href='ujian.html'">
+
+Masuk Kompetisi
+
+</button>
+
+</div>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="event-card">
+
+<div class="status">
+Online
+</div>
+
+<img
+class="banner"
+src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>
+Kompetisi AI Nasional
+</h3>
+
+<p class="date">
+Minggu, 12 Juni 2026
+</p>
+
+<button>
+
+Masuk Kompetisi
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 <!-- MOBILE NAV -->
 
 <div class="mobile-nav">
 
-  <div class="mobile-item active">
-    <i class="fa-solid fa-house"></i>
-    <span>Home</span>
-  </div>
+<div class="mobile-item active">
 
-  <div class="mobile-item">
-    <i class="fa-solid fa-trophy"></i>
-    <span>Kompetisi</span>
-  </div>
+<i class="fa-solid fa-house"></i>
 
-  <div class="mobile-item">
-    <i class="fa-solid fa-ranking-star"></i>
-    <span>Ranking</span>
-  </div>
-
-  <div class="mobile-item">
-    <i class="fa-solid fa-user"></i>
-    <span>Profile</span>
-  </div>
+<span>Home</span>
 
 </div>
+
+<div class="mobile-item">
+
+<i class="fa-solid fa-trophy"></i>
+
+<span>Kompetisi</span>
+
+</div>
+
+<div class="mobile-item">
+
+<i class="fa-solid fa-ranking-star"></i>
+
+<span>Ranking</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='profile.html'">
+
+<i class="fa-solid fa-user"></i>
+
+<span>Profile</span>
+
+</div>
+
+</div>
+
 <script>
+
+/* DARK MODE */
 
 const themeBtn =
 document.getElementById("theme-toggle");
 
 themeBtn.onclick = () => {
 
-  document.body.classList.toggle("dark");
+document.body.classList.toggle("dark");
 
-  if(document.body.classList.contains("dark")){
+if(
+document.body.classList.contains("dark")
+){
 
-    themeBtn.classList.remove("fa-sun");
-    themeBtn.classList.add("fa-moon");
+themeBtn.classList.remove("fa-sun");
 
-    localStorage.setItem(
-      "theme",
-      "dark"
-    );
+themeBtn.classList.add("fa-moon");
 
-  }else{
+localStorage.setItem(
+"theme",
+"dark"
+);
 
-    themeBtn.classList.remove("fa-moon");
-    themeBtn.classList.add("fa-sun");
+}else{
 
-    localStorage.setItem(
-      "theme",
-      "light"
-    );
+themeBtn.classList.remove("fa-moon");
 
-  }
+themeBtn.classList.add("fa-sun");
 
-};
-
-if(localStorage.getItem("theme") === "dark"){
-
-  document.body.classList.add("dark");
-
-  themeBtn.classList.remove("fa-sun");
-  themeBtn.classList.add("fa-moon");
+localStorage.setItem(
+"theme",
+"light"
+);
 
 }
 
+};
+
+if(
+localStorage.getItem("theme")
+=== "dark"
+){
+
+document.body.classList.add("dark");
+
+themeBtn.classList.remove("fa-sun");
+
+themeBtn.classList.add("fa-moon");
+
+}
+
+/* FULLSCREEN */
+
 function toggleFullscreen(){
 
-  if(!document.fullscreenElement){
+if(
+!document.fullscreenElement
+){
 
-    document.documentElement.requestFullscreen();
+document.documentElement.requestFullscreen();
 
-  }else{
+}else{
 
-    document.exitFullscreen();
+document.exitFullscreen();
 
-  }
+}
 
 }
 
 </script>
+
 </body>
 </html>
