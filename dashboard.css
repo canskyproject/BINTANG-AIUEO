@@ -6,34 +6,20 @@
 
 body{
   font-family:Arial,sans-serif;
-
-  background:
-  linear-gradient(
-  180deg,
-  #eef5ff,
-  #dbeafe
-  );
-
+  background:#f5f7fb;
   min-height:100vh;
+  padding-bottom:120px;
 }
 
-/* =========================
-   APP
-========================= */
-
-.app{
-  width:100%;
-}
-
-/* =========================
+/* =======================
    HEADER
-========================= */
+======================= */
 
 .top-header{
 
-  background:#1976D2;
+  height:90px;
 
-  height:100px;
+  background:#1976D2;
 
   display:flex;
 
@@ -41,7 +27,7 @@ body{
 
   align-items:center;
 
-  padding:0 30px;
+  padding:0 35px;
 
   position:sticky;
 
@@ -49,15 +35,12 @@ body{
 
   z-index:1000;
 
-  box-shadow:
-  0 6px 20px rgba(0,0,0,.15);
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
 .logo-area img{
 
-  height:65px;
-
-  object-fit:contain;
+  height:55px;
 }
 
 .profile-center{
@@ -68,11 +51,11 @@ body{
 
   transform:translateX(-50%);
 
-  bottom:-38px;
+  bottom:-32px;
 
-  width:130px;
+  width:95px;
 
-  height:130px;
+  height:95px;
 
   border-radius:50%;
 
@@ -83,28 +66,26 @@ body{
   justify-content:center;
 
   align-items:center;
-
-  cursor:pointer;
 }
 
 .profile-center img{
 
-  width:115px;
+  width:85px;
 
-  height:115px;
+  height:85px;
 
   border-radius:50%;
 
   object-fit:cover;
 
-  border:4px solid white;
+  border:4px solid #fff;
 }
 
 .header-icons{
 
   display:flex;
 
-  gap:22px;
+  gap:20px;
 
   color:white;
 
@@ -123,9 +104,9 @@ body{
   transform:scale(1.15);
 }
 
-/* =========================
+/* =======================
    CONTENT
-========================= */
+======================= */
 
 .main-content{
 
@@ -133,7 +114,7 @@ body{
 
   margin:auto;
 
-  padding:90px 25px 30px;
+  padding:90px 25px 40px;
 }
 
 .title{
@@ -142,26 +123,28 @@ body{
 
   color:#1e293b;
 
-  margin-bottom:30px;
+  margin-bottom:35px;
+
+  font-weight:bold;
 }
 
-/* =========================
+/* =======================
    GRID
-========================= */
+======================= */
 
 .competition-grid{
 
   display:grid;
 
   grid-template-columns:
-  repeat(auto-fit,minmax(320px,1fr));
+  repeat(auto-fit,minmax(350px,1fr));
 
-  gap:25px;
+  gap:30px;
 }
 
-/* =========================
+/* =======================
    CARD
-========================= */
+======================= */
 
 .event-card{
 
@@ -174,7 +157,7 @@ body{
   position:relative;
 
   box-shadow:
-  0 10px 25px rgba(0,0,0,.08);
+  0 8px 25px rgba(0,0,0,.08);
 
   transition:.3s;
 }
@@ -208,9 +191,9 @@ body{
 
   color:white;
 
-  padding:8px 14px;
+  padding:10px 16px;
 
-  border-radius:12px;
+  border-radius:14px;
 
   font-size:13px;
 
@@ -224,7 +207,7 @@ body{
 
 .card-content h3{
 
-  font-size:28px;
+  font-size:30px;
 
   color:#1e293b;
 
@@ -236,6 +219,8 @@ body{
   color:#64748b;
 
   margin-bottom:20px;
+
+  font-size:17px;
 }
 
 .card-content button{
@@ -264,30 +249,38 @@ body{
   background:#1259a7;
 }
 
-/* =========================
-   MOBILE NAV
-========================= */
+/* =======================
+   BOTTOM MENU
+======================= */
 
 .mobile-nav{
 
   position:fixed;
 
-  bottom:0;
+  bottom:15px;
 
-  left:0;
+  left:50%;
 
-  width:100%;
+  transform:translateX(-50%);
+
+  width:560px;
+
+  max-width:95%;
 
   background:white;
 
-  display:none;
+  border-radius:25px;
+
+  display:flex;
 
   justify-content:space-around;
 
-  padding:12px;
+  align-items:center;
+
+  padding:15px;
 
   box-shadow:
-  0 -4px 20px rgba(0,0,0,.08);
+  0 10px 30px rgba(0,0,0,.15);
 
   z-index:999;
 }
@@ -300,9 +293,11 @@ body{
 
   align-items:center;
 
-  font-size:12px;
-
   color:#64748b;
+
+  cursor:pointer;
+
+  font-size:13px;
 }
 
 .mobile-item i{
@@ -317,9 +312,9 @@ body{
   color:#1976D2;
 }
 
-/* =========================
+/* =======================
    DARK MODE
-========================= */
+======================= */
 
 body.dark{
 
@@ -356,9 +351,9 @@ body.dark .mobile-item{
   color:white;
 }
 
-/* =========================
+/* =======================
    ANIMATION
-========================= */
+======================= */
 
 .event-card{
 
@@ -371,7 +366,7 @@ body.dark .mobile-item{
 
     opacity:0;
 
-    transform:translateY(25px);
+    transform:translateY(30px);
   }
 
   to{
@@ -380,41 +375,40 @@ body.dark .mobile-item{
 
     transform:translateY(0);
   }
-
 }
 
-/* =========================
+/* =======================
    MOBILE
-========================= */
+======================= */
 
 @media(max-width:768px){
 
   .top-header{
 
-    height:90px;
+    height:80px;
 
     padding:0 15px;
   }
 
   .logo-area img{
 
-    height:50px;
+    height:42px;
   }
 
   .profile-center{
 
-    width:95px;
+    width:80px;
 
-    height:95px;
+    height:80px;
 
     bottom:-25px;
   }
 
   .profile-center img{
 
-    width:85px;
+    width:70px;
 
-    height:85px;
+    height:70px;
   }
 
   .header-icons{
@@ -446,11 +440,6 @@ body.dark .mobile-item{
     height:180px;
   }
 
-  .card-content{
-
-    padding:18px;
-  }
-
   .card-content h3{
 
     font-size:22px;
@@ -461,21 +450,8 @@ body.dark .mobile-item{
     font-size:14px;
   }
 
-  .card-content button{
-
-    padding:12px;
-
-    font-size:14px;
-  }
-
   .mobile-nav{
 
-    display:flex;
+    width:95%;
   }
-
-  body{
-
-    padding-bottom:90px;
-  }
-
 }
