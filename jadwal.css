@@ -28,6 +28,8 @@ body{
   position:sticky;
   top:0;
   z-index:1000;
+
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
 .logo-area img{
@@ -59,7 +61,6 @@ body{
   height:80px;
 
   border-radius:50%;
-
   border:4px solid white;
 
   object-fit:cover;
@@ -73,28 +74,39 @@ body{
   font-size:18px;
 }
 
+.header-icons i{
+  cursor:pointer;
+  transition:.3s;
+}
+
+.header-icons i:hover{
+  transform:scale(1.1);
+}
+
 /* =========================
    CONTENT
 ========================= */
 
 .container{
   max-width:1200px;
-
   margin:auto;
 
   padding:90px 20px 20px;
 }
 
 .title{
-  font-size:28px;
+  font-size:34px;
   font-weight:700;
 
   margin-bottom:25px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .title i{
   color:#1976D2;
-  margin-right:10px;
 }
 
 /* =========================
@@ -108,6 +120,12 @@ body{
   overflow-x:auto;
 
   margin-bottom:25px;
+
+  scrollbar-width:none;
+}
+
+.filter-tabs::-webkit-scrollbar{
+  display:none;
 }
 
 .filter-tabs button{
@@ -115,18 +133,29 @@ body{
 
   background:white;
 
-  padding:12px 20px;
+  padding:12px 22px;
 
-  border-radius:25px;
+  border-radius:30px;
 
   cursor:pointer;
 
-  font-weight:bold;
+  font-weight:600;
+
+  white-space:nowrap;
+
+  transition:.3s;
+}
+
+.filter-tabs button:hover{
+  background:#e5e7eb;
 }
 
 .filter-tabs .active{
-  background:#7c3aed;
+  background:#8b5cf6;
   color:white;
+
+  box-shadow:
+  0 4px 12px rgba(139,92,246,.3);
 }
 
 /* =========================
@@ -136,16 +165,16 @@ body{
 .schedule-card{
   background:white;
 
-  max-width:700px;
+  padding:20px;
 
-  margin:0 auto 20px auto;
+  border-radius:22px;
 
-  padding:25px;
+  border:1px solid #e5e7eb;
 
-  border-radius:20px;
+  margin-bottom:20px;
 
   box-shadow:
-  0 5px 20px rgba(0,0,0,.08);
+  0 5px 20px rgba(0,0,0,.06);
 
   transition:.3s;
 }
@@ -154,19 +183,20 @@ body{
   transform:translateY(-3px);
 
   box-shadow:
-  0 10px 25px rgba(0,0,0,.12);
+  0 12px 25px rgba(0,0,0,.12);
 }
 
 .schedule-card h3{
-  font-size:24px;
+  font-size:22px;
+  font-weight:700;
 
   margin-bottom:15px;
 }
 
 .schedule-card p{
-  font-size:16px;
+  color:#6b7280;
 
-  color:#555;
+  font-size:16px;
 
   margin-bottom:10px;
 }
@@ -174,15 +204,13 @@ body{
 .status{
   display:inline-block;
 
-  margin-top:10px;
-
   padding:8px 14px;
 
   border-radius:12px;
 
   font-size:13px;
 
-  font-weight:bold;
+  font-weight:600;
 }
 
 .upcoming{
@@ -190,20 +218,62 @@ body{
   color:#16a34a;
 }
 
+.running{
+  background:#dbeafe;
+  color:#2563eb;
+}
+
+.finished{
+  background:#e5e7eb;
+  color:#6b7280;
+}
+
+.card-actions{
+  margin-top:15px;
+
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
 .detail-btn{
-  margin-left:10px;
+  border:none;
 
   background:#1976D2;
 
   color:white;
-
-  border:none;
 
   padding:10px 18px;
 
   border-radius:12px;
 
   cursor:pointer;
+
+  transition:.3s;
+}
+
+.detail-btn:hover{
+  background:#1565c0;
+}
+
+.join-btn{
+  border:none;
+
+  background:#16a34a;
+
+  color:white;
+
+  padding:10px 18px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.join-btn:hover{
+  background:#15803d;
 }
 
 /* =========================
@@ -241,6 +311,8 @@ body{
   align-items:center;
 
   color:#b8b8b8;
+
+  cursor:pointer;
 }
 
 .mobile-item i{
@@ -282,6 +354,11 @@ body.dark{
 
 body.dark .schedule-card{
   background:#111827;
+  border-color:#1f2937;
+}
+
+body.dark .schedule-card h3{
+  color:white;
 }
 
 body.dark .schedule-card p{
@@ -290,10 +367,20 @@ body.dark .schedule-card p{
 
 body.dark .mobile-nav{
   background:#111827;
+  border-color:#1f2937;
 }
 
 body.dark .title i{
   color:#60a5fa;
+}
+
+body.dark .filter-tabs button{
+  background:#111827;
+  color:white;
+}
+
+body.dark .filter-tabs button:hover{
+  background:#1f2937;
 }
 
 /* =========================
@@ -311,18 +398,19 @@ body.dark .title i{
   }
 
   .schedule-card{
-    padding:20px;
+    padding:18px;
   }
 
   .schedule-card h3{
     font-size:20px;
   }
 
-  .detail-btn{
-    margin-top:10px;
-    margin-left:0;
-
-    display:block;
+  .card-actions{
+    flex-direction:column;
   }
 
+  .detail-btn,
+  .join-btn{
+    width:100%;
+  }
 }
