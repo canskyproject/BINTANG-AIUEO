@@ -5,22 +5,16 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>BINTANG AIUEO</title>
 
-<link
-rel="stylesheet"
-href="dashboard.css">
+<link rel="stylesheet" href="dashboard.css">
 
-<link
-rel="stylesheet"
+<link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<link
-rel="icon"
+<link rel="icon"
 type="image/png"
 href="logo.jpg">
 
@@ -30,123 +24,118 @@ href="logo.jpg">
 
 <div class="app">
 
-<!-- HEADER -->
+    <!-- HEADER -->
 
-<div class="top-header">
+    <div class="top-header">
 
-<div class="logo-area">
+        <div class="logo-area">
+            <img src="logo.jpg" alt="Logo">
+        </div>
 
-<img
-src="logo.jpg"
-alt="Logo">
+        <div
+        class="profile-center"
+        onclick="window.location.href='profile.html'">
 
-</div>
+            <img src="https://i.pravatar.cc/150?img=12">
 
-<div
-class="profile-center"
-onclick="window.location.href='profile.html'">
+        </div>
 
-<img
-src="https://i.pravatar.cc/150?img=12">
+        <div class="header-icons">
 
-</div>
+            <i class="fa-solid fa-cart-shopping"></i>
 
-<div class="header-icons">
+            <i class="fa-solid fa-bell"></i>
 
-<i class="fa-solid fa-cart-shopping"></i>
+            <i
+            id="theme-toggle"
+            class="fa-solid fa-sun"></i>
 
-<i class="fa-solid fa-bell"></i>
+            <i
+            class="fa-solid fa-expand"
+            onclick="toggleFullscreen()"></i>
 
-<i
-id="theme-toggle"
-class="fa-solid fa-sun"></i>
+        </div>
 
-<i
-class="fa-solid fa-expand"
-onclick="toggleFullscreen()"></i>
+    </div>
 
-</div>
+    <!-- CONTENT -->
 
-</div>
+    <div class="main-content">
 
-<!-- CONTENT -->
+        <h2 class="title">
+            Semua Kompetisi
+        </h2>
 
-<div class="main-content">
+        <div class="competition-grid">
 
-<h2 class="title">
-Semua Kompetisi
-</h2>
+            <!-- CARD 1 -->
 
-<div class="competition-grid">
+            <div class="event-card">
 
-<!-- CARD 1 -->
+                <div class="status">
+                    Online
+                </div>
 
-<div class="event-card">
+                <img
+                class="banner"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
 
-<div class="status">
-Online
-</div>
+                <div class="card-content">
 
-<img
-class="banner"
-src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
+                    <h3>
+                        Olimpiade BINTANG 2026
+                    </h3>
 
-<div class="card-content">
+                    <p class="date">
+                        Minggu, 30 Mei 2026
+                    </p>
 
-<h3>
-Olimpiade BINTANG 2026
-</h3>
+                    <button
+                    onclick="window.location.href='ujian.html'">
 
-<p class="date">
-Minggu, 30 Mei 2026
-</p>
+                        Masuk Kompetisi
 
-<button
-onclick="window.location.href='ujian.html'">
+                    </button>
 
-Masuk Kompetisi
+                </div>
 
-</button>
+            </div>
 
-</div>
+            <!-- CARD 2 -->
 
-</div>
+            <div class="event-card">
 
-<!-- CARD 2 -->
+                <div class="status">
+                    Online
+                </div>
 
-<div class="event-card">
+                <img
+                class="banner"
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
 
-<div class="status">
-Online
-</div>
+                <div class="card-content">
 
-<img
-class="banner"
-src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+                    <h3>
+                        Kompetisi AI Nasional
+                    </h3>
 
-<div class="card-content">
+                    <p class="date">
+                        Minggu, 12 Juni 2026
+                    </p>
 
-<h3>
-Kompetisi AI Nasional
-</h3>
+                    <button>
 
-<p class="date">
-Minggu, 12 Juni 2026
-</p>
+                        Masuk Kompetisi
 
-<button>
+                    </button>
 
-Masuk Kompetisi
+                </div>
 
-</button>
+            </div>
 
-</div>
+        </div>
 
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
@@ -154,44 +143,50 @@ Masuk Kompetisi
 
 <div class="mobile-nav">
 
-  <div class="mobile-item active">
-    <i class="fa-solid fa-house"></i>
-    <span>Home</span>
-  </div>
+    <div
+    class="mobile-item active"
+    onclick="window.location.href='dashboard.html'">
 
-<div
-class="mobile-item"
-onclick="window.location.href='jadwal.html'">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
 
-  <i class="fa-regular fa-calendar-check"></i>
-  <span>Jadwal</span>
+    </div>
 
-</div>
+    <div
+    class="mobile-item"
+    onclick="window.location.href='jadwal.html'">
 
-<div
-class="mobile-item"
-onclick="window.location.href='transaksi.html'">
+        <i class="fa-regular fa-calendar-check"></i>
+        <span>Jadwal</span>
 
-  <i class="fa-regular fa-credit-card"></i>
-  <span>Transaksi</span>
+    </div>
 
-</div>
+    <div
+    class="mobile-item"
+    onclick="window.location.href='transaksi.html'">
 
-<div
-class="mobile-item"
-onclick="window.location.href='pengumuman.html'">
+        <i class="fa-regular fa-credit-card"></i>
+        <span>Transaksi</span>
 
-  <i class="fa-regular fa-newspaper"></i>
-  <span>Pengumuman</span>
+    </div>
 
-</div>
+    <div
+    class="mobile-item"
+    onclick="window.location.href='pengumuman.html'">
 
-<div
-class="mobile-item"
-onclick="window.location.href='riwayat.html'">
+        <i class="fa-regular fa-newspaper"></i>
+        <span>Pengumuman</span>
 
-  <i class="fa-regular fa-file-lines"></i>
-  <span>Riwayat</span>
+    </div>
+
+    <div
+    class="mobile-item"
+    onclick="window.location.href='riwayat.html'">
+
+        <i class="fa-regular fa-file-lines"></i>
+        <span>Riwayat</span>
+
+    </div>
 
 </div>
 
@@ -204,46 +199,38 @@ document.getElementById("theme-toggle");
 
 themeBtn.onclick = () => {
 
-document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark");
 
-if(
-document.body.classList.contains("dark")
-){
+    if(document.body.classList.contains("dark")){
 
-themeBtn.classList.remove("fa-sun");
+        themeBtn.classList.remove("fa-sun");
+        themeBtn.classList.add("fa-moon");
 
-themeBtn.classList.add("fa-moon");
+        localStorage.setItem(
+        "theme",
+        "dark"
+        );
 
-localStorage.setItem(
-"theme",
-"dark"
-);
+    }else{
 
-}else{
+        themeBtn.classList.remove("fa-moon");
+        themeBtn.classList.add("fa-sun");
 
-themeBtn.classList.remove("fa-moon");
+        localStorage.setItem(
+        "theme",
+        "light"
+        );
 
-themeBtn.classList.add("fa-sun");
-
-localStorage.setItem(
-"theme",
-"light"
-);
-
-}
+    }
 
 };
 
-if(
-localStorage.getItem("theme")
-=== "dark"
-){
+if(localStorage.getItem("theme") === "dark"){
 
-document.body.classList.add("dark");
+    document.body.classList.add("dark");
 
-themeBtn.classList.remove("fa-sun");
-
-themeBtn.classList.add("fa-moon");
+    themeBtn.classList.remove("fa-sun");
+    themeBtn.classList.add("fa-moon");
 
 }
 
@@ -251,17 +238,15 @@ themeBtn.classList.add("fa-moon");
 
 function toggleFullscreen(){
 
-if(
-!document.fullscreenElement
-){
+    if(!document.fullscreenElement){
 
-document.documentElement.requestFullscreen();
+        document.documentElement.requestFullscreen();
 
-}else{
+    }else{
 
-document.exitFullscreen();
+        document.exitFullscreen();
 
-}
+    }
 
 }
 
