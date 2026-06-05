@@ -12,9 +12,9 @@ body{
 body{
   font-family:Arial,sans-serif;
 
-  background:#08132d;
+  background:#f3f4f6;
 
-  color:white;
+  color:#222;
 
   min-height:100vh;
 
@@ -138,18 +138,14 @@ body{
 
   margin:auto;
 
-  padding:90px 25px 40px;
+  padding:110px 30px 120px;
 }
 
 .title{
-
-  font-size:42px;
-
-  margin-bottom:35px;
-
-  color:white;
-
-  font-weight:bold;
+  font-size:24px;
+  margin-bottom:30px;
+  color:#222;
+  font-weight:700;
 }
 
 /* =========================
@@ -161,9 +157,9 @@ body{
   display:grid;
 
   grid-template-columns:
-  repeat(auto-fit,minmax(350px,1fr));
+  repeat(3,1fr);
 
-  gap:30px;
+  gap:25px;
 }
 
 /* =========================
@@ -172,7 +168,7 @@ body{
 
 .event-card{
 
-  background:#1c2947;
+  background:#ffffff;
 
   border-radius:25px;
 
@@ -231,16 +227,16 @@ body{
 
 .card-content h3{
 
-  font-size:28px;
+  font-size:30px;
 
-  color:white;
+  color:#222;
 
   margin-bottom:10px;
 }
 
 .date{
 
-  color:#cbd5e1;
+  color:#6b7280;
 
   margin-bottom:20px;
 
@@ -453,6 +449,13 @@ body.dark .mobile-nav{
   .mobile-item span{
 
     font-size:11px;
+  }
+
+}@media(max-width:768px){
+
+  .competition-grid{
+
+    grid-template-columns:1fr;
   }
 
 }
