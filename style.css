@@ -108,24 +108,57 @@ body{
   border-radius:50%;
   margin-bottom:30px;
 }
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
 @media(max-width:768px){
 
-  .hero img{
-    width:120px !important;
+  body{
+
+    padding:20px;
+    height:auto;
+    min-height:100vh;
   }
 
-  .hero h1{
-    font-size:42px !important;
+  .container{
+
+    width:100%;
   }
 
-  .hero p{
-    font-size:18px !important;
+  .logo-img{
+
+    width:100px;
+    height:100px;
+
+    margin-bottom:25px;
   }
 
-  .hero button{
-    width:220px !important;
-    height:55px !important;
-    font-size:18px !important;
+  .container h1{
+
+    font-size:42px;
+
+    line-height:1.1;
+
+    margin-bottom:15px;
+  }
+
+  .container p{
+
+    font-size:18px;
+
+    margin-bottom:30px;
+  }
+
+  .container button{
+
+    width:220px;
+
+    padding:15px;
+
+    font-size:18px;
+
+    border-radius:14px;
   }
 
 }
