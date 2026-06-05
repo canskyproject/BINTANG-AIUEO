@@ -142,7 +142,7 @@ body{
 }
 
 .title{
-  font-size:24px;
+  font-size:20px;
   margin-bottom:30px;
   color:#222;
   font-weight:700;
@@ -462,16 +462,16 @@ body.dark .mobile-item.active{
 
   .profile-center{
 
-    width:80px;
-    height:80px;
-
-    bottom:-20px;
+  width:72px;
+  height:72px;
+  
+  bottom:-20px;
   }
 
   .profile-center img{
 
-    width:70px;
-    height:70px;
+    width:64px;
+    height:64px;
   }
 
   .header-icons{
@@ -483,7 +483,7 @@ body.dark .mobile-item.active{
 
   .main-content{
 
-    padding:90px 15px 120px;
+    padding:60px 15px 120px;
   }
 
   .competition-grid{
