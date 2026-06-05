@@ -2,7 +2,6 @@
 <html lang="id">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,14 +12,17 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<link rel="icon" href="logo.jpg">
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <div class="top-header">
 
 <div class="logo-area">
-<img src="logo.jpg">
+<img src="logo.jpg" alt="Logo">
 </div>
 
 <div class="profile-center">
@@ -29,26 +31,43 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="header-icons">
 <i class="fa-solid fa-bell"></i>
-<i class="fa-solid fa-moon"></i>
+<i id="theme-toggle" class="fa-solid fa-sun"></i>
 </div>
 
 </div>
+
+<!-- CONTENT -->
 
 <div class="container">
 
-<h2>Jadwal Kompetisi</h2>
+<h2 class="title">
+<i class="fa-regular fa-calendar-check"></i>
+Jadwal Kompetisi
+</h2>
+
+<!-- FILTER -->
 
 <div class="filter-tabs">
 
-<button class="active">Semua</button>
+<button class="active">
+Semua
+</button>
 
-<button>Akan Datang</button>
+<button>
+Akan Datang
+</button>
 
-<button>Berlangsung</button>
+<button>
+Berlangsung
+</button>
 
-<button>Selesai</button>
+<button>
+Selesai
+</button>
 
 </div>
+
+<!-- CARD 1 -->
 
 <div class="schedule-card">
 
@@ -68,7 +87,13 @@ Olimpiade BINTANG 2026
 Akan Datang
 </span>
 
+<button class="detail-btn">
+Lihat Detail
+</button>
+
 </div>
+
+<!-- CARD 2 -->
 
 <div class="schedule-card">
 
@@ -88,15 +113,20 @@ Kompetisi AI Nasional
 Akan Datang
 </span>
 
-</div>
+<button class="detail-btn">
+Lihat Detail
+</button>
 
 </div>
 
-<!-- NAV -->
+</div>
+
+<!-- NAVIGATION -->
 
 <div class="mobile-nav">
 
-<div class="mobile-item"
+<div
+class="mobile-item"
 onclick="window.location.href='dashboard.html'">
 
 <i class="fa-solid fa-house"></i>
@@ -113,7 +143,9 @@ onclick="window.location.href='dashboard.html'">
 
 </div>
 
-<div class="mobile-item">
+<div
+class="mobile-item"
+onclick="window.location.href='transaksi.html'">
 
 <i class="fa-regular fa-credit-card"></i>
 
@@ -121,7 +153,9 @@ onclick="window.location.href='dashboard.html'">
 
 </div>
 
-<div class="mobile-item">
+<div
+class="mobile-item"
+onclick="window.location.href='pengumuman.html'">
 
 <i class="fa-regular fa-newspaper"></i>
 
@@ -129,7 +163,9 @@ onclick="window.location.href='dashboard.html'">
 
 </div>
 
-<div class="mobile-item">
+<div
+class="mobile-item"
+onclick="window.location.href='riwayat.html'">
 
 <i class="fa-regular fa-file-lines"></i>
 
@@ -138,6 +174,31 @@ onclick="window.location.href='dashboard.html'">
 </div>
 
 </div>
+
+<script>
+
+const themeBtn =
+document.getElementById("theme-toggle");
+
+themeBtn.onclick = () => {
+
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+
+themeBtn.classList.remove("fa-sun");
+themeBtn.classList.add("fa-moon");
+
+}else{
+
+themeBtn.classList.remove("fa-moon");
+themeBtn.classList.add("fa-sun");
+
+}
+
+};
+
+</script>
 
 </body>
 </html>
