@@ -60,7 +60,7 @@ body{
 
 .logo-area img{
 
-  height:55px;
+  height:40px;
 
   object-fit:contain;
 }
@@ -109,11 +109,11 @@ body{
 
   display:flex;
 
-  gap:20px;
+  gap:12px;
 
   color:white;
 
-  font-size:22px;
+  font-size:18px;
 }
 
 .header-icons i{
@@ -453,6 +453,44 @@ body.dark .mobile-item.active{
 
 @media(max-width:768px){
 
+  .top-header{
+
+    height:80px;
+
+    padding:0 15px;
+  }
+
+  .profile-center{
+
+    width:80px;
+    height:80px;
+
+    bottom:-20px;
+  }
+
+  .profile-center img{
+
+    width:70px;
+    height:70px;
+  }
+
+  .header-icons{
+
+    gap:10px;
+
+    font-size:16px;
+  }
+
+  .main-content{
+
+    padding:90px 15px 120px;
+  }
+
+  .competition-grid{
+
+    grid-template-columns:1fr;
+  }
+
   .mobile-nav{
 
     width:100%;
@@ -462,23 +500,14 @@ body.dark .mobile-item.active{
     border-radius:0;
   }
 
-}
-
   .mobile-item i{
 
-    font-size:24px;
+    font-size:22px;
   }
 
   .mobile-item span{
 
     font-size:11px;
-  }
-
-@media(max-width:768px){
-
-  .competition-grid{
-
-    grid-template-columns:1fr;
   }
 
 }
