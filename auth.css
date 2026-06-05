@@ -158,3 +158,73 @@ body{
   text-decoration:none;
   font-weight:bold;
 }
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+  body{
+
+    padding:20px;
+    height:auto;
+    min-height:100vh;
+  }
+
+  .auth-box{
+
+    width:100%;
+
+    max-width:380px;
+
+    padding:70px 25px 30px;
+
+    border-radius:25px;
+  }
+
+  .logo-circle{
+
+    width:90px;
+    height:90px;
+
+    top:-45px;
+  }
+
+  .logo-circle img{
+
+    width:70px;
+    height:70px;
+  }
+
+  .auth-box h1{
+
+    font-size:32px;
+  }
+
+  .subtitle{
+
+    font-size:14px;
+
+    margin-bottom:25px;
+  }
+
+  .input-group input{
+
+    padding:14px;
+
+    font-size:16px;
+  }
+
+  .auth-btn{
+
+    padding:14px;
+
+    font-size:16px;
+  }
+
+  .bottom-text{
+
+    font-size:14px;
+  }
+
+}
