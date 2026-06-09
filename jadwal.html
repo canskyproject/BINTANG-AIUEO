@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,6 +14,7 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <link rel="icon" href="logo.jpg">
+
 </head>
 
 <body>
@@ -21,18 +23,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="top-header">
 
-<div class="logo-area">
-<img src="logo.jpg" alt="Logo">
-</div>
+  <div class="logo-area">
+    <img src="logo.jpg" alt="Logo">
+  </div>
 
-<div class="profile-center">
-<img src="https://i.pravatar.cc/150?img=12">
-</div>
+  <div class="profile-center">
+    <img src="https://i.pravatar.cc/150?img=12">
+  </div>
 
-<div class="header-icons">
-<i class="fa-solid fa-bell"></i>
-<i id="theme-toggle" class="fa-solid fa-sun"></i>
-</div>
+  <div class="header-icons">
+    <i class="fa-solid fa-bell"></i>
+    <i id="theme-toggle" class="fa-solid fa-sun"></i>
+  </div>
 
 </div>
 
@@ -40,84 +42,42 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <div class="container">
 
-<h2 class="title">
-<i class="fa-regular fa-calendar-check"></i>
-Jadwal Kompetisi
-</h2>
+  <h2 class="title">
+    <i class="fa-regular fa-calendar-check"></i>
+    Jadwal Kompetisi
+  </h2>
 
-<!-- FILTER -->
+  <div class="filter-tabs">
 
-<div class="filter-tabs">
+    <button class="active">
+      Semua
+    </button>
 
-<button class="active">
-Semua
-</button>
+    <button>
+      Akan Datang
+    </button>
 
-<button>
-Akan Datang
-</button>
+    <button>
+      Berlangsung
+    </button>
 
-<button>
-Berlangsung
-</button>
+    <button>
+      Selesai
+    </button>
 
-<button>
-Selesai
-</button>
+  </div>
 
-</div>
+  <!-- DATA FIRESTORE AKAN MASUK KE SINI -->
 
-<!-- CARD 1 -->
+  <div id="jadwal-list">
 
-<div class="schedule-card">
+    <div class="schedule-card">
 
-<h3>
-Olimpiade BINTANG 2026
-</h3>
+      <h3>Memuat data...</h3>
 
-<p>
-📅 30 Mei 2026
-</p>
+    </div>
 
-<p>
-⏰ 08:00 WIB
-</p>
-
-<span class="status upcoming">
-Akan Datang
-</span>
-
-<button class="detail-btn">
-Lihat Detail
-</button>
-
-</div>
-
-<!-- CARD 2 -->
-
-<div class="schedule-card">
-
-<h3>
-Kompetisi AI Nasional
-</h3>
-
-<p>
-📅 12 Juni 2026
-</p>
-
-<p>
-⏰ 09:00 WIB
-</p>
-
-<span class="status upcoming">
-Akan Datang
-</span>
-
-<button class="detail-btn">
-Lihat Detail
-</button>
-
-</div>
+  </div>
 
 </div>
 
@@ -125,55 +85,166 @@ Lihat Detail
 
 <div class="mobile-nav">
 
-<div
-class="mobile-item"
-onclick="window.location.href='dashboard.html'">
+  <div
+  class="mobile-item"
+  onclick="window.location.href='dashboard.html'">
 
-<i class="fa-solid fa-house"></i>
+    <i class="fa-solid fa-house"></i>
 
-<span>Home</span>
+    <span>Home</span>
+
+  </div>
+
+  <div class="mobile-item active">
+
+    <i class="fa-regular fa-calendar-check"></i>
+
+    <span>Jadwal</span>
+
+  </div>
+
+  <div
+  class="mobile-item"
+  onclick="window.location.href='transaksi.html'">
+
+    <i class="fa-regular fa-credit-card"></i>
+
+    <span>Transaksi</span>
+
+  </div>
+
+  <div
+  class="mobile-item"
+  onclick="window.location.href='pengumuman.html'">
+
+    <i class="fa-regular fa-newspaper"></i>
+
+    <span>Pengumuman</span>
+
+  </div>
+
+  <div
+  class="mobile-item"
+  onclick="window.location.href='riwayat.html'">
+
+    <i class="fa-regular fa-file-lines"></i>
+
+    <span>Riwayat</span>
+
+  </div>
 
 </div>
 
-<div class="mobile-item active">
+<!-- FIRESTORE -->
 
-<i class="fa-regular fa-calendar-check"></i>
+<script type="module">
 
-<span>Jadwal</span>
+import { firestore }
+from "./firebase.js";
 
-</div>
+import {
+  collection,
+  getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<div
-class="mobile-item"
-onclick="window.location.href='transaksi.html'">
+async function loadKompetisi(){
 
-<i class="fa-regular fa-credit-card"></i>
+  const container =
+  document.getElementById("jadwal-list");
 
-<span>Transaksi</span>
+  container.innerHTML = "";
 
-</div>
+  try{
 
-<div
-class="mobile-item"
-onclick="window.location.href='pengumuman.html'">
+    const querySnapshot =
+    await getDocs(
+      collection(
+        firestore,
+        "kompetisi"
+      )
+    );
 
-<i class="fa-regular fa-newspaper"></i>
+    querySnapshot.forEach((doc)=>{
 
-<span>Pengumuman</span>
+      const data =
+      doc.data();
 
-</div>
+      container.innerHTML += `
 
-<div
-class="mobile-item"
-onclick="window.location.href='riwayat.html'">
+      <div class="schedule-card">
 
-<i class="fa-regular fa-file-lines"></i>
+        <h3>
+          ${data.nama || "-"}
+        </h3>
 
-<span>Riwayat</span>
+        <p>
+          📅 ${data.tanggal || "-"}
+        </p>
 
-</div>
+        <p>
+          ⏰ ${data.jam || "-"}
+        </p>
 
-</div>
+        <span class="status upcoming">
+          ${data.status || "-"}
+        </span>
+
+        <button class="detail-btn">
+          Lihat Detail
+        </button>
+
+      </div>
+
+      `;
+
+    });
+
+    if(querySnapshot.empty){
+
+      container.innerHTML = `
+
+      <div class="schedule-card">
+
+        <h3>
+          Belum ada kompetisi
+        </h3>
+
+      </div>
+
+      `;
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML = `
+
+    <div class="schedule-card">
+
+      <h3>
+        Gagal mengambil data Firestore
+      </h3>
+
+      <p>
+        ${error.message}
+      </p>
+
+    </div>
+
+    `;
+
+  }
+
+}
+
+loadKompetisi();
+
+</script>
+
+<!-- DARK MODE -->
 
 <script>
 
@@ -182,19 +253,21 @@ document.getElementById("theme-toggle");
 
 themeBtn.onclick = () => {
 
-document.body.classList.toggle("dark");
+  document.body.classList.toggle("dark");
 
-if(document.body.classList.contains("dark")){
+  if(
+  document.body.classList.contains("dark")
+  ){
 
-themeBtn.classList.remove("fa-sun");
-themeBtn.classList.add("fa-moon");
+    themeBtn.classList.remove("fa-sun");
+    themeBtn.classList.add("fa-moon");
 
-}else{
+  }else{
 
-themeBtn.classList.remove("fa-moon");
-themeBtn.classList.add("fa-sun");
+    themeBtn.classList.remove("fa-moon");
+    themeBtn.classList.add("fa-sun");
 
-}
+  }
 
 };
 

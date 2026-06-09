@@ -3,11 +3,11 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updatePassword
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+updatePassword
 
 }
 
@@ -15,33 +15,32 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
 
-  getDatabase,
-  ref,
-  set,
-  get
+getFirestore,
+doc,
+setDoc,
+getDoc,
+collection,
+getDocs
 
 }
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCwGlCnjTL3DfhbxWWYrQufV8_9uS7agQU",
+apiKey: "AIzaSyCwGlCnjTL3DfhbxWWYrQufV8_9uS7agQU",
 
-  authDomain: "bintang-aiueo.firebaseapp.com",
+authDomain: "bintang-aiueo.firebaseapp.com",
 
-  databaseURL:
-  "https://bintang-aiueo-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "bintang-aiueo",
 
-  projectId: "bintang-aiueo",
+storageBucket: "bintang-aiueo.firebasestorage.app",
 
-  storageBucket: "bintang-aiueo.firebasestorage.app",
+messagingSenderId: "393513757252",
 
-  messagingSenderId: "393513757252",
-
-  appId: "1:393513757252:web:c3ecdd339ecb19f615ea11"
+appId: "1:393513757252:web:c3ecdd339ecb19f615ea11"
 
 };
 
@@ -55,36 +54,40 @@ initializeApp(firebaseConfig);
 export const auth =
 getAuth(app);
 
-/* DATABASE */
+/* FIRESTORE */
 
-export const db =
-getDatabase(app);
+export const firestore =
+getFirestore(app);
 
 /* LOGIN */
 
 window.loginUser =
 function(email,password){
 
-  signInWithEmailAndPassword(
-    auth,
-    email,
-    password
-  )
+signInWithEmailAndPassword(
+auth,
+email,
+password
+)
 
-  .then(() => {
+.then(() => {
 
-    alert("Login berhasil 😄");
+```
+alert("Login berhasil 😄");
 
-    window.location.href =
-    "dashboard.html";
+window.location.href =
+"dashboard.html";
+```
 
-  })
+})
 
-  .catch((error) => {
+.catch((error) => {
 
-    alert(error.message);
+```
+alert(error.message);
+```
 
-  });
+});
 
 }
 
@@ -93,43 +96,54 @@ function(email,password){
 window.registerUser =
 function(email,password){
 
-  createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-  )
+createUserWithEmailAndPassword(
+auth,
+email,
+password
+)
 
-  .then(async(userCredential) => {
+.then(async(userCredential) => {
 
-    const user =
-    userCredential.user;
+```
+const user =
+userCredential.user;
 
-    await set(
+await setDoc(
 
-      ref(db,"users/" + user.uid),
+  doc(
+    firestore,
+    "users",
+    user.uid
+  ),
 
-      {
+  {
 
-        name:"User Baru",
+    name:"User Baru",
 
-        email:user.email
+    email:user.email,
 
-      }
+    createdAt:
+    new Date().toISOString()
 
-    );
+  }
 
-    alert("Register berhasil 😄");
+);
 
-    window.location.href =
-    "login.html";
+alert("Register berhasil 😄");
 
-  })
+window.location.href =
+"login.html";
+```
 
-  .catch((error) => {
+})
 
-    alert(error.message);
+.catch((error) => {
 
-  });
+```
+alert(error.message);
+```
+
+});
 
 }
 
@@ -137,10 +151,12 @@ function(email,password){
 
 export {
 
-  signOut,
-  updatePassword,
-  ref,
-  set,
-  get
+signOut,
+updatePassword,
+doc,
+setDoc,
+getDoc,
+collection,
+getDocs
 
 };
