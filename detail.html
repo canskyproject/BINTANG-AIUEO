@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Detail Kompetisi</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+body{
+  margin:0;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+.info{
+  margin:12px 0;
+  font-size:18px;
+}
+
+.back-btn{
+  margin-top:20px;
+  background:#1976D2;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card" id="detailBox">
+
+<h1>Memuat...</h1>
+
+</div>
+
+<script type="module">
+
+import { firestore }
+from "./firebase.js";
+
+import {
+doc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const params =
+new URLSearchParams(window.location.search);
+
+const id =
+params.get("id");
+
+const detailBox =
+document.getElementById("detailBox");
+
+async function loadDetail(){
+
+try{
+
+const docRef =
+doc(
+firestore,
+"kompetisi",
+id
+);
+
+const docSnap =
+await getDoc(docRef);
+
+if(docSnap.exists()){
+
+const data =
+docSnap.data();
+
+detailBox.innerHTML = `
+
+<h1>${data.nama}</h1>
+
+<div class="info">
+📅 ${data.tanggal}
+</div>
+
+<div class="info">
+⏰ ${data.jam}
+</div>
+
+<div class="info">
+🏷️ ${data.status}
+</div>
+
+<button
+class="back-btn"
+onclick="history.back()">
+
+Kembali
+
+</button>
+
+`;
+
+}else{
+
+detailBox.innerHTML =
+"<h2>Data tidak ditemukan</h2>";
+
+}
+
+}catch(error){
+
+detailBox.innerHTML =
+`<h2>${error.message}</h2>`;
+
+}
+
+}
+
+loadDetail();
+
+</script>
+
+</body>
+
+</html>

@@ -192,9 +192,13 @@ Jam: ${data.jam}
           ${data.status || "-"}
         </span>
 
-        <button class="detail-btn">
-          Lihat Detail
-        </button>
+        <button
+class="detail-btn"
+onclick="window.location.href='detail.html?id=${doc.id}'">
+
+Lihat Detail
+
+</button>
 
       </div>
 
