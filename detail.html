@@ -8,9 +8,6 @@
 
 <title>Detail Kompetisi</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
 
 body{
@@ -36,14 +33,22 @@ h1{
   font-size:18px;
 }
 
-.back-btn{
-  margin-top:20px;
-  background:#1976D2;
-  color:white;
+.btn{
+  margin-top:15px;
   border:none;
   padding:12px 20px;
   border-radius:12px;
   cursor:pointer;
+  color:white;
+  font-size:16px;
+}
+
+.daftar-btn{
+  background:#16a34a;
+}
+
+.back-btn{
+  background:#1976D2;
 }
 
 </style>
@@ -64,9 +69,14 @@ import { firestore }
 from "./firebase.js";
 
 import {
+
 doc,
-getDoc
+getDoc,
+collection,
+addDoc
+
 }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const params =
@@ -77,6 +87,77 @@ params.get("id");
 
 const detailBox =
 document.getElementById("detailBox");
+
+async function daftarKompetisi(){
+
+  const uid =
+  localStorage.getItem("uid");
+
+  if(!uid){
+
+    alert("Silakan login terlebih dahulu");
+
+    window.location.href =
+    "login.html";
+
+    return;
+
+  }
+
+  try{
+
+    const docRef =
+    doc(
+      firestore,
+      "kompetisi",
+      id
+    );
+
+    const docSnap =
+    await getDoc(docRef);
+
+    const data =
+    docSnap.data();
+
+    await addDoc(
+
+      collection(
+        firestore,
+        "pendaftaran"
+      ),
+
+      {
+
+        uid: uid,
+
+        kompetisiId: id,
+
+        kompetisiNama:
+        data.nama,
+
+        status:
+        "Terdaftar"
+
+      }
+
+    );
+
+    alert(
+      "Pendaftaran berhasil 😄"
+    );
+
+  }catch(error){
+
+    alert(
+      error.message
+    );
+
+  }
+
+}
+
+window.daftarKompetisi =
+daftarKompetisi;
 
 async function loadDetail(){
 
@@ -114,7 +195,17 @@ detailBox.innerHTML = `
 </div>
 
 <button
-class="back-btn"
+class="btn daftar-btn"
+onclick="daftarKompetisi()">
+
+Daftar Sekarang
+
+</button>
+
+<br>
+
+<button
+class="btn back-btn"
 onclick="history.back()">
 
 Kembali
