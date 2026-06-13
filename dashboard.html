@@ -62,9 +62,37 @@ href="logo.jpg">
 
     <div class="main-content">
 
-        <h2 class="title">
-            Semua Kompetisi
-        </h2>
+        <div class="stats-grid">
+
+  <div class="stat-card">
+
+    <h3 id="totalKompetisi">
+      0
+    </h3>
+
+    <p>
+      Kompetisi
+    </p>
+
+  </div>
+
+  <div class="stat-card">
+
+    <h3 id="totalPendaftaran">
+      0
+    </h3>
+
+    <p>
+      Terdaftar
+    </p>
+
+  </div>
+
+</div>
+
+<h2 class="title">
+  Semua Kompetisi
+</h2>
 
         <div class="competition-grid">
 
@@ -249,6 +277,68 @@ function toggleFullscreen(){
     }
 
 }
+
+</script>
+<script type="module">
+
+import { firestore }
+from "./firebase.js";
+
+import {
+collection,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const uid =
+localStorage.getItem("uid");
+
+async function loadStats(){
+
+const kompetisi =
+await getDocs(
+collection(
+firestore,
+"kompetisi"
+)
+);
+
+document.getElementById(
+"totalKompetisi"
+).innerText =
+kompetisi.size;
+
+const pendaftaran =
+await getDocs(
+collection(
+firestore,
+"pendaftaran"
+)
+);
+
+let total = 0;
+
+pendaftaran.forEach((doc)=>{
+
+const data =
+doc.data();
+
+if(data.uid === uid){
+
+total++;
+
+}
+
+});
+
+document.getElementById(
+"totalPendaftaran"
+).innerText =
+total;
+
+}
+
+loadStats();
 
 </script>
 

@@ -510,4 +510,52 @@ body.dark .mobile-item.active{
     font-size:11px;
   }
 
+}.stats-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:15px;
+
+  margin-bottom:25px;
+}
+
+.stat-card{
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  box-shadow:
+  0 5px 20px rgba(0,0,0,.08);
+}
+
+.stat-card h3{
+
+  font-size:32px;
+
+  color:#1976D2;
+
+  margin-bottom:5px;
+}
+
+.stat-card p{
+
+  color:#666;
+}
+
+body.dark .stat-card{
+
+  background:#111827;
+}
+
+body.dark .stat-card p{
+
+  color:#cbd5e1;
 }
