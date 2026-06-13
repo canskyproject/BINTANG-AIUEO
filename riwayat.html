@@ -1,14 +1,101 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-<title>Riwayat</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Riwayat Pendaftaran</title>
+
+<style>
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+</style>
+
 </head>
 
 <body>
 
 <h1>Riwayat Pendaftaran</h1>
 
-</body>
+<div id="riwayatList">
 
+Memuat...
+
+</div>
+
+<script type="module">
+
+import { firestore }
+from "./firebase.js";
+
+import {
+collection,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const box =
+document.getElementById("riwayatList");
+
+async function loadRiwayat(){
+
+const snapshot =
+await getDocs(
+collection(
+firestore,
+"pendaftaran"
+)
+);
+
+box.innerHTML = "";
+
+snapshot.forEach((doc)=>{
+
+const data =
+doc.data();
+
+box.innerHTML += `
+
+<div class="card">
+
+<h3>
+${data.kompetisiNama}
+</h3>
+
+<p>
+Status:
+${data.status}
+</p>
+
+<p>
+UID:
+${data.uid}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadRiwayat();
+
+</script>
+
+</body>
 </html>
