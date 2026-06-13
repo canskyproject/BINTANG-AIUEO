@@ -69,14 +69,12 @@ import { firestore }
 from "./firebase.js";
 
 import {
-
 doc,
 getDoc,
 collection,
-addDoc
-
+addDoc,
+getDocs
 }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const params =
@@ -90,69 +88,108 @@ document.getElementById("detailBox");
 
 async function daftarKompetisi(){
 
-  const uid =
-  localStorage.getItem("uid");
+const uid =
+localStorage.getItem("uid");
 
-  if(!uid){
+if(!uid){
 
-    alert("Silakan login terlebih dahulu");
+alert("Silakan login terlebih dahulu");
 
-    window.location.href =
-    "login.html";
+window.location.href =
+"login.html";
 
-    return;
+return;
 
-  }
+}
 
-  try{
+try{
 
-    const docRef =
-    doc(
-      firestore,
-      "kompetisi",
-      id
-    );
+const semuaPendaftaran =
+await getDocs(
+collection(
+firestore,
+"pendaftaran"
+)
+);
 
-    const docSnap =
-    await getDoc(docRef);
+let sudahDaftar = false;
 
-    const data =
-    docSnap.data();
+semuaPendaftaran.forEach((item)=>{
 
-    await addDoc(
+const data =
+item.data();
 
-      collection(
-        firestore,
-        "pendaftaran"
-      ),
+if(
+data.uid === uid &&
+data.kompetisiId === id
+){
 
-      {
+sudahDaftar = true;
 
-        uid: uid,
+}
 
-        kompetisiId: id,
+});
 
-        kompetisiNama:
-        data.nama,
+if(sudahDaftar){
 
-        status:
-        "Terdaftar"
+alert(
+"Kamu sudah terdaftar pada kompetisi ini"
+);
 
-      }
+return;
 
-    );
+}
 
-    alert(
-      "Pendaftaran berhasil 😄"
-    );
+const docRef =
+doc(
+firestore,
+"kompetisi",
+id
+);
 
-  }catch(error){
+const docSnap =
+await getDoc(docRef);
 
-    alert(
-      error.message
-    );
+const data =
+docSnap.data();
 
-  }
+await addDoc(
+
+collection(
+firestore,
+"pendaftaran"
+),
+
+{
+
+uid: uid,
+
+kompetisiId: id,
+
+kompetisiNama:
+data.nama,
+
+status:
+"Terdaftar"
+
+}
+
+);
+
+alert(
+"Pendaftaran berhasil 😄"
+);
+
+window.location.href =
+"riwayat.html";
+
+}catch(error){
+
+alert(
+error.message
+);
+
+}
 
 }
 
