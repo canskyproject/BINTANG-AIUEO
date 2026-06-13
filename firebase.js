@@ -11,12 +11,15 @@ updatePassword
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
+
 getFirestore,
 doc,
 setDoc,
 getDoc,
 collection,
-getDocs
+getDocs,
+addDoc
+
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -44,10 +47,25 @@ email,
 password
 )
 
-.then(() => {
+.then((userCredential) => {
 
-alert("Login berhasil 😄");
-window.location.href = "dashboard.html";
+  const user =
+  userCredential.user;
+
+  localStorage.setItem(
+    "uid",
+    user.uid
+  );
+
+  localStorage.setItem(
+    "email",
+    user.email
+  );
+
+  alert("Login berhasil 😄");
+
+  window.location.href =
+  "dashboard.html";
 
 })
 
@@ -101,11 +119,14 @@ alert(error.message);
 };
 
 export {
+
 signOut,
 updatePassword,
 doc,
 setDoc,
 getDoc,
 collection,
-getDocs
+getDocs,
+addDoc
+
 };
