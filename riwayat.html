@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,19 +8,157 @@
 
 <title>Riwayat Pendaftaran</title>
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
-  padding:20px;
+background:#f3f4f6;
+padding-bottom:90px;
+}
+
+.container{
+padding:20px;
+max-width:900px;
+margin:auto;
+}
+
+.title{
+font-size:35px;
+font-weight:700;
+margin-bottom:25px;
 }
 
 .card{
-  background:white;
-  padding:15px;
-  border-radius:15px;
-  margin-bottom:15px;
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+margin-bottom:15px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+margin-bottom:10px;
+color:#1976D2;
+}
+
+.card p{
+margin-bottom:8px;
+}
+
+.status{
+
+display:inline-block;
+
+padding:8px 15px;
+
+border-radius:10px;
+
+font-size:13px;
+
+font-weight:bold;
+
+}
+
+.menunggu{
+background:#FEF3C7;
+color:#92400E;
+}
+
+.berhasil{
+background:#DCFCE7;
+color:#166534;
+}
+
+.gagal{
+background:#FEE2E2;
+color:#991B1B;
+}
+
+/* NAVBAR */
+
+.mobile-nav{
+
+position:fixed;
+
+bottom:0;
+left:0;
+
+width:100%;
+
+height:75px;
+
+background:white;
+
+border-top:1px solid #ddd;
+
+display:flex;
+
+justify-content:space-around;
+align-items:center;
+
+z-index:999;
+
+}
+
+.mobile-item{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+color:#999;
+
+cursor:pointer;
+
+}
+
+.mobile-item i{
+font-size:22px;
+margin-bottom:5px;
+}
+
+.mobile-item span{
+font-size:11px;
+}
+
+.mobile-item.active{
+color:#1976D2;
+}
+
+.mobile-item.active i{
+
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+border:2px solid #1976D2;
+
 }
 
 </style>
@@ -28,11 +167,70 @@ body{
 
 <body>
 
-<h1>Riwayat Pendaftaran</h1>
+<div class="container">
+
+<h1 class="title">
+📄 Riwayat Pendaftaran
+</h1>
 
 <div id="riwayatList">
 
-Memuat...
+<div class="card">
+
+Memuat data...
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NAVIGATION -->
+
+<div class="mobile-nav">
+
+<div
+class="mobile-item"
+onclick="window.location.href='dashboard.html'">
+
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='jadwal.html'">
+
+<i class="fa-regular fa-calendar-check"></i>
+<span>Jadwal</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='transaksi.html'">
+
+<i class="fa-regular fa-credit-card"></i>
+<span>Transaksi</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='pengumuman.html'">
+
+<i class="fa-regular fa-newspaper"></i>
+<span>Pengumuman</span>
+
+</div>
+
+<div class="mobile-item active">
+
+<i class="fa-regular fa-file-lines"></i>
+<span>Riwayat</span>
+
+</div>
 
 </div>
 
@@ -47,10 +245,15 @@ getDocs
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const uid =
+localStorage.getItem("uid");
+
 const box =
 document.getElementById("riwayatList");
 
 async function loadRiwayat(){
+
+try{
 
 const snapshot =
 await getDocs(
@@ -62,34 +265,91 @@ firestore,
 
 box.innerHTML = "";
 
+let ditemukan = false;
+
 snapshot.forEach((doc)=>{
 
 const data =
 doc.data();
+
+if(data.uid === uid){
+
+ditemukan = true;
+
+let warna = "menunggu";
+
+if(data.status === "Berhasil"){
+warna = "berhasil";
+}
+
+if(data.status === "Gagal"){
+warna = "gagal";
+}
 
 box.innerHTML += `
 
 <div class="card">
 
 <h3>
-${data.kompetisiNama}
+${data.kompetisiNama || "-"}
 </h3>
 
 <p>
-Status:
-${data.status}
+UID: ${data.uid}
 </p>
 
 <p>
-UID:
-${data.uid}
+Tanggal Daftar:
+${data.tanggalDaftar || "-"}
+</p>
+
+<span class="status ${warna}">
+${data.status || "Menunggu"}
+</span>
+
+</div>
+
+`;
+
+}
+
+});
+
+if(!ditemukan){
+
+box.innerHTML = `
+
+<div class="card">
+
+<h3>
+Belum ada riwayat pendaftaran
+</h3>
+
+</div>
+
+`;
+
+}
+
+}catch(error){
+
+box.innerHTML = `
+
+<div class="card">
+
+<h3>
+Gagal mengambil data
+</h3>
+
+<p>
+${error.message}
 </p>
 
 </div>
 
 `;
 
-});
+}
 
 }
 
