@@ -143,108 +143,184 @@ import { firestore }
 from "./firebase.js";
 
 import {
-  collection,
-  getDocs
+collection,
+getDocs
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const container =
+document.getElementById("jadwal-list");
+
+const buttons =
+document.querySelectorAll(".filter-tabs button");
+
+let semuaData = [];
+
 async function loadKompetisi(){
 
-  const container =
-  document.getElementById("jadwal-list");
+container.innerHTML = `
+<div class="schedule-card">
+<h3>Memuat data...</h3>
+</div>
+`;
 
-  container.innerHTML = "";
+try{
 
-  try{
+const snapshot =
+await getDocs(
+collection(
+firestore,
+"kompetisi"
+)
+);
 
-    const querySnapshot =
-    await getDocs(
-      collection(
-        firestore,
-        "kompetisi"
-      )
-    );
+semuaData = [];
 
-    querySnapshot.forEach((doc)=>{
+snapshot.forEach((docSnap)=>{
 
-      const data =
-      doc.data();
+semuaData.push({
+id:docSnap.id,
+...docSnap.data()
+});
 
-      console.log("DATA FIRESTORE:", data);
+});
 
-      container.innerHTML += `
+renderData("Semua");
 
-      <div class="schedule-card">
+}catch(error){
 
-        <h3>
-          ${data.nama || "-"}
-        </h3>
+container.innerHTML = `
+<div class="schedule-card">
+<h3>Gagal mengambil data</h3>
+<p>${error.message}</p>
+</div>
+`;
 
-        <p>
-Tanggal: ${data.tanggal}
+}
+
+}
+
+function renderData(filter){
+
+container.innerHTML = "";
+
+let dataTampil = semuaData;
+
+if(filter === "Akan Datang"){
+
+dataTampil =
+semuaData.filter(
+item =>
+item.status === "Akan Datang"
+);
+
+}
+
+if(filter === "Berlangsung"){
+
+dataTampil =
+semuaData.filter(
+item =>
+item.status === "Berlangsung"
+);
+
+}
+
+if(filter === "Selesai"){
+
+dataTampil =
+semuaData.filter(
+item =>
+item.status === "Selesai"
+);
+
+}
+
+if(dataTampil.length === 0){
+
+container.innerHTML = `
+<div class="schedule-card">
+<h3>Belum ada data</h3>
+</div>
+`;
+
+return;
+
+}
+
+dataTampil.forEach((data)=>{
+
+let warnaStatus = "upcoming";
+
+if(data.status === "Berlangsung"){
+
+warnaStatus = "ongoing";
+
+}
+
+if(data.status === "Selesai"){
+
+warnaStatus = "finished";
+
+}
+
+container.innerHTML += `
+
+<div class="schedule-card">
+
+<h3>
+${data.nama || "-"}
+</h3>
+
+<p>
+📅 ${data.tanggal || "-"}
 </p>
 
 <p>
-Jam: ${data.jam}
+⏰ ${data.jam || "-"}
 </p>
 
-        <span class="status upcoming">
-          ${data.status || "-"}
-        </span>
+<span class="status ${warnaStatus}">
+${data.status || "-"}
+</span>
 
-        <button
+<br><br>
+
+<button
 class="detail-btn"
-onclick="window.location.href='detail.html?id=${doc.id}'">
+onclick="window.location.href='detail.html?id=${data.id}'">
 
 Lihat Detail
 
 </button>
 
-      </div>
+</div>
 
-      `;
+`;
 
-    });
-
-    if(querySnapshot.empty){
-
-      container.innerHTML = `
-
-      <div class="schedule-card">
-
-        <h3>
-          Belum ada kompetisi
-        </h3>
-
-      </div>
-
-      `;
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    container.innerHTML = `
-
-    <div class="schedule-card">
-
-      <h3>
-        Gagal mengambil data Firestore
-      </h3>
-
-      <p>
-        ${error.message}
-      </p>
-
-    </div>
-
-    `;
-
-  }
+});
 
 }
+
+buttons.forEach((btn)=>{
+
+btn.addEventListener("click",()=>{
+
+buttons.forEach((b)=>{
+
+b.classList.remove("active");
+
+});
+
+btn.classList.add("active");
+
+renderData(
+btn.innerText.trim()
+);
+
+});
+
+});
 
 loadKompetisi();
 
