@@ -1,15 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
 
-  <title>Profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="profile.css">
+<title>Profile</title>
 
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f3f4f6;
+padding:20px;
+}
+
+.profile-card{
+max-width:500px;
+margin:auto;
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.top-bar{
+padding:20px;
+font-size:24px;
+cursor:pointer;
+}
+
+.profile-image{
+text-align:center;
+position:relative;
+}
+
+.profile-image img{
+width:140px;
+height:140px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #1976D2;
+}
+
+.profile-image label{
+position:absolute;
+bottom:10px;
+right:35%;
+background:#1976D2;
+color:white;
+width:40px;
+height:40px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+}
+
+.profile-content{
+padding:25px;
+}
+
+.profile-content h2{
+text-align:center;
+margin-bottom:5px;
+}
+
+.role{
+text-align:center;
+color:#666;
+margin-bottom:25px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+.input-group label{
+display:block;
+margin-bottom:6px;
+font-weight:bold;
+}
+
+.input-group input{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:10px;
+}
+
+.save-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#1976D2;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.logout{
+padding:20px;
+text-align:center;
+color:red;
+font-weight:bold;
+cursor:pointer;
+border-top:1px solid #eee;
+}
+
+</style>
 
 </head>
 
@@ -17,152 +129,132 @@
 
 <div class="profile-card">
 
-  <!-- TOP -->
+<div class="top-bar">
 
-  <div class="top-bar">
+<i
+class="fa-solid fa-arrow-left"
+onclick="window.location.href='dashboard.html'">
+</i>
 
-    <i
-    class="fa-solid fa-arrow-left"
-    onclick="window.location.href='dashboard.html'">
-    </i>
+</div>
 
-  </div>
+<div class="profile-image">
 
-  <!-- FOTO -->
+<img
+id="preview"
+src="https://i.pravatar.cc/200?img=12">
 
-  <div class="profile-image">
+<label for="upload-photo">
 
-    <img
-    id="preview"
-    src="https://i.pravatar.cc/200?img=12">
+<i class="fa-solid fa-camera"></i>
 
-    <label for="upload-photo">
+</label>
 
-      <i class="fa-solid fa-camera"></i>
+<input
+type="file"
+id="upload-photo"
+hidden>
 
-    </label>
+</div>
 
-    <input
-    type="file"
-    id="upload-photo"
-    hidden>
+<div class="profile-content">
 
-  </div>
+<h2 id="username">
+Loading...
+</h2>
 
-  <!-- CONTENT -->
+<p class="role">
+Peserta Kompetisi
+</p>
 
-  <div class="profile-content">
+<div class="input-group">
 
-    <h2 id="username">
-      IQMALL
-    </h2>
+<label>Nama Baru</label>
 
-    <p class="role">
-      Siswa - SMA
-    </p>
+<input
+type="text"
+id="new-name"
+placeholder="Masukkan nama baru">
 
-    <!-- NAMA -->
+</div>
 
-    <div class="input-group">
+<div class="input-group">
 
-      <label>
-        Nama Baru
-      </label>
+<label>Password Lama</label>
 
-      <input
-      type="text"
-      id="new-name"
-      placeholder="Masukkan nama baru">
+<input
+type="password"
+id="oldPassword"
+placeholder="Password lama">
 
-    </div>
+</div>
 
-    <!-- PASSWORD -->
+<div class="input-group">
 
-    <div class="input-group">
+<label>Password Baru</label>
 
-      <label>
-        Password Lama
-      </label>
+<input
+type="password"
+id="newPassword"
+placeholder="Password baru">
 
-      <input
-      type="password"
-      placeholder="Password lama">
+</div>
 
-    </div>
+<div class="input-group">
 
-    <div class="input-group">
+<label>Ulangi Password Baru</label>
 
-      <label>
-        Password Baru
-      </label>
+<input
+type="password"
+id="confirmPassword"
+placeholder="Ulangi password baru">
 
-      <input
-      type="password"
-      placeholder="Password baru">
+</div>
 
-    </div>
+<button
+class="save-btn"
+onclick="saveProfile()">
 
-    <div class="input-group">
+Simpan
 
-      <label>
-        Ulangi Password Baru
-      </label>
+</button>
 
-      <input
-      type="password"
-      placeholder="Ulangi password">
+</div>
 
-    </div>
+<div
+class="logout"
+onclick="logout()">
 
-    <!-- BUTTON -->
+<i class="fa-solid fa-power-off"></i>
 
-    <button
-    class="save-btn"
-    onclick="saveProfile()">
+Logout
 
-      Save
-
-    </button>
-
-  </div>
-
-  <!-- LOGOUT -->
-
-  <div
-  class="logout"
-  onclick="logout()">
-
-    <i class="fa-solid fa-power-off"></i>
-
-    Logout
-
-  </div>
+</div>
 
 </div>
 
 <script type="module">
 
 import {
-
-  auth,
-  db,
-  signOut
-
+auth,
+firestore,
+signOut
 }
-
 from "./firebase.js";
 
 import {
-
-  ref,
-  set,
-  get
-
+doc,
+getDoc,
+updateDoc
 }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-/* ELEMENT */
+import {
+EmailAuthProvider,
+reauthenticateWithCredential,
+updatePassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const username =
 document.getElementById("username");
@@ -170,105 +262,169 @@ document.getElementById("username");
 const newName =
 document.getElementById("new-name");
 
+async function loadProfile(){
+
+try{
+
+const uid =
+localStorage.getItem("uid");
+
+if(!uid) return;
+
+const docSnap =
+await getDoc(
+doc(
+firestore,
+"users",
+uid
+)
+);
+
+if(docSnap.exists()){
+
+const data =
+docSnap.data();
+
+username.innerHTML =
+data.name || "User";
+
+newName.value =
+data.name || "";
+
+}
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+loadProfile();
+
+window.saveProfile =
+async function(){
+
+try{
+
+const uid =
+localStorage.getItem("uid");
+
+if(!uid){
+
+alert("Silakan login ulang");
+return;
+
+}
+
+await updateDoc(
+
+doc(
+firestore,
+"users",
+uid
+),
+
+{
+name:newName.value
+}
+
+);
+
+username.innerHTML =
+newName.value;
+
+const oldPassword =
+document.getElementById("oldPassword").value;
+
+const newPassword =
+document.getElementById("newPassword").value;
+
+const confirmPassword =
+document.getElementById("confirmPassword").value;
+
+if(
+oldPassword &&
+newPassword &&
+confirmPassword
+){
+
+if(newPassword !== confirmPassword){
+
+alert("Password baru tidak sama");
+return;
+
+}
+
+const user =
+auth.currentUser;
+
+const credential =
+EmailAuthProvider.credential(
+user.email,
+oldPassword
+);
+
+await reauthenticateWithCredential(
+user,
+credential
+);
+
+await updatePassword(
+user,
+newPassword
+);
+
+}
+
+alert("Data berhasil disimpan 😄");
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
+
 const uploadPhoto =
 document.getElementById("upload-photo");
 
 const preview =
 document.getElementById("preview");
 
-/* LOAD PROFILE */
+uploadPhoto.addEventListener(
+"change",
+function(){
 
-setTimeout(async() => {
+const file =
+this.files[0];
 
-  const user =
-  auth.currentUser;
+if(file){
 
-  if(user){
-
-    const snapshot =
-    await get(
-      ref(db,"users/" + user.uid)
-    );
-
-    if(snapshot.exists()){
-
-      const data =
-      snapshot.val();
-
-      username.innerHTML =
-      data.name;
-
-      newName.value =
-      data.name;
-
-    }
-
-  }
-
-},1000);
-
-/* SAVE PROFILE */
-
-window.saveProfile =
-async function(){
-
-  const user =
-  auth.currentUser;
-
-  if(user){
-
-    await set(
-
-      ref(db,"users/" + user.uid),
-
-      {
-
-        name:newName.value,
-
-        email:user.email
-
-      }
-
-    );
-
-    username.innerHTML =
-    newName.value;
-
-    alert("Profile berhasil disimpan 😄");
-
-  }
+preview.src =
+URL.createObjectURL(file);
 
 }
 
-/* FOTO */
-
-uploadPhoto.addEventListener("change",function(){
-
-  const file =
-  this.files[0];
-
-  if(file){
-
-    preview.src =
-    URL.createObjectURL(file);
-
-  }
-
-});
-
-/* LOGOUT */
+}
+);
 
 window.logout =
 async function(){
 
-  await signOut(auth);
+localStorage.clear();
 
-  window.location.href =
-  "login.html";
+await signOut(auth);
 
-}
+window.location.href =
+"login.html";
+
+};
 
 </script>
 
 </body>
+
 </html>
