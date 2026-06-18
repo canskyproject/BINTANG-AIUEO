@@ -269,7 +269,7 @@ container.innerHTML += `
 <div class="schedule-card">
 
 <img
-src="${data.poster}"
+src="${data.poster || 'https://via.placeholder.com/600x300'}"
 class="poster">
 
 <div class="card-content">
@@ -278,7 +278,7 @@ class="poster">
 
 <p>📅 ${data.tanggal}</p>
 
-<p>💰 Rp ${data.biaya}</p>
+<p>💰 Rp ${data.biaya || "Belum ditentukan"}</p>
 
 <span class="status ${warnaStatus}">
 ${data.status}
