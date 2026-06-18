@@ -18,17 +18,13 @@ body{
 .top-header{
   height:90px;
   background:#1976D2;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   padding:0 20px;
-
   position:sticky;
   top:0;
   z-index:1000;
-
   box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
@@ -38,17 +34,14 @@ body{
 
 .profile-center{
   position:absolute;
-
   left:50%;
   transform:translateX(-50%);
-
   bottom:-25px;
 
   width:90px;
   height:90px;
 
   border-radius:50%;
-
   background:#1976D2;
 
   display:flex;
@@ -59,17 +52,14 @@ body{
 .profile-center img{
   width:80px;
   height:80px;
-
   border-radius:50%;
   border:4px solid white;
-
   object-fit:cover;
 }
 
 .header-icons{
   display:flex;
   gap:15px;
-
   color:white;
   font-size:18px;
 }
@@ -90,14 +80,12 @@ body{
 .container{
   max-width:1200px;
   margin:auto;
-
   padding:130px 20px 20px;
 }
 
 .title{
   font-size:34px;
   font-weight:700;
-
   margin-bottom:25px;
 
   display:flex;
@@ -116,11 +104,8 @@ body{
 .filter-tabs{
   display:flex;
   gap:10px;
-
   overflow-x:auto;
-
   margin-bottom:25px;
-
   scrollbar-width:none;
 }
 
@@ -130,19 +115,12 @@ body{
 
 .filter-tabs button{
   border:none;
-
   background:white;
-
   padding:12px 22px;
-
   border-radius:30px;
-
   cursor:pointer;
-
   font-weight:600;
-
   white-space:nowrap;
-
   transition:.3s;
 }
 
@@ -153,64 +131,69 @@ body{
 .filter-tabs .active{
   background:#8b5cf6;
   color:white;
-
-  box-shadow:
-  0 4px 12px rgba(139,92,246,.3);
+  box-shadow:0 4px 12px rgba(139,92,246,.3);
 }
 
 /* =========================
-   CARD
+   CARD KOMPETISI
 ========================= */
 
 .schedule-card{
   background:white;
-
-  padding:20px;
-
-  border-radius:22px;
-
+  border-radius:24px;
+  overflow:hidden;
+  margin-bottom:25px;
   border:1px solid #e5e7eb;
 
-  margin-bottom:20px;
-
   box-shadow:
-  0 5px 20px rgba(0,0,0,.06);
+  0 8px 25px rgba(0,0,0,.08);
 
   transition:.3s;
 }
 
 .schedule-card:hover{
-  transform:translateY(-3px);
-
+  transform:translateY(-5px);
   box-shadow:
-  0 12px 25px rgba(0,0,0,.12);
+  0 15px 35px rgba(0,0,0,.12);
+}
+
+/* POSTER */
+
+.poster{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+/* ISI CARD */
+
+.card-content{
+  padding:20px;
 }
 
 .schedule-card h3{
-  font-size:22px;
+  font-size:24px;
   font-weight:700;
-
   margin-bottom:15px;
 }
 
 .schedule-card p{
   color:#6b7280;
-
   font-size:16px;
-
   margin-bottom:10px;
+  line-height:1.5;
 }
+
+/* STATUS */
 
 .status{
   display:inline-block;
-
   padding:8px 14px;
-
   border-radius:12px;
-
   font-size:13px;
-
   font-weight:600;
+  margin-top:5px;
 }
 
 .upcoming{
@@ -228,27 +211,34 @@ body{
   color:#6b7280;
 }
 
-.card-actions{
-  margin-top:15px;
+/* LINK JUKNIS */
 
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+.juknis-link{
+  display:inline-block;
+  margin-top:10px;
+  margin-bottom:15px;
+
+  color:#7c3aed;
+  font-weight:600;
+  text-decoration:none;
 }
+
+.juknis-link:hover{
+  text-decoration:underline;
+}
+
+/* BUTTON */
 
 .detail-btn{
   border:none;
-
   background:#1976D2;
-
   color:white;
 
-  padding:10px 18px;
+  padding:12px 20px;
 
-  border-radius:12px;
+  border-radius:14px;
 
   cursor:pointer;
-
   transition:.3s;
 }
 
@@ -258,17 +248,14 @@ body{
 
 .join-btn{
   border:none;
-
   background:#16a34a;
-
   color:white;
 
-  padding:10px 18px;
+  padding:12px 20px;
 
-  border-radius:12px;
+  border-radius:14px;
 
   cursor:pointer;
-
   transition:.3s;
 }
 
@@ -282,12 +269,10 @@ body{
 
 .mobile-nav{
   position:fixed;
-
   bottom:0;
   left:0;
 
   width:100%;
-
   height:75px;
 
   background:white;
@@ -295,7 +280,6 @@ body{
   border-top:1px solid #e5e7eb;
 
   display:flex;
-
   justify-content:space-around;
   align-items:center;
 
@@ -307,11 +291,9 @@ body{
 
   display:flex;
   flex-direction:column;
-
   align-items:center;
 
   color:#b8b8b8;
-
   cursor:pointer;
 }
 
@@ -383,6 +365,10 @@ body.dark .filter-tabs button:hover{
   background:#1f2937;
 }
 
+body.dark .juknis-link{
+  color:#a78bfa;
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -397,16 +383,12 @@ body.dark .filter-tabs button:hover{
     font-size:26px;
   }
 
-  .schedule-card{
-    padding:18px;
-  }
-
   .schedule-card h3{
     font-size:20px;
   }
 
-  .card-actions{
-    flex-direction:column;
+  .poster{
+    height:180px;
   }
 
   .detail-btn,

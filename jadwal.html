@@ -268,21 +268,32 @@ container.innerHTML += `
 
 <div class="schedule-card">
 
-<h3>
-${data.nama || "-"}
-</h3>
+<img
+src="${data.poster}"
+class="poster">
 
-<p>
-📅 ${data.tanggal || "-"}
-</p>
+<div class="card-content">
 
-<p>
-⏰ ${data.jam || "-"}
-</p>
+<h3>${data.nama}</h3>
+
+<p>📅 ${data.tanggal}</p>
+
+<p>💰 Rp ${data.biaya}</p>
 
 <span class="status ${warnaStatus}">
-${data.status || "-"}
+${data.status}
 </span>
+
+<br><br>
+
+<a
+href="${data.juknis}"
+target="_blank"
+class="juknis-link">
+
+📄 Lihat Juknis
+
+</a>
 
 <br><br>
 
@@ -293,6 +304,8 @@ onclick="window.location.href='detail.html?id=${data.id}'">
 Lihat Detail
 
 </button>
+
+</div>
 
 </div>
 

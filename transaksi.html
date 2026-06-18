@@ -86,6 +86,11 @@ background:#d4edda;
 color:#155724;
 }
 
+.ditolak{
+background:#f8d7da;
+color:#721c24;
+}
+
 .gratis{
 background:#d1ecf1;
 color:#0c5460;
@@ -334,11 +339,25 @@ box.innerHTML += `
 <div class="card">
 
 <h3>
-${data.kompetisi}
+${data.noTransaksi || item.id}
 </h3>
+
+<p style="margin-top:10px;font-weight:bold;color:#1976D2;">
+${data.kompetisi}
+</p>
 
 <p>
 📅 ${data.tanggal}
+</p>
+
+<p>
+⏳ Berlaku sampai :
+${data.expired || "-"}
+</p>
+
+<p>
+🏦 Metode :
+${data.metode || "-"}
 </p>
 
 <p>
