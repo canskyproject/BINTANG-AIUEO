@@ -80,6 +80,11 @@ background:#FEF3C7;
 color:#92400E;
 }
 
+.terdaftar{
+background:#DCFCE7;
+color:#166534;
+}
+
 .berhasil{
 background:#DCFCE7;
 color:#166534;
@@ -276,7 +281,7 @@ if(data.uid === uid){
 
 ditemukan = true;
 
-let warna = "menunggu";
+let warna = "terdaftar";
 
 if(data.status === "Berhasil"){
 warna = "berhasil";
@@ -286,25 +291,30 @@ if(data.status === "Gagal"){
 warna = "gagal";
 }
 
+if(data.status === "Menunggu"){
+warna = "menunggu";
+}
+
 box.innerHTML += `
 
 <div class="card">
 
 <h3>
-${data.kompetisiNama || "-"}
+🏆 ${data.kompetisiNama || "-"}
 </h3>
 
 <p>
-UID: ${data.uid}
-</p>
-
-<p>
-Tanggal Daftar:
+📅 Tanggal Daftar :
 ${data.tanggalDaftar || "-"}
 </p>
 
+<p>
+📝 ID Kompetisi :
+${data.kompetisiId || "-"}
+</p>
+
 <span class="status ${warna}">
-${data.status || "Menunggu"}
+${data.status || "Terdaftar"}
 </span>
 
 </div>
