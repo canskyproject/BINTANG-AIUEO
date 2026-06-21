@@ -94,78 +94,20 @@ href="logo.jpg">
   Semua Kompetisi
 </h2>
 
-        <div class="competition-grid">
+<div class="competition-grid" id="competitionGrid">
 
-            <!-- CARD 1 -->
+<div class="event-card">
 
-            <div class="event-card">
+    <div class="card-content">
 
-                <div class="status">
-                    Online
-                </div>
-
-                <img
-                class="banner"
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
-
-                <div class="card-content">
-
-                    <h3>
-                        Olimpiade BINTANG 2026
-                    </h3>
-
-                    <p class="date">
-                        Minggu, 30 Mei 2026
-                    </p>
-
-                    <button
-                    onclick="window.location.href='ujian.html'">
-
-                        Masuk Kompetisi
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- CARD 2 -->
-
-            <div class="event-card">
-
-                <div class="status">
-                    Online
-                </div>
-
-                <img
-                class="banner"
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
-
-                <div class="card-content">
-
-                    <h3>
-                        Kompetisi AI Nasional
-                    </h3>
-
-                    <p class="date">
-                        Minggu, 12 Juni 2026
-                    </p>
-
-                    <button>
-
-                        Masuk Kompetisi
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
+        <h3>Memuat kompetisi...</h3>
 
     </div>
 
 </div>
+
+</div>
+
 
 <!-- MOBILE NAV -->
 
@@ -320,8 +262,7 @@ let total = 0;
 
 pendaftaran.forEach((doc)=>{
 
-const data =
-doc.data();
+const data = doc.data();
 
 if(data.uid === uid){
 
@@ -338,9 +279,72 @@ total;
 
 }
 
+const competitionGrid =
+document.getElementById(
+"competitionGrid"
+);
+
+async function loadKompetisi(){
+
+const snapshot =
+await getDocs(
+collection(
+firestore,
+"kompetisi"
+)
+);
+
+competitionGrid.innerHTML = "";
+
+snapshot.forEach((docSnap)=>{
+
+const data =
+docSnap.data();
+
+competitionGrid.innerHTML += `
+
+<div class="event-card">
+
+<div class="status">
+${data.kategori || "Online"}
+</div>
+
+<img
+class="banner"
+src="${data.poster}">
+
+<div class="card-content">
+
+<h3>
+${data.nama}
+</h3>
+
+<p class="date">
+${data.tanggal}
+</p>
+
+<button
+onclick="window.location.href='detail.html?id=${docSnap.id}'">
+
+Lihat Detail
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
 loadStats();
+loadKompetisi();
 
 </script>
+
 
 </body>
 </html>
