@@ -1,10 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>BINTANG AIUEO</title>
@@ -24,203 +24,206 @@ href="logo.jpg">
 
 <div class="app">
 
-    <!-- HEADER -->
+<!-- HEADER -->
 
-    <div class="top-header">
+<div class="top-header">
 
-        <div class="logo-area">
-            <img src="logo.jpg" alt="Logo">
-        </div>
+<div class="logo-area">
+<img src="logo.jpg" alt="Logo">
+</div>
 
-        <div
-        class="profile-center"
-        onclick="window.location.href='profile.html'">
+<div
+class="profile-center"
+onclick="window.location.href='profile.html'">
 
-            <img src="https://i.pravatar.cc/150?img=12">
-
-        </div>
-
-        <div class="header-icons">
-
-            <i class="fa-solid fa-cart-shopping"></i>
-
-            <i class="fa-solid fa-bell"></i>
-
-            <i
-            id="theme-toggle"
-            class="fa-solid fa-sun"></i>
-
-            <i
-            class="fa-solid fa-expand"
-            onclick="toggleFullscreen()"></i>
-
-        </div>
-
-    </div>
-
-    <!-- CONTENT -->
-
-    <div class="main-content">
-
-        <div class="stats-grid">
-
-  <div class="stat-card">
-
-    <h3 id="totalKompetisi">
-      0
-    </h3>
-
-    <p>
-      Kompetisi
-    </p>
-
-  </div>
-
-  <div class="stat-card">
-
-    <h3 id="totalPendaftaran">
-      0
-    </h3>
-
-    <p>
-      Terdaftar
-    </p>
-
-  </div>
+<img src="https://i.pravatar.cc/150?img=12">
 
 </div>
 
+<div class="header-icons">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<i class="fa-solid fa-bell"></i>
+
+<i
+id="theme-toggle"
+class="fa-solid fa-sun"></i>
+
+<i
+class="fa-solid fa-expand"
+onclick="toggleFullscreen()"></i>
+
+</div>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="main-content">
+
 <h2 class="title">
-  Semua Kompetisi
+
+<i class="fa-solid fa-trophy"></i>
+
+Semua Kompetisi
+
 </h2>
 
-<div class="competition-grid" id="competitionGrid">
+<div class="filter-bar">
+
+<button class="active">
+Semua
+</button>
+
+<button>
+Online
+</button>
+
+<button>
+Offline
+</button>
+
+</div>
+
+<div
+class="competition-grid"
+id="competitionGrid">
 
 <div class="event-card">
 
-    <div class="card-content">
+<div class="card-content">
 
-        <h3>Memuat kompetisi...</h3>
+<h3>
+Memuat kompetisi...
+</h3>
 
-    </div>
+</div>
 
 </div>
 
 </div>
 
+</div>
+
+</div>
 
 <!-- MOBILE NAV -->
 
 <div class="mobile-nav">
 
-    <div
-    class="mobile-item active"
-    onclick="window.location.href='dashboard.html'">
+<div
+class="mobile-item active"
+onclick="window.location.href='dashboard.html'">
 
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-
-    </div>
-
-    <div
-    class="mobile-item"
-    onclick="window.location.href='jadwal.html'">
-
-        <i class="fa-regular fa-calendar-check"></i>
-        <span>Jadwal</span>
-
-    </div>
-
-    <div
-    class="mobile-item"
-    onclick="window.location.href='transaksi.html'">
-
-        <i class="fa-regular fa-credit-card"></i>
-        <span>Transaksi</span>
-
-    </div>
-
-    <div
-    class="mobile-item"
-    onclick="window.location.href='pengumuman.html'">
-
-        <i class="fa-regular fa-newspaper"></i>
-        <span>Pengumuman</span>
-
-    </div>
-
-    <div
-    class="mobile-item"
-    onclick="window.location.href='riwayat.html'">
-
-        <i class="fa-regular fa-file-lines"></i>
-        <span>Riwayat</span>
-
-    </div>
+<i class="fa-solid fa-house"></i> <span>Home</span>
 
 </div>
 
+<div
+class="mobile-item"
+onclick="window.location.href='jadwal.html'">
+
+<i class="fa-regular fa-calendar-check"></i> <span>Jadwal</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='transaksi.html'">
+
+<i class="fa-regular fa-credit-card"></i> <span>Transaksi</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='pengumuman.html'">
+
+<i class="fa-regular fa-newspaper"></i> <span>Pengumuman</span>
+
+</div>
+
+<div
+class="mobile-item"
+onclick="window.location.href='riwayat.html'">
+
+<i class="fa-regular fa-file-lines"></i> <span>Riwayat</span>
+
+</div>
+
+</div>
 <script>
 
-/* DARK MODE */
+/* =========================
+   DARK MODE
+========================= */
 
 const themeBtn =
 document.getElementById("theme-toggle");
 
 themeBtn.onclick = () => {
 
-    document.body.classList.toggle("dark");
+document.body.classList.toggle("dark");
 
-    if(document.body.classList.contains("dark")){
+if(
+document.body.classList.contains("dark")
+){
 
-        themeBtn.classList.remove("fa-sun");
-        themeBtn.classList.add("fa-moon");
+themeBtn.classList.remove("fa-sun");
+themeBtn.classList.add("fa-moon");
 
-        localStorage.setItem(
-        "theme",
-        "dark"
-        );
+localStorage.setItem(
+"theme",
+"dark"
+);
 
-    }else{
+}else{
 
-        themeBtn.classList.remove("fa-moon");
-        themeBtn.classList.add("fa-sun");
+themeBtn.classList.remove("fa-moon");
+themeBtn.classList.add("fa-sun");
 
-        localStorage.setItem(
-        "theme",
-        "light"
-        );
-
-    }
-
-};
-
-if(localStorage.getItem("theme") === "dark"){
-
-    document.body.classList.add("dark");
-
-    themeBtn.classList.remove("fa-sun");
-    themeBtn.classList.add("fa-moon");
+localStorage.setItem(
+"theme",
+"light"
+);
 
 }
 
-/* FULLSCREEN */
+};
+
+if(
+localStorage.getItem("theme")
+=== "dark"
+){
+
+document.body.classList.add("dark");
+
+themeBtn.classList.remove("fa-sun");
+themeBtn.classList.add("fa-moon");
+
+}
+
+/* =========================
+   FULLSCREEN
+========================= */
 
 function toggleFullscreen(){
 
-    if(!document.fullscreenElement){
+if(!document.fullscreenElement){
 
-        document.documentElement.requestFullscreen();
+document.documentElement.requestFullscreen();
 
-    }else{
+}else{
 
-        document.exitFullscreen();
+document.exitFullscreen();
 
-    }
+}
 
 }
 
 </script>
+
 <script type="module">
 
 import { firestore }
@@ -232,59 +235,14 @@ getDocs
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const uid =
-localStorage.getItem("uid");
-
-async function loadStats(){
-
-const kompetisi =
-await getDocs(
-collection(
-firestore,
-"kompetisi"
-)
-);
-
-document.getElementById(
-"totalKompetisi"
-).innerText =
-kompetisi.size;
-
-const pendaftaran =
-await getDocs(
-collection(
-firestore,
-"pendaftaran"
-)
-);
-
-let total = 0;
-
-pendaftaran.forEach((doc)=>{
-
-const data = doc.data();
-
-if(data.uid === uid){
-
-total++;
-
-}
-
-});
-
-document.getElementById(
-"totalPendaftaran"
-).innerText =
-total;
-
-}
-
 const competitionGrid =
 document.getElementById(
 "competitionGrid"
 );
 
 async function loadKompetisi(){
+
+try{
 
 const snapshot =
 await getDocs(
@@ -296,6 +254,28 @@ firestore,
 
 competitionGrid.innerHTML = "";
 
+if(snapshot.empty){
+
+competitionGrid.innerHTML = `
+
+<div class="event-card">
+
+<div class="card-content">
+
+<h3>
+Belum ada kompetisi
+</h3>
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
 snapshot.forEach((docSnap)=>{
 
 const data =
@@ -306,7 +286,9 @@ competitionGrid.innerHTML += `
 <div class="event-card">
 
 <div class="status">
+
 ${data.kategori || "Online"}
+
 </div>
 
 <img
@@ -320,8 +302,21 @@ ${data.nama}
 </h3>
 
 <p class="date">
-${data.tanggal}
+📅 ${data.tanggal || "-"}
 </p>
+
+<p class="fee">
+💰 Rp ${data.biaya || 0}
+</p>
+
+<a
+class="juknis-link"
+href="${data.juknis || '#'}"
+target="_blank">
+
+📄 Lihat Juknis
+
+</a>
 
 <button
 onclick="window.location.href='detail.html?id=${docSnap.id}'">
@@ -338,13 +333,36 @@ Lihat Detail
 
 });
 
+}catch(error){
+
+competitionGrid.innerHTML = `
+
+<div class="event-card">
+
+<div class="card-content">
+
+<h3>
+Gagal memuat data
+</h3>
+
+<p>
+${error.message}
+</p>
+
+</div>
+
+</div>
+
+`;
+
 }
 
-loadStats();
+}
+
 loadKompetisi();
 
 </script>
 
-
 </body>
+
 </html>
