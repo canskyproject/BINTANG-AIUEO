@@ -169,7 +169,7 @@ GRID
 .competition-grid{
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(320px,1fr));
+repeat(3,1fr);
 gap:20px;
 }
 
@@ -194,7 +194,7 @@ animation:fadeUp .5s ease;
 
 .banner{
 width:100%;
-height:190px;
+height:160px;
 object-fit:cover;
 }
 
@@ -237,6 +237,12 @@ margin-bottom:10px;
 color:#6b7280;
 
 margin-bottom:10px;
+}
+
+.card-divider{
+height:1px;
+background:#e5e7eb;
+margin:12px 0;
 }
 
 .juknis-link{
@@ -432,6 +438,10 @@ MOBILE
 ========================= */
 
 @media(max-width:768px){
+
+.competition-grid{
+grid-template-columns:1fr;
+}    
 
 .banner{
 height:180px;
