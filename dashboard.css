@@ -18,7 +18,7 @@ HEADER
 
 .top-header{
 
-height:80px;
+height:70px;
 
 background:#1976D2;
 
@@ -53,8 +53,8 @@ transform:translateX(-50%);
 
 bottom:-25px;
 
-width:80px;
-height:80px;
+width:70px;
+height:70px;
 
 border-radius:50%;
 
@@ -69,8 +69,8 @@ cursor:pointer;
 
 .profile-center img{
 
-width:70px;
-height:70px;
+width:60px;
+height:60px;
 
 border-radius:50%;
 
@@ -181,20 +181,14 @@ CARD
 
 background:white;
 
+border:1px solid #e5e7eb;
+
 border-radius:22px;
-
-overflow:hidden;
-
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-
-position:relative;
-
-animation:fadeUp .5s ease;
 }
 
 .banner{
 width:100%;
-height:160px;
+height:140px;
 object-fit:cover;
 }
 
