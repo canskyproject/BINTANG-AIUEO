@@ -196,9 +196,10 @@ animation:fadeUp .5s ease;
 
 .banner{
 width:100%;
-height:220px;
-object-fit:cover;
-object-position:top;
+aspect-ratio:1/1;
+object-fit:contain;
+display:block;
+background:white;
 }
 
 .status{
@@ -446,9 +447,7 @@ MOBILE
 grid-template-columns:1fr;
 }    
 
-.banner{
-height:180px;
-}
+
 
 .title{
 font-size:22px;
