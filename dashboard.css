@@ -97,7 +97,7 @@ CONTENT
 ========================= */
 
 .main-content{
-padding:70px 20px 120px;
+padding:50px 20px 120px;
 max-width:1400px;
 margin:auto;
 }
@@ -169,7 +169,7 @@ GRID
 .competition-grid{
 display:grid;
 grid-template-columns:
-repeat(3,1fr);
+repeat(auto-fill,minmax(340px,1fr));
 gap:20px;
 }
 
@@ -184,6 +184,14 @@ background:white;
 border:1px solid #e5e7eb;
 
 border-radius:22px;
+
+overflow:hidden;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+position:relative;
+
+animation:fadeUp .5s ease;
 }
 
 .banner{
@@ -368,6 +376,7 @@ color:white;
 body.dark .event-card{
 
 background:#111827;
+border:1px solid #1f2937;
 }
 
 body.dark .card-content h3{
