@@ -196,8 +196,9 @@ animation:fadeUp .5s ease;
 
 .banner{
 width:100%;
-height:110px;
+height:220px;
 object-fit:cover;
+object-position:top;
 }
 
 .status{
