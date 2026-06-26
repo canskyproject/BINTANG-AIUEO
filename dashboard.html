@@ -1,382 +1,275 @@
 <!DOCTYPE html>
-
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BINTANG AIUEO</title>
-
 <link rel="stylesheet" href="dashboard.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<link rel="icon"
-type="image/png"
-href="logo.jpg">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="logo.jpg">
 </head>
-
 <body>
 
 <div class="app">
 
-<!-- HEADER -->
+  <!-- HEADER -->
+  <div class="top-header">
+    <div class="logo-area">
+      <img src="logo.jpg" alt="Logo">
+    </div>
+    <div class="profile-center" onclick="window.location.href='profile.html'">
+      <img src="https://i.pravatar.cc/150?img=12" alt="Profil">
+    </div>
+    <div class="header-icons">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <i class="fa-solid fa-bell"></i>
+      <i id="theme-toggle" class="fa-solid fa-sun"></i>
+      <i class="fa-solid fa-expand" onclick="toggleFullscreen()"></i>
+    </div>
+  </div>
 
-<div class="top-header">
+  <!-- CONTENT -->
+  <div class="main-content">
 
-<div class="logo-area">
-<img src="logo.jpg" alt="Logo">
-</div>
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterKompetisi('semua', this)">Semua</button>
+      <button class="filter-btn" onclick="filterKompetisi('online', this)">Online</button>
+      <button class="filter-btn" onclick="filterKompetisi('offline', this)">Offline</button>
+      <button class="filter-btn" onclick="filterKompetisi('pelatihan', this)">Pelatihan</button>
+    </div>
 
-<div
-class="profile-center"
-onclick="window.location.href='profile.html'">
+    <!-- TITLE -->
+    <h2 class="title">
+      <i class="fa-solid fa-trophy"></i>
+      Semua Kompetisi
+    </h2>
 
-<img src="https://i.pravatar.cc/150?img=12">
+    <!-- GRID -->
+    <div class="competition-grid" id="competitionGrid">
+      <div class="event-card">
+        <div class="card-content">
+          <h3>Memuat kompetisi...</h3>
+        </div>
+      </div>
+    </div>
 
-</div>
+  </div>
 
-<div class="header-icons">
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-<i class="fa-solid fa-bell"></i>
-
-<i
-id="theme-toggle"
-class="fa-solid fa-sun"></i>
-
-<i
-class="fa-solid fa-expand"
-onclick="toggleFullscreen()"></i>
-
-</div>
-
-</div>
-
-<!-- CONTENT -->
-
-<div class="main-content">
-
-<h2 class="title">
-
-<i class="fa-solid fa-trophy"></i>
-
-Semua Kompetisi
-
-</h2>
-
-<div class="filter-bar">
-
-<button class="active">
-Semua
-</button>
-
-<button>
-Online
-</button>
-
-<button>
-Offline
-</button>
-
-</div>
-
-<div
-class="competition-grid"
-id="competitionGrid">
-
-<div class="event-card">
-
-<div class="card-content">
-
-<h3>
-Memuat kompetisi...
-</h3>
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <div class="mobile-item active" onclick="window.location.href='dashboard.html'">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='jadwal.html'">
+      <i class="fa-regular fa-calendar-check"></i>
+      <span>Jadwal</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='transaksi.html'">
+      <i class="fa-regular fa-credit-card"></i>
+      <span>Transaksi</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='pengumuman.html'">
+      <i class="fa-regular fa-newspaper"></i>
+      <span>Pengumuman</span>
+    </div>
+    <div class="mobile-item" onclick="window.location.href='riwayat.html'">
+      <i class="fa-regular fa-file-lines"></i>
+      <span>Riwayat</span>
+    </div>
+  </div>
 
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- MOBILE NAV -->
-
-<div class="mobile-nav">
-
-<div
-class="mobile-item active"
-onclick="window.location.href='dashboard.html'">
-
-<i class="fa-solid fa-house"></i> <span>Home</span>
-
-</div>
-
-<div
-class="mobile-item"
-onclick="window.location.href='jadwal.html'">
-
-<i class="fa-regular fa-calendar-check"></i> <span>Jadwal</span>
-
-</div>
-
-<div
-class="mobile-item"
-onclick="window.location.href='transaksi.html'">
-
-<i class="fa-regular fa-credit-card"></i> <span>Transaksi</span>
-
-</div>
-
-<div
-class="mobile-item"
-onclick="window.location.href='pengumuman.html'">
-
-<i class="fa-regular fa-newspaper"></i> <span>Pengumuman</span>
-
-</div>
-
-<div
-class="mobile-item"
-onclick="window.location.href='riwayat.html'">
-
-<i class="fa-regular fa-file-lines"></i> <span>Riwayat</span>
-
-</div>
-
-</div>
+<!-- =====================
+     DARK MODE & FULLSCREEN
+===================== -->
 <script>
-
-/* =========================
-   DARK MODE
-========================= */
-
-const themeBtn =
-document.getElementById("theme-toggle");
+const themeBtn = document.getElementById("theme-toggle");
 
 themeBtn.onclick = () => {
-
-document.body.classList.toggle("dark");
-
-if(
-document.body.classList.contains("dark")
-){
-
-themeBtn.classList.remove("fa-sun");
-themeBtn.classList.add("fa-moon");
-
-localStorage.setItem(
-"theme",
-"dark"
-);
-
-}else{
-
-themeBtn.classList.remove("fa-moon");
-themeBtn.classList.add("fa-sun");
-
-localStorage.setItem(
-"theme",
-"light"
-);
-
-}
-
+  document.body.classList.toggle("dark");
+  if (document.body.classList.contains("dark")) {
+    themeBtn.classList.replace("fa-sun", "fa-moon");
+    localStorage.setItem("theme", "dark");
+  } else {
+    themeBtn.classList.replace("fa-moon", "fa-sun");
+    localStorage.setItem("theme", "light");
+  }
 };
 
-if(
-localStorage.getItem("theme")
-=== "dark"
-){
-
-document.body.classList.add("dark");
-
-themeBtn.classList.remove("fa-sun");
-themeBtn.classList.add("fa-moon");
-
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  themeBtn.classList.replace("fa-sun", "fa-moon");
 }
 
-/* =========================
-   FULLSCREEN
-========================= */
-
-function toggleFullscreen(){
-
-if(!document.fullscreenElement){
-
-document.documentElement.requestFullscreen();
-
-}else{
-
-document.exitFullscreen();
-
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 }
 
+// =====================
+// FILTER LOGIC
+// =====================
+let allKompetisi = [];
+
+function filterKompetisi(kategori, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  const grid = document.getElementById("competitionGrid");
+  grid.innerHTML = "";
+
+  const filtered = kategori === "semua"
+    ? allKompetisi
+    : allKompetisi.filter(item => (item.kategori || "").toLowerCase() === kategori);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="event-card"><div class="card-content"><h3>Tidak ada kompetisi untuk kategori ini.</h3></div></div>`;
+    return;
+  }
+
+  filtered.forEach(({ id, data }) => {
+    grid.innerHTML += buildCard(id, data);
+  });
 }
 
+// =====================
+// COUNTDOWN HELPER
+// =====================
+function hitungHariLagi(tanggalStr) {
+  if (!tanggalStr) return null;
+  // Format: "YYYY-MM-DD" atau "DD/MM/YYYY"
+  let target;
+  if (tanggalStr.includes("-")) {
+    target = new Date(tanggalStr);
+  } else {
+    const [d, m, y] = tanggalStr.split("/");
+    target = new Date(`${y}-${m}-${d}`);
+  }
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  target.setHours(0, 0, 0, 0);
+  const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+  if (diff < 0) return "Sudah lewat";
+  if (diff === 0) return "Hari ini!";
+  return `${diff} hari lagi`;
+}
+
+// =====================
+// BUILD CARD HTML
+// =====================
+function buildCard(id, data) {
+  const countdown = hitungHariLagi(data.tanggal);
+  const countdownHTML = countdown
+    ? `<span class="countdown-badge">${countdown}</span>`
+    : "";
+
+  const kategoriLower = (data.kategori || "online").toLowerCase();
+  const statusColor = kategoriLower === "offline" ? "#f59e0b" : "#22c55e";
+
+  return `
+    <div class="event-card" data-kategori="${kategoriLower}">
+
+      <div class="status" style="background:${statusColor};">
+        ${data.kategori || "Online"}
+      </div>
+
+      <img
+        class="banner"
+        src="${data.poster || 'https://placehold.co/600x338/1976D2/ffffff?text=' + encodeURIComponent(data.nama || 'Kompetisi')}"
+        alt="${data.nama}"
+        onerror="this.src='https://placehold.co/600x338/1976D2/ffffff?text=Kompetisi'"
+      >
+
+      <div class="twibbon-badge">Twibbon</div>
+
+      <div class="card-content">
+        <h3>${data.nama}</h3>
+
+        <p class="date">
+          <i class="fa-regular fa-calendar"></i>
+          ${data.tanggal || "-"}
+          ${countdownHTML}
+        </p>
+
+        <div class="deadline-row">
+          <i class="fa-regular fa-clock"></i>
+          Akhir Pendaftaran:
+          <strong>${data.akhirPendaftaran || "-"}</strong>
+        </div>
+
+        <div class="card-divider"></div>
+
+        <div class="card-meta">
+          <span><i class="fa-solid fa-users"></i> ${data.pendaftar || 0} Pendaftar</span>
+          <span><i class="fa-solid fa-user-check"></i> Kuota ${data.kuota || 0}</span>
+          <span><i class="fa-solid fa-clock"></i> ${data.jam || "-"}</span>
+          <span><i class="fa-solid fa-money-bill-wave"></i> Rp ${Number(data.biaya || 0).toLocaleString("id-ID")}</span>
+        </div>
+
+        <div class="card-actions">
+          <a class="btn-juknis" href="${data.juknis || '#'}" target="_blank">
+            <i class="fa-regular fa-file-lines"></i> Juknis
+          </a>
+          <button class="btn-detail" onclick="window.location.href='detail.html?id=${id}'">
+            Lihat Detail
+          </button>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
 </script>
 
+<!-- =====================
+     FIREBASE
+===================== -->
 <script type="module">
+import { firestore } from "./firebase.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import { firestore }
-from "./firebase.js";
+const competitionGrid = document.getElementById("competitionGrid");
 
-import {
-collection,
-getDocs
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+async function loadKompetisi() {
+  try {
+    const snapshot = await getDocs(collection(firestore, "kompetisi"));
+    competitionGrid.innerHTML = "";
 
-const competitionGrid =
-document.getElementById(
-"competitionGrid"
-);
+    if (snapshot.empty) {
+      competitionGrid.innerHTML = `
+        <div class="event-card">
+          <div class="card-content">
+            <h3>Belum ada kompetisi</h3>
+          </div>
+        </div>`;
+      return;
+    }
 
-async function loadKompetisi(){
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      allKompetisi.push({ id: docSnap.id, data });
+      competitionGrid.innerHTML += buildCard(docSnap.id, data);
+    });
 
-try{
-
-const snapshot =
-await getDocs(
-collection(
-firestore,
-"kompetisi"
-)
-);
-
-competitionGrid.innerHTML = "";
-
-if(snapshot.empty){
-
-competitionGrid.innerHTML = `
-
-<div class="event-card">
-
-<div class="card-content">
-
-<h3>
-Belum ada kompetisi
-</h3>
-
-</div>
-
-</div>
-
-`;
-
-return;
-
-}
-
-snapshot.forEach((docSnap)=>{
-
-const data =
-docSnap.data();
-
-competitionGrid.innerHTML += `
-
-<div class="event-card">
-
-<div class="status">
-
-${data.kategori || "Online"}
-
-</div>
-
-<img
-class="banner"
-src="${data.poster || 'https://via.placeholder.com/600x300'}">
-
-<div class="card-content">
-
-<h3>
-${data.nama}
-</h3>
-
-<p class="date">
-📅 ${data.tanggal || "-"}
-</p>
-
-<div class="card-divider"></div>
-
-<p class="fee">
-👥 ${data.pendaftar || 0} Pendaftar
-</p>
-
-<p class="fee">
-👤 Kuota ${data.kuota || 0}
-</p>
-
-<p class="fee">
-⏰ ${data.jam || "-"}
-</p>
-
-<p class="fee">
-💰 Rp ${data.biaya || 0}
-</p>
-
-<a
-class="juknis-link"
-href="${data.juknis || '#'}"
-target="_blank">
-
-📄 Lihat Juknis
-
-</a>
-
-<button
-onclick="window.location.href='detail.html?id=${docSnap.id}'">
-
-Lihat Detail
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}catch(error){
-
-competitionGrid.innerHTML = `
-
-<div class="event-card">
-
-<div class="card-content">
-
-<h3>
-Gagal memuat data
-</h3>
-
-<p>
-${error.message}
-</p>
-
-</div>
-
-</div>
-
-`;
-
-}
-
+  } catch (error) {
+    competitionGrid.innerHTML = `
+      <div class="event-card">
+        <div class="card-content">
+          <h3>Gagal memuat data</h3>
+          <p>${error.message}</p>
+        </div>
+      </div>`;
+  }
 }
 
 loadKompetisi();
-
 </script>
 
 </body>
-
 </html>
