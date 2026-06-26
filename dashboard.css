@@ -28,7 +28,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 15px rgba(0,0,0,.12);
 }
 
 .logo-area img {
@@ -131,7 +131,7 @@ body {
 }
 
 /* =====================
-   GRID
+   GRID — 3 kolom desktop, 2 tablet, 1 mobile
 ===================== */
 .competition-grid {
   display: grid;
@@ -147,7 +147,7 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 18px rgba(0,0,0,.07);
   position: relative;
   animation: fadeUp 0.45s ease;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -155,7 +155,7 @@ body {
 
 .event-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 28px rgba(0,0,0,.12);
 }
 
 /* Banner */
@@ -166,7 +166,7 @@ body {
   display: block;
 }
 
-/* Status badge (Online / Offline) */
+/* Status badge */
 .status {
   position: absolute;
   top: 12px;
@@ -180,10 +180,9 @@ body {
   z-index: 2;
 }
 
-/* Twibbon badge */
+/* Twibbon badge — menempel di pojok kanan bawah banner */
 .twibbon-badge {
   position: absolute;
-  top: 175px; /* tepat di bawah banner 16/9 */
   right: 12px;
   background: #22c55e;
   color: white;
@@ -192,7 +191,8 @@ body {
   font-size: 12px;
   font-weight: 700;
   z-index: 2;
-  transform: translateY(-100%);
+  /* Posisi dihitung dari top supaya pas di bawah banner 16/9 */
+  top: calc(100% / 16 * 9 - 36px);
 }
 
 /* Card body */
@@ -272,7 +272,7 @@ body {
   color: #9ca3af;
 }
 
-/* Card action buttons */
+/* Card buttons */
 .card-actions {
   display: flex;
   gap: 10px;
@@ -453,14 +453,8 @@ body.dark .countdown-badge {
    ANIMATION
 ===================== */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* =====================
@@ -489,10 +483,6 @@ body.dark .countdown-badge {
   .profile-center img {
     width: 56px;
     height: 56px;
-  }
-
-  .filter-bar {
-    gap: 8px;
   }
 
   .filter-btn {
