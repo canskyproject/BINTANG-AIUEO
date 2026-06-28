@@ -81,8 +81,8 @@ body {
   position: absolute;
   bottom: -2px;
   right: -2px;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: #6b7280;
   color: white;
@@ -91,6 +91,19 @@ body {
   justify-content: center;
   cursor: pointer;
   font-size: 9px;
+  border: 2px solid white;
+}
+
+.upload-spinner {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
 }
 
 .user-name-top  { font-size: 15px; font-weight: 700; color: #111; }
@@ -99,7 +112,6 @@ body {
 /* BODY */
 .card-body { padding: 8px 24px 24px; }
 
-/* SECTION LABEL */
 .section-label {
   font-size: 12px;
   font-weight: 700;
@@ -138,7 +150,6 @@ body {
 
 .input-group input:focus,
 .input-group select:focus { border-bottom-color: #1976D2; }
-
 .input-group input:disabled { color: #9ca3af; cursor: not-allowed; }
 
 .select-wrap { position: relative; }
@@ -258,6 +269,9 @@ body {
     <div class="user-info-top">
       <div class="avatar-wrap">
         <img id="preview" src="https://i.pravatar.cc/150?img=12" alt="Foto">
+        <div class="upload-spinner" id="uploadSpinner">
+          <i class="fa-solid fa-spinner fa-spin"></i>
+        </div>
         <label class="camera-label" for="uploadPhoto">
           <i class="fa-solid fa-camera"></i>
         </label>
@@ -273,7 +287,6 @@ body {
   <!-- BODY -->
   <div class="card-body">
 
-    <!-- INFORMASI AKUN -->
     <div class="section-label">Informasi Akun</div>
 
     <div class="input-group">
@@ -420,15 +433,17 @@ body {
 </div>
 
 <script>
+// =====================
+// CLOUDINARY CONFIG
+// =====================
+const CLOUD_NAME    = "dsjh7ka49";
+const UPLOAD_PRESET = "bintang_aiueo";
+
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
 
-document.getElementById("uploadPhoto").addEventListener("change", function () {
-  const file = this.files[0];
-  if (file) document.getElementById("preview").src = URL.createObjectURL(file);
-});
-
+// Toggle password
 function makeToggle(inputId, iconId) {
   document.getElementById(iconId).addEventListener("click", function () {
     const input = document.getElementById(inputId);
@@ -453,6 +468,46 @@ function setLoading(btnId, textId, on, label) {
   document.getElementById(btnId).disabled = on;
   document.getElementById(textId).textContent = on ? "Memproses..." : label;
 }
+
+// =====================
+// UPLOAD FOTO KE CLOUDINARY
+// =====================
+document.getElementById("uploadPhoto").addEventListener("change", async function () {
+  const file = this.files[0];
+  if (!file) return;
+
+  // Tampilkan spinner
+  const spinner = document.getElementById("uploadSpinner");
+  spinner.style.display = "flex";
+
+  try {
+    const formData = new FormData();
+    formData.append("file",           file);
+    formData.append("upload_preset",  UPLOAD_PRESET);
+    formData.append("folder",         "profil");
+
+    const res  = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      { method: "POST", body: formData }
+    );
+    const data = await res.json();
+
+    if (data.secure_url) {
+      // Update preview
+      document.getElementById("preview").src = data.secure_url;
+
+      // Simpan URL ke Firestore
+      await savePhotoUrl(data.secure_url);
+      showMsg("infoMsg", "success", "Foto profil berhasil diupload!");
+    } else {
+      showMsg("infoMsg", "error", "Gagal upload foto.");
+    }
+  } catch (e) {
+    showMsg("infoMsg", "error", "Error upload: " + e.message);
+  }
+
+  spinner.style.display = "none";
+});
 </script>
 
 <script type="module">
@@ -461,11 +516,19 @@ import {
   onAuthStateChanged, signOut, updatePassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-  doc, getDoc, setDoc
+  doc, getDoc, setDoc, updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 let currentUser = null;
 
+// Simpan URL foto ke Firestore (dipanggil dari script biasa via window)
+window.savePhotoUrl = async function (url) {
+  if (!currentUser) return;
+  await updateDoc(doc(firestore, "users", currentUser.uid), { fotoUrl: url });
+  localStorage.setItem("fotoUrl", url);
+};
+
+// Load user
 onAuthStateChanged(auth, async (user) => {
   if (!user) { window.location.href = "login.html"; return; }
   currentUser = user;
@@ -474,31 +537,40 @@ onAuthStateChanged(auth, async (user) => {
   try {
     const snap = await getDoc(doc(firestore, "users", user.uid));
     if (snap.exists()) {
-      const d = snap.data();
+      const d    = snap.data();
       const nama = d.nama || d.name || user.displayName || "User";
 
-      document.getElementById("heroName").textContent     = nama;
-      document.getElementById("heroRole").textContent     = d.akunSebagai ? `${d.akunSebagai} - ${d.jenjang || ""}` : "Peserta Kompetisi";
-      document.getElementById("newName").value            = nama;
-      document.getElementById("noWa").value              = d.noWa          || "";
-      document.getElementById("tglLahir").value          = d.tglLahir      || "";
-      document.getElementById("agama").value             = d.agama         || "";
-      document.getElementById("jenisKelamin").value      = d.jenisKelamin  || "";
-      document.getElementById("akunSebagai").value       = d.akunSebagai   || "";
-      document.getElementById("jenjang").value           = d.jenjang       || "";
-      document.getElementById("provinsi").value          = d.provinsi      || "";
-      document.getElementById("kabKota").value           = d.kabKota       || "";
-      document.getElementById("kecamatan").value         = d.kecamatan     || "";
-      document.getElementById("namaSekolah").value       = d.namaSekolah   || "";
+      // Foto dari Cloudinary
+      if (d.fotoUrl) {
+        document.getElementById("preview").src = d.fotoUrl;
+      }
+
+      document.getElementById("heroName").textContent  = nama;
+      document.getElementById("heroRole").textContent  = d.akunSebagai
+        ? `${d.akunSebagai} - ${d.jenjang || ""}` : "Peserta Kompetisi";
+
+      document.getElementById("newName").value         = nama;
+      document.getElementById("noWa").value            = d.noWa          || "";
+      document.getElementById("tglLahir").value        = d.tglLahir      || "";
+      document.getElementById("agama").value           = d.agama         || "";
+      document.getElementById("jenisKelamin").value    = d.jenisKelamin  || "";
+      document.getElementById("akunSebagai").value     = d.akunSebagai   || "";
+      document.getElementById("jenjang").value         = d.jenjang       || "";
+      document.getElementById("provinsi").value        = d.provinsi      || "";
+      document.getElementById("kabKota").value         = d.kabKota       || "";
+      document.getElementById("kecamatan").value       = d.kecamatan     || "";
+      document.getElementById("namaSekolah").value     = d.namaSekolah   || "";
 
       localStorage.setItem("nama", nama);
+      if (d.fotoUrl) localStorage.setItem("fotoUrl", d.fotoUrl);
     }
   } catch (e) { console.error(e); }
 });
 
+// Simpan profil
 window.saveProfil = async function () {
   if (!currentUser) return;
-  const nama         = document.getElementById("newName").value.trim();
+  const nama = document.getElementById("newName").value.trim();
   if (!nama) { showMsg("infoMsg","error","Nama tidak boleh kosong."); return; }
 
   const data = {
@@ -520,8 +592,8 @@ window.saveProfil = async function () {
   setLoading("btnSimpan","btnSimpanText", true, "Simpan");
   try {
     await setDoc(doc(firestore,"users",currentUser.uid), data, { merge: true });
-    document.getElementById("heroName").textContent  = nama;
-    document.getElementById("heroRole").textContent  = data.akunSebagai
+    document.getElementById("heroName").textContent = nama;
+    document.getElementById("heroRole").textContent = data.akunSebagai
       ? `${data.akunSebagai} - ${data.jenjang}` : "Peserta Kompetisi";
     localStorage.setItem("nama", nama);
     showMsg("infoMsg","success","Profil berhasil disimpan!");
@@ -531,6 +603,7 @@ window.saveProfil = async function () {
   setLoading("btnSimpan","btnSimpanText", false, "Simpan");
 };
 
+// Ganti password
 window.savePassword = async function () {
   if (!currentUser) return;
   const passBaru = document.getElementById("newPassword").value;
@@ -556,6 +629,7 @@ window.savePassword = async function () {
   setLoading("btnPass","btnPassText", false, "Ganti Password");
 };
 
+// Logout
 window.logoutUser = async function () {
   if (!confirm("Yakin ingin Sign Out?")) return;
   await signOut(auth);
