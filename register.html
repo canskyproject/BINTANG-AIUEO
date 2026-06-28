@@ -1,82 +1,173 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-  <title>Register</title>
-
-  <link rel="stylesheet" href="auth.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar — BINTANG AIUEO</title>
+<link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="logo.jpg">
 </head>
-
 <body>
 
 <div class="auth-box">
 
   <div class="logo-circle">
-  <img src="./logo.jpg" alt="Logo">
-</div>
-
+    <img src="./logo.jpg" alt="Logo">
+  </div>
 
   <h1>Buat Akun</h1>
-
-  <p class="subtitle">
-    Daftar untuk mulai ujian
-  </p>
+  <p class="subtitle">Bergabung dan ikuti kompetisi</p>
 
   <div class="input-group">
+    <label>Nama Lengkap</label>
+    <div class="input-wrap">
+      <i class="fa-regular fa-user"></i>
+      <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+    </div>
+  </div>
 
+  <div class="input-group">
     <label>Email</label>
-
-    <input
-    type="email"
-    id="email"
-    placeholder="Masukkan email">
-
+    <div class="input-wrap">
+      <i class="fa-regular fa-envelope"></i>
+      <input type="email" id="email" placeholder="Masukkan email">
+    </div>
   </div>
 
   <div class="input-group">
-
     <label>Password</label>
-
-    <input
-    type="password"
-    id="password"
-    placeholder="Masukkan password">
-
+    <div class="input-wrap">
+      <i class="fa-solid fa-lock"></i>
+      <input type="password" id="password" placeholder="Minimal 6 karakter">
+      <i class="fa-regular fa-eye toggle-pw" id="togglePw"></i>
+    </div>
   </div>
 
-  <button
-  class="auth-btn"
-  onclick="register()">
+  <div class="input-group">
+    <label>Konfirmasi Password</label>
+    <div class="input-wrap">
+      <i class="fa-solid fa-lock"></i>
+      <input type="password" id="confirm" placeholder="Ulangi password">
+      <i class="fa-regular fa-eye toggle-pw" id="toggleConfirm"></i>
+    </div>
+  </div>
 
-    Register
+  <div id="error-msg" class="error-msg"></div>
 
+  <button class="auth-btn" id="registerBtn" onclick="register()">
+    <span id="btnText">Daftar</span>
+    <i id="btnSpinner" class="fa-solid fa-spinner fa-spin" style="display:none"></i>
   </button>
 
   <p class="bottom-text">
     Sudah punya akun?
-    <a href="login.html">
-      Login
-    </a>
+    <a href="login.html">Masuk</a>
   </p>
 
 </div>
 
-<script type="module" src="firebase.js"></script>
+<div class="powered-by">
+  Powered by <strong>CanskyProject</strong>
+</div>
 
 <script>
+// Toggle password
+function toggleVisibility(inputId, iconId) {
+  document.getElementById(iconId).addEventListener("click", function () {
+    const input  = document.getElementById(inputId);
+    const hidden = input.type === "password";
+    input.type   = hidden ? "text" : "password";
+    this.classList.toggle("fa-eye",       !hidden);
+    this.classList.toggle("fa-eye-slash",  hidden);
+  });
+}
+toggleVisibility("password",  "togglePw");
+toggleVisibility("confirm",   "toggleConfirm");
 
-function register(){
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") register();
+});
 
-  const email =
-  document.getElementById('email').value;
-
-  const password =
-  document.getElementById('password').value;
-
-  registerUser(email,password);
-
+function setLoading(on) {
+  document.getElementById("registerBtn").disabled = on;
+  document.getElementById("btnText").textContent  = on ? "Memproses..." : "Daftar";
+  document.getElementById("btnSpinner").style.display = on ? "inline-block" : "none";
 }
 
+function showError(msg) {
+  const el = document.getElementById("error-msg");
+  el.textContent = msg;
+  el.style.display = msg ? "block" : "none";
+}
+
+function register() {
+  const nama     = document.getElementById("nama").value.trim();
+  const email    = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirm  = document.getElementById("confirm").value;
+
+  showError("");
+
+  if (!nama || !email || !password || !confirm) {
+    showError("Semua field harus diisi."); return;
+  }
+  if (password.length < 6) {
+    showError("Password minimal 6 karakter."); return;
+  }
+  if (password !== confirm) {
+    showError("Password dan konfirmasi tidak cocok."); return;
+  }
+
+  setLoading(true);
+  registerUser(nama, email, password);
+}
+</script>
+
+<script type="module">
+import { auth, firestore } from "./firebase.js";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  doc, setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+window.registerUser = async function (nama, email, password) {
+  try {
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    const user   = result.user;
+
+    // Simpan nama ke Firebase Auth
+    await updateProfile(user, { displayName: nama });
+
+    // Simpan data user ke Firestore collection "users"
+    await setDoc(doc(firestore, "users", user.uid), {
+      uid:       user.uid,
+      nama:      nama,
+      email:     email,
+      createdAt: new Date().toISOString()
+    });
+
+    // Simpan ke localStorage
+    localStorage.setItem("uid",   user.uid);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("nama",  nama);
+
+    alert("Akun berhasil dibuat! Selamat datang 🎉");
+    window.location.href = "dashboard.html";
+
+  } catch (err) {
+    setLoading(false);
+    const pesan = {
+      "auth/email-already-in-use": "Email sudah terdaftar.",
+      "auth/invalid-email":        "Format email tidak valid.",
+      "auth/weak-password":        "Password terlalu lemah."
+    };
+    showError(pesan[err.code] || "Terjadi kesalahan: " + err.message);
+  }
+};
 </script>
 
 </body>

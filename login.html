@@ -1,82 +1,128 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-  <title>Login</title>
-
-  <link rel="stylesheet" href="auth.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — BINTANG AIUEO</title>
+<link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="logo.jpg">
 </head>
-
 <body>
 
 <div class="auth-box">
 
   <div class="logo-circle">
-  <img src="./logo.jpg" alt="Logo">
-</div>
+    <img src="./logo.jpg" alt="Logo">
+  </div>
 
   <h1>Masuk Akun</h1>
-
-  <p class="subtitle">
-    Platform Ujian Modern
-  </p>
+  <p class="subtitle">Platform Kompetisi Modern</p>
 
   <div class="input-group">
     <label>Email</label>
-
-    <input
-    type="email"
-    id="email"
-    placeholder="Masukkan email">
+    <div class="input-wrap">
+      <i class="fa-regular fa-envelope"></i>
+      <input type="email" id="email" placeholder="Masukkan email">
+    </div>
   </div>
 
   <div class="input-group">
     <label>Password</label>
-
-    <input
-    type="password"
-    id="password"
-    placeholder="Masukkan password">
+    <div class="input-wrap">
+      <i class="fa-solid fa-lock"></i>
+      <input type="password" id="password" placeholder="Masukkan password">
+      <i class="fa-regular fa-eye toggle-pw" id="togglePw"></i>
+    </div>
   </div>
 
-  <button
-  class="auth-btn"
-  onclick="login()">
+  <div id="error-msg" class="error-msg"></div>
 
-    Masuk
-
+  <button class="auth-btn" id="loginBtn" onclick="login()">
+    <span id="btnText">Masuk</span>
+    <i id="btnSpinner" class="fa-solid fa-spinner fa-spin" style="display:none"></i>
   </button>
 
   <p class="bottom-text">
     Belum punya akun?
-    <a href="register.html">
-      Daftar
-    </a>
+    <a href="register.html">Daftar</a>
   </p>
 
 </div>
 
-<script type="module" src="firebase.js"></script>
-
-<script>
-
-function login(){
-
-  const email =
-  document.getElementById('email').value;
-
-  const password =
-  document.getElementById('password').value;
-
-  loginUser(email,password);
-
-}
-
-</script>
-
 <div class="powered-by">
   Powered by <strong>CanskyProject</strong>
 </div>
+
+<script>
+// Toggle show/hide password
+document.getElementById("togglePw").addEventListener("click", function () {
+  const input = document.getElementById("password");
+  const isHidden = input.type === "password";
+  input.type = isHidden ? "text" : "password";
+  this.classList.toggle("fa-eye", !isHidden);
+  this.classList.toggle("fa-eye-slash", isHidden);
+});
+
+// Enter key submit
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") login();
+});
+
+function setLoading(on) {
+  document.getElementById("loginBtn").disabled = on;
+  document.getElementById("btnText").textContent = on ? "Memproses..." : "Masuk";
+  document.getElementById("btnSpinner").style.display = on ? "inline-block" : "none";
+}
+
+function showError(msg) {
+  const el = document.getElementById("error-msg");
+  el.textContent = msg;
+  el.style.display = msg ? "block" : "none";
+}
+
+function login() {
+  const email    = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  showError("");
+
+  if (!email || !password) {
+    showError("Email dan password tidak boleh kosong.");
+    return;
+  }
+
+  setLoading(true);
+  loginUser(email, password);
+}
+</script>
+
+<script type="module">
+import { auth } from "./firebase.js";
+import {
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+window.loginUser = async function (email, password) {
+  try {
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    const user   = result.user;
+    localStorage.setItem("uid",   user.uid);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("nama",  user.displayName || user.email);
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    setLoading(false);
+    const pesan = {
+      "auth/user-not-found":    "Email tidak terdaftar.",
+      "auth/wrong-password":    "Password salah.",
+      "auth/invalid-email":     "Format email tidak valid.",
+      "auth/too-many-requests": "Terlalu banyak percobaan. Coba lagi nanti.",
+      "auth/invalid-credential":"Email atau password salah."
+    };
+    showError(pesan[err.code] || "Terjadi kesalahan: " + err.message);
+  }
+};
+</script>
 
 </body>
 </html>
