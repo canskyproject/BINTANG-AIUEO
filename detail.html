@@ -1,316 +1,565 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detail Kompetisi</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="logo.jpg">
 <style>
+* { margin:0; padding:0; box-sizing:border-box; }
 
-body{
-  margin:0;
-  padding:20px;
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+  padding-bottom: 40px;
 }
 
-.card{
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
+/* =====================
+   HEADER
+===================== */
+.top-header {
+  height: 70px;
+  background: #1976D2;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0,0,0,.12);
 }
 
-.poster{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:15px;
-  margin-bottom:20px;
+.back-btn-header {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  transition: background 0.2s;
 }
 
-h1{
-  margin-bottom:20px;
+.back-btn-header:hover {
+  background: rgba(255,255,255,0.25);
 }
 
-.info{
-  margin:12px 0;
-  font-size:18px;
+.header-title {
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
 }
 
-.btn{
-  margin-top:15px;
-  border:none;
-  padding:12px 20px;
-  border-radius:12px;
-  cursor:pointer;
-  color:white;
-  font-size:16px;
+/* =====================
+   MAIN CONTENT
+===================== */
+.main-content {
+  max-width: 680px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
 
-.daftar-btn{
-  background:#16a34a;
+/* =====================
+   POSTER
+===================== */
+.poster-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.1);
 }
 
-.back-btn{
-  background:#1976D2;
+.poster {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
 }
 
+.poster-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #22c55e;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.poster-status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+/* =====================
+   TITLE SECTION
+===================== */
+.title-section {
+  margin-bottom: 20px;
+}
+
+.comp-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.comp-desc {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* =====================
+   INFO CARD
+===================== */
+.info-card {
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+
+.info-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-row:first-of-type {
+  padding-top: 0;
+}
+
+.info-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #eef5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1976D2;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 2px;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* =====================
+   COUNTDOWN BANNER
+===================== */
+.countdown-banner {
+  background: linear-gradient(135deg, #1976D2, #1565C0);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.countdown-label {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.countdown-value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.countdown-icon {
+  font-size: 32px;
+  opacity: 0.6;
+}
+
+/* =====================
+   ACTION BUTTONS
+===================== */
+.action-wrap {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-daftar {
+  flex: 1;
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-daftar:hover { background: #15803d; }
+.btn-daftar:active { transform: scale(0.98); }
+
+.btn-juknis {
+  background: #f5f3ff;
+  color: #7c3aed;
+  border: 1.5px solid #c4b5fd;
+  padding: 15px 20px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-juknis:hover { background: #ede9fe; }
+
+/* =====================
+   LOADING & ERROR
+===================== */
+.loading-wrap {
+  text-align: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+}
+
+.loading-wrap i {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =====================
+   DARK MODE
+===================== */
+body.dark { background: #050b1a; color: #f1f5f9; }
+body.dark .comp-title { color: #f1f5f9; }
+body.dark .comp-desc { color: #94a3b8; }
+body.dark .info-card { background: #111827; border-color: #1f2937; }
+body.dark .info-card-title { color: #6b7280; }
+body.dark .info-row { border-color: #1f2937; }
+body.dark .info-value { color: #f1f5f9; }
+body.dark .info-icon { background: #1e3a5f; }
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 640px) {
+  .comp-title { font-size: 18px; }
+  .action-wrap { flex-direction: column; }
+  .btn-juknis { justify-content: center; }
+}
 </style>
-
 </head>
-
 <body>
 
-<div class="card" id="detailBox">
-
-<h1>Memuat...</h1>
-
+<!-- HEADER -->
+<div class="top-header">
+  <button class="back-btn-header" onclick="history.back()">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+  <span class="header-title">Detail Kompetisi</span>
 </div>
+
+<!-- CONTENT -->
+<div class="main-content">
+  <div id="detailBox">
+    <div class="loading-wrap">
+      <i class="fa-solid fa-spinner"></i>
+      <p>Memuat detail kompetisi...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Dark mode sync
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
+// Countdown helper
+function hitungHariLagi(tanggalStr) {
+  if (!tanggalStr) return null;
+  const bulanID = {
+    "januari":0,"februari":1,"maret":2,"april":3,
+    "mei":4,"juni":5,"juli":6,"agustus":7,
+    "september":8,"oktober":9,"november":10,"desember":11
+  };
+  let target;
+  const lower = tanggalStr.toLowerCase().trim();
+  if (lower.includes("-")) {
+    target = new Date(tanggalStr);
+  } else if (lower.includes("/")) {
+    const [d,m,y] = lower.split("/");
+    target = new Date(`${y}-${m.padStart(2,"0")}-${d.padStart(2,"0")}`);
+  } else {
+    const cleaned = lower.replace(/^[a-z]+,\s*/,"").trim();
+    const parts = cleaned.split(/\s+/);
+    const d = parseInt(parts[0]);
+    const m = bulanID[parts[1]];
+    const y = parseInt(parts[2]);
+    if (isNaN(d) || m === undefined || isNaN(y)) return null;
+    target = new Date(y, m, d);
+  }
+  if (!target || isNaN(target.getTime())) return null;
+  const now = new Date();
+  now.setHours(0,0,0,0);
+  target.setHours(0,0,0,0);
+  const diff = Math.ceil((target - now) / (1000*60*60*24));
+  if (diff < 0)  return { text: "Sudah lewat", lewat: true };
+  if (diff === 0) return { text: "Hari ini!", lewat: false };
+  return { text: `${diff} hari lagi`, lewat: false };
+}
+
+function formatRupiah(val) {
+  return Number(val || 0).toLocaleString("id-ID");
+}
+</script>
 
 <script type="module">
-
-import { firestore }
-from "./firebase.js";
-
+import { firestore } from "./firebase.js";
 import {
-doc,
-getDoc,
-collection,
-addDoc,
-getDocs
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  doc, getDoc, collection, addDoc, getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const params =
-new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const detailBox = document.getElementById("detailBox");
 
-const id =
-params.get("id");
+// =====================
+// DAFTAR KOMPETISI
+// =====================
+async function daftarKompetisi() {
+  const uid = localStorage.getItem("uid");
+  if (!uid) {
+    alert("Silakan login terlebih dahulu");
+    window.location.href = "login.html";
+    return;
+  }
 
-const detailBox =
-document.getElementById("detailBox");
+  try {
+    const semuaPendaftaran = await getDocs(collection(firestore, "pendaftaran"));
+    let sudahDaftar = false;
+    semuaPendaftaran.forEach((item) => {
+      const d = item.data();
+      if (d.uid === uid && d.kompetisiId === id) sudahDaftar = true;
+    });
 
-async function daftarKompetisi(){
+    if (sudahDaftar) {
+      alert("Kamu sudah terdaftar pada kompetisi ini");
+      return;
+    }
 
-const uid =
-localStorage.getItem("uid");
+    const docRef  = doc(firestore, "kompetisi", id);
+    const docSnap = await getDoc(docRef);
+    const data    = docSnap.data();
 
-if(!uid){
+    await addDoc(collection(firestore, "pendaftaran"), {
+      uid,
+      kompetisiId: id,
+      kompetisiNama: data.nama,
+      status: "Terdaftar"
+    });
 
-alert("Silakan login terlebih dahulu");
-
-window.location.href =
-"login.html";
-
-return;
-
-}
-
-try{
-
-const semuaPendaftaran =
-await getDocs(
-collection(
-firestore,
-"pendaftaran"
-)
-);
-
-let sudahDaftar = false;
-
-semuaPendaftaran.forEach((item)=>{
-
-const data =
-item.data();
-
-if(
-data.uid === uid &&
-data.kompetisiId === id
-){
-
-sudahDaftar = true;
-
+    alert("Pendaftaran berhasil 😄");
+    window.location.href = "riwayat.html";
+  } catch (error) {
+    alert(error.message);
+  }
 }
 
-});
+window.daftarKompetisi = daftarKompetisi;
 
-if(sudahDaftar){
+// =====================
+// LOAD DETAIL
+// =====================
+async function loadDetail() {
+  try {
+    const docRef  = doc(firestore, "kompetisi", id);
+    const docSnap = await getDoc(docRef);
 
-alert(
-"Kamu sudah terdaftar pada kompetisi ini"
-);
+    if (!docSnap.exists()) {
+      detailBox.innerHTML = `<div class="loading-wrap"><i class="fa-solid fa-circle-xmark" style="color:#ef4444;animation:none"></i><p>Data tidak ditemukan</p></div>`;
+      return;
+    }
 
-return;
+    const data     = docSnap.data();
+    const countdown = hitungHariLagi(data.tanggal);
 
-}
+    const statusColor = (data.kategori || "").toLowerCase() === "offline" ? "#f59e0b"
+                      : (data.kategori || "").toLowerCase() === "pelatihan" ? "#8b5cf6"
+                      : "#22c55e";
 
-const docRef =
-doc(
-firestore,
-"kompetisi",
-id
-);
+    const countdownBanner = countdown ? `
+      <div class="countdown-banner" style="${countdown.lewat ? 'background:linear-gradient(135deg,#6b7280,#4b5563)' : ''}">
+        <div>
+          <div class="countdown-label">Waktu pelaksanaan</div>
+          <div class="countdown-value">${countdown.text}</div>
+        </div>
+        <i class="fa-regular fa-clock countdown-icon"></i>
+      </div>` : "";
 
-const docSnap =
-await getDoc(docRef);
+    detailBox.innerHTML = `
 
-const data =
-docSnap.data();
+      <!-- POSTER -->
+      <div class="poster-wrap">
+        <img
+          class="poster"
+          src="${data.poster || 'https://placehold.co/600x338/1976D2/ffffff?text=' + encodeURIComponent(data.nama || '')}"
+          alt="${data.nama}"
+          onerror="this.src='https://placehold.co/600x338/1976D2/ffffff?text=Kompetisi'"
+        >
+        <div class="poster-badge" style="background:${statusColor};">${data.kategori || "Online"}</div>
+        ${data.status ? `<div class="poster-status">${data.status}</div>` : ""}
+      </div>
 
-await addDoc(
+      <!-- TITLE -->
+      <div class="title-section">
+        <h1 class="comp-title">${data.nama}</h1>
+        ${data.deskripsi ? `<p class="comp-desc">${data.deskripsi}</p>` : ""}
+      </div>
 
-collection(
-firestore,
-"pendaftaran"
-),
+      <!-- COUNTDOWN -->
+      ${countdownBanner}
 
-{
+      <!-- INFO CARD -->
+      <div class="info-card">
+        <div class="info-card-title">Informasi Kompetisi</div>
 
-uid: uid,
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-regular fa-calendar"></i></div>
+          <div>
+            <div class="info-label">Tanggal Pelaksanaan</div>
+            <div class="info-value">${data.tanggal || "-"}</div>
+          </div>
+        </div>
 
-kompetisiId: id,
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-regular fa-clock"></i></div>
+          <div>
+            <div class="info-label">Waktu</div>
+            <div class="info-value">${data.jam || "-"}</div>
+          </div>
+        </div>
 
-kompetisiNama:
-data.nama,
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <div class="info-label">Pendaftar / Kuota</div>
+            <div class="info-value">${data.pendaftar || 0} / ${data.kuota || 0} peserta</div>
+          </div>
+        </div>
 
-status:
-"Terdaftar"
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+          <div>
+            <div class="info-label">Biaya Pendaftaran</div>
+            <div class="info-value">Rp ${formatRupiah(data.biaya)}</div>
+          </div>
+        </div>
 
-}
+        <div class="info-row">
+          <div class="info-icon"><i class="fa-solid fa-tag"></i></div>
+          <div>
+            <div class="info-label">Kategori</div>
+            <div class="info-value">${data.kategori || "-"}</div>
+          </div>
+        </div>
 
-);
+        ${data.akhirPendaftaran ? `
+        <div class="info-row">
+          <div class="info-icon" style="background:#fff0f0;color:#ef4444;"><i class="fa-solid fa-hourglass-end"></i></div>
+          <div>
+            <div class="info-label">Akhir Pendaftaran</div>
+            <div class="info-value" style="color:#ef4444;">${data.akhirPendaftaran}</div>
+          </div>
+        </div>` : ""}
 
-alert(
-"Pendaftaran berhasil 😄"
-);
+      </div>
 
-window.location.href =
-"riwayat.html";
+      <!-- ACTION BUTTONS -->
+      <div class="action-wrap">
+        <a class="btn-juknis" href="${data.juknis || '#'}" target="_blank">
+          <i class="fa-regular fa-file-lines"></i> Juknis
+        </a>
+        <button class="btn-daftar" onclick="daftarKompetisi()">
+          <i class="fa-solid fa-pen-to-square"></i>
+          Daftar Sekarang
+        </button>
+      </div>
 
-}catch(error){
+    `;
 
-alert(
-error.message
-);
-
-}
-
-}
-
-window.daftarKompetisi =
-daftarKompetisi;
-
-async function loadDetail(){
-
-try{
-
-const docRef =
-doc(
-firestore,
-"kompetisi",
-id
-);
-
-const docSnap =
-await getDoc(docRef);
-
-if(docSnap.exists()){
-
-const data =
-docSnap.data();
-
-detailBox.innerHTML = `
-
-<img
-src="${data.poster}"
-class="poster">
-
-<h1>${data.nama}</h1>
-
-<div class="info">
-📅 ${data.tanggal}
-</div>
-
-<div class="info">
-⏰ ${data.jam}
-</div>
-
-<div class="info">
-👥 Kuota : ${data.kuota}
-</div>
-
-<div class="info">
-💰 Biaya : Rp ${data.biaya}
-</div>
-
-<div class="info">
-🏷️ Status : ${data.status}
-</div>
-
-<div class="info">
-🌐 Kategori : ${data.kategori}
-</div>
-
-<div class="info">
-📝 ${data.deskripsi}
-</div>
-
-<br>
-
-<a
-href="${data.juknis}"
-target="_blank">
-
-<button class="btn back-btn">
-📄 Lihat Juknis
-</button>
-
-</a>
-
-<button
-class="btn daftar-btn"
-onclick="daftarKompetisi()">
-
-Daftar Sekarang
-
-</button>
-
-<br>
-
-<button
-class="btn back-btn"
-onclick="history.back()">
-
-Kembali
-
-</button>
-
-`;
-
-}else{
-
-detailBox.innerHTML =
-"<h2>Data tidak ditemukan</h2>";
-
-}
-
-}catch(error){
-
-detailBox.innerHTML =
-`<h2>${error.message}</h2>`;
-
-}
-
+  } catch (error) {
+    detailBox.innerHTML = `<div class="loading-wrap"><i class="fa-solid fa-circle-xmark" style="color:#ef4444;animation:none"></i><p>${error.message}</p></div>`;
+  }
 }
 
 loadDetail();
-
 </script>
 
 </body>
-
 </html>
