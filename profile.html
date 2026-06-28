@@ -11,222 +11,185 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #222;
-  padding-bottom: 40px;
+  background: #eef1f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px 48px;
 }
 
-/* =====================
-   HEADER
-===================== */
-.top-header {
-  height: 70px;
-  background: #1976D2;
+.profile-card {
+  width: 100%;
+  max-width: 580px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  overflow: hidden;
+}
+
+/* HEADER */
+.card-header {
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  gap: 14px;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #f0f0f0;
   position: sticky;
   top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 15px rgba(0,0,0,.12);
+  background: white;
+  z-index: 10;
 }
 
-.back-btn {
-  color: white;
+.back-icon {
+  color: #374151;
   font-size: 18px;
   cursor: pointer;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.15);
+  background: #f3f4f6;
   border: none;
   transition: background 0.2s;
 }
+.back-icon:hover { background: #e5e7eb; }
 
-.back-btn:hover { background: rgba(255,255,255,0.25); }
-
-.header-title {
-  color: white;
-  font-size: 17px;
-  font-weight: 700;
-}
-
-/* =====================
-   HERO SECTION
-===================== */
-.hero-section {
-  background: linear-gradient(135deg, #1976D2, #1565C0);
-  padding: 20px 20px 52px;
-  text-align: center;
+.user-info-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .avatar-wrap {
   position: relative;
   display: inline-block;
-  margin-bottom: 14px;
 }
 
 .avatar-wrap img {
-  width: 90px;
-  height: 90px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid white;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  border: 2px solid #e5e7eb;
   display: block;
 }
 
-.camera-btn {
+.camera-label {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
-  width: 34px;
-  height: 34px;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: white;
-  color: #1976D2;
+  background: #6b7280;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 9px;
 }
 
-.hero-name {
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
+.user-name-top  { font-size: 15px; font-weight: 700; color: #111; }
+.user-role-top  { font-size: 12px; color: #6b7280; margin-top: 2px; }
 
-.hero-email {
-  color: rgba(255,255,255,0.75);
-  font-size: 13px;
-}
+/* BODY */
+.card-body { padding: 8px 24px 24px; }
 
-/* =====================
-   CONTENT
-===================== */
-.main-content {
-  max-width: 600px;
-  margin: -36px auto 0;
-  padding: 0 16px;
-}
-
-/* =====================
-   SECTION CARD
-===================== */
-.section-card {
-  background: white;
-  border-radius: 20px;
-  border: 1px solid #e5e7eb;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.05);
-}
-
+/* SECTION LABEL */
 .section-label {
   font-size: 12px;
   font-weight: 700;
   color: #9ca3af;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 16px;
+  margin-top: 24px;
+  margin-bottom: 2px;
 }
 
-/* =====================
-   INPUT GROUP
-===================== */
-.input-group {
-  margin-bottom: 14px;
-}
-
-.input-group:last-child { margin-bottom: 0; }
+/* INPUT UNDERLINE */
+.input-group { margin-bottom: 2px; }
 
 .input-group label {
   display: block;
   font-size: 13px;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 7px;
+  color: #6b7280;
+  margin-bottom: 4px;
+  margin-top: 18px;
 }
 
-.input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1.5px solid #e5e7eb;
+  font-size: 15px;
+  color: #111;
+  background: transparent;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-.input-wrap > i:first-child {
+.input-group input:focus,
+.input-group select:focus { border-bottom-color: #1976D2; }
+
+.input-group input:disabled { color: #9ca3af; cursor: not-allowed; }
+
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: "\f078";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   position: absolute;
-  left: 13px;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #9ca3af;
-  font-size: 14px;
+  font-size: 11px;
   pointer-events: none;
 }
 
-.input-wrap input {
-  width: 100%;
-  padding: 12px 40px 12px 38px;
-  border-radius: 12px;
-  border: 1.5px solid #d1d5db;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  color: #111;
-  background: white;
-}
-
-.input-wrap input:focus {
-  border-color: #1976D2;
-  box-shadow: 0 0 0 3px rgba(25,118,210,0.1);
-}
-
-.toggle-pw {
+/* PASSWORD */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 32px; }
+.pw-wrap .eye-icon {
   position: absolute;
-  right: 13px;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #9ca3af;
   font-size: 14px;
   cursor: pointer;
 }
 
-/* =====================
-   ERROR / SUCCESS MSG
-===================== */
+/* DIVIDER */
+.divider { height: 1px; background: #f3f4f6; margin: 24px 0 0; }
+
+/* MSG */
 .msg-box {
   display: none;
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 13px;
-  margin-bottom: 12px;
+  margin-top: 14px;
 }
+.msg-box.error   { background:#fef2f2; border:1px solid #fecaca; color:#dc2626; }
+.msg-box.success { background:#f0fdf4; border:1px solid #bbf7d0; color:#16a34a; }
 
-.msg-box.error {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-}
-
-.msg-box.success {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  color: #16a34a;
-}
-
-/* =====================
-   SAVE BUTTON
-===================== */
-.save-btn {
+/* BUTTONS */
+.btn-simpan {
   width: 100%;
+  margin-top: 20px;
+  padding: 14px;
   border: none;
-  padding: 13px;
   border-radius: 14px;
-  background: #1976D2;
+  background: #16a34a;
   color: white;
   font-size: 15px;
   font-weight: 700;
@@ -236,23 +199,19 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 4px;
 }
+.btn-simpan:hover:not(:disabled) { background: #15803d; }
+.btn-simpan:active { transform: scale(0.98); }
+.btn-simpan:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.save-btn:hover:not(:disabled) { background: #1565C0; }
-.save-btn:active { transform: scale(0.98); }
-.save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-/* =====================
-   LOGOUT BUTTON
-===================== */
-.logout-btn {
+.btn-password {
   width: 100%;
-  border: 1.5px solid #fecaca;
-  padding: 13px;
+  margin-top: 14px;
+  padding: 14px;
+  border: none;
   border-radius: 14px;
-  background: #fef2f2;
-  color: #dc2626;
+  background: #1976D2;
+  color: white;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -262,142 +221,226 @@ body {
   justify-content: center;
   gap: 8px;
 }
+.btn-password:hover:not(:disabled) { background: #1565C0; }
+.btn-password:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.logout-btn:hover { background: #fee2e2; }
+/* SIGN OUT */
+.signout-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 24px 20px;
+  border-top: 1px solid #f3f4f6;
+}
 
-/* =====================
-   DARK MODE
-===================== */
-body.dark { background: #050b1a; color: #f1f5f9; }
-body.dark .section-card { background: #111827; border-color: #1f2937; }
-body.dark .section-label { color: #6b7280; }
-body.dark .input-group label { color: #cbd5e1; }
-body.dark .input-wrap input { background: #1f2937; border-color: #374151; color: #f1f5f9; }
-body.dark .logout-btn { background: #1f1010; border-color: #7f1d1d; color: #f87171; }
-body.dark .logout-btn:hover { background: #2a1010; }
+.signout-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.signout-btn:hover { opacity: 0.75; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="top-header">
-  <button class="back-btn" onclick="window.location.href='dashboard.html'">
-    <i class="fa-solid fa-arrow-left"></i>
-  </button>
-  <span class="header-title">Profile Saya</span>
-</div>
+<div class="profile-card">
 
-<!-- HERO -->
-<div class="hero-section">
-  <div class="avatar-wrap">
-    <img id="preview" src="https://i.pravatar.cc/300" alt="Foto Profil">
-    <label class="camera-btn" for="uploadPhoto">
-      <i class="fa-solid fa-camera"></i>
-    </label>
-    <input type="file" id="uploadPhoto" hidden accept="image/*">
+  <!-- HEADER -->
+  <div class="card-header">
+    <button class="back-icon" onclick="window.location.href='dashboard.html'">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div class="user-info-top">
+      <div class="avatar-wrap">
+        <img id="preview" src="https://i.pravatar.cc/150?img=12" alt="Foto">
+        <label class="camera-label" for="uploadPhoto">
+          <i class="fa-solid fa-camera"></i>
+        </label>
+        <input type="file" id="uploadPhoto" hidden accept="image/*">
+      </div>
+      <div>
+        <div class="user-name-top" id="heroName">Memuat...</div>
+        <div class="user-role-top" id="heroRole">Peserta Kompetisi</div>
+      </div>
+    </div>
   </div>
-  <div class="hero-name" id="heroName">Memuat...</div>
-  <div class="hero-email" id="heroEmail"></div>
-</div>
 
-<!-- CONTENT -->
-<div class="main-content">
+  <!-- BODY -->
+  <div class="card-body">
 
-  <!-- EDIT NAMA -->
-  <div class="section-card">
+    <!-- INFORMASI AKUN -->
     <div class="section-label">Informasi Akun</div>
 
     <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="emailField" disabled>
+    </div>
+
+    <div class="input-group">
       <label>Nama Lengkap</label>
-      <div class="input-wrap">
-        <i class="fa-regular fa-user"></i>
-        <input type="text" id="newName" placeholder="Masukkan nama baru">
+      <input type="text" id="newName" placeholder="Masukkan nama lengkap">
+    </div>
+
+    <div class="input-group">
+      <label>No WhatsApp</label>
+      <input type="tel" id="noWa" placeholder="08xxxxxxxxxx">
+    </div>
+
+    <div class="input-group">
+      <label>Tanggal Lahir</label>
+      <input type="date" id="tglLahir">
+    </div>
+
+    <div class="input-group">
+      <label>Agama</label>
+      <div class="select-wrap">
+        <select id="agama">
+          <option value="">Pilih agama</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Katolik">Katolik</option>
+          <option value="Hindu">Hindu</option>
+          <option value="Buddha">Buddha</option>
+          <option value="Konghucu">Konghucu</option>
+        </select>
       </div>
     </div>
 
     <div class="input-group">
-      <label>Email</label>
-      <div class="input-wrap">
-        <i class="fa-regular fa-envelope"></i>
-        <input type="email" id="emailField" placeholder="Email" disabled
-          style="opacity:0.6;cursor:not-allowed;">
+      <label>Jenis Kelamin</label>
+      <div class="select-wrap">
+        <select id="jenisKelamin">
+          <option value="">Pilih jenis kelamin</option>
+          <option value="Laki-Laki">Laki-Laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
       </div>
     </div>
 
-    <div id="nameMsg" class="msg-box"></div>
+    <!-- DATA SEKOLAH -->
+    <div class="divider"></div>
+    <div class="section-label">Data Sekolah</div>
 
-    <button class="save-btn" id="saveNameBtn" onclick="saveName()">
-      <i class="fa-solid fa-floppy-disk"></i>
-      <span id="saveNameText">Simpan Nama</span>
+    <div class="input-group">
+      <label>Akun sebagai</label>
+      <div class="select-wrap">
+        <select id="akunSebagai">
+          <option value="">Pilih peran</option>
+          <option value="Siswa">Siswa</option>
+          <option value="Mahasiswa">Mahasiswa</option>
+          <option value="Guru">Guru</option>
+          <option value="Umum">Umum</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Jenjang</label>
+      <div class="select-wrap">
+        <select id="jenjang">
+          <option value="">Pilih jenjang</option>
+          <option value="SD">SD</option>
+          <option value="SMP">SMP</option>
+          <option value="SMA">SMA</option>
+          <option value="SMK">SMK</option>
+          <option value="D3">D3</option>
+          <option value="S1">S1</option>
+          <option value="S2">S2</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Provinsi Sekolah</label>
+      <input type="text" id="provinsi" placeholder="Contoh: Kalimantan Barat">
+    </div>
+
+    <div class="input-group">
+      <label>Kab / Kota Sekolah</label>
+      <input type="text" id="kabKota" placeholder="Contoh: Kota Pontianak">
+    </div>
+
+    <div class="input-group">
+      <label>Kecamatan Sekolah</label>
+      <input type="text" id="kecamatan" placeholder="Contoh: Pontianak Selatan">
+    </div>
+
+    <div class="input-group">
+      <label>Nama Sekolah</label>
+      <input type="text" id="namaSekolah" placeholder="Contoh: SMA Negeri 1 Pontianak">
+    </div>
+
+    <div id="infoMsg" class="msg-box"></div>
+
+    <button class="btn-simpan" id="btnSimpan" onclick="saveProfil()">
+      <span id="btnSimpanText">Simpan</span>
     </button>
-  </div>
 
-  <!-- GANTI PASSWORD -->
-  <div class="section-card">
+    <!-- GANTI PASSWORD -->
+    <div class="divider"></div>
     <div class="section-label">Ganti Password</div>
 
     <div class="input-group">
       <label>Password Baru</label>
-      <div class="input-wrap">
-        <i class="fa-solid fa-lock"></i>
+      <div class="pw-wrap">
         <input type="password" id="newPassword" placeholder="Minimal 6 karakter">
-        <i class="fa-regular fa-eye toggle-pw" id="toggleNew"></i>
+        <i class="fa-regular fa-eye eye-icon" id="toggleNew"></i>
       </div>
     </div>
 
     <div class="input-group">
       <label>Konfirmasi Password Baru</label>
-      <div class="input-wrap">
-        <i class="fa-solid fa-lock"></i>
+      <div class="pw-wrap">
         <input type="password" id="confirmPassword" placeholder="Ulangi password baru">
-        <i class="fa-regular fa-eye toggle-pw" id="toggleConfirm"></i>
+        <i class="fa-regular fa-eye eye-icon" id="toggleConfirm"></i>
       </div>
     </div>
 
     <div id="passMsg" class="msg-box"></div>
 
-    <button class="save-btn" id="savePassBtn" onclick="savePassword()">
-      <i class="fa-solid fa-key"></i>
-      <span id="savePassText">Ganti Password</span>
+    <button class="btn-password" id="btnPass" onclick="savePassword()">
+      <span id="btnPassText">Ganti Password</span>
     </button>
+
   </div>
 
-  <!-- LOGOUT -->
-  <div class="section-card">
-    <button class="logout-btn" onclick="logoutUser()">
-      <i class="fa-solid fa-power-off"></i>
-      Logout
+  <!-- SIGN OUT -->
+  <div class="signout-row">
+    <button class="signout-btn" onclick="logoutUser()">
+      <i class="fa-solid fa-power-off"></i> Sign Out
     </button>
   </div>
 
 </div>
 
 <script>
-// Dark mode sync
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
 
-// Toggle password visibility
-function makeToggle(inputId, iconId) {
-  document.getElementById(iconId).addEventListener("click", function () {
-    const input = document.getElementById(inputId);
-    const hidden = input.type === "password";
-    input.type = hidden ? "text" : "password";
-    this.classList.toggle("fa-eye",      !hidden);
-    this.classList.toggle("fa-eye-slash", hidden);
-  });
-}
-makeToggle("newPassword",    "toggleNew");
-makeToggle("confirmPassword","toggleConfirm");
-
-// Foto preview
 document.getElementById("uploadPhoto").addEventListener("change", function () {
   const file = this.files[0];
   if (file) document.getElementById("preview").src = URL.createObjectURL(file);
 });
 
-// Msg helper
+function makeToggle(inputId, iconId) {
+  document.getElementById(iconId).addEventListener("click", function () {
+    const input = document.getElementById(inputId);
+    const hidden = input.type === "password";
+    input.type = hidden ? "text" : "password";
+    this.classList.toggle("fa-eye",       !hidden);
+    this.classList.toggle("fa-eye-slash",  hidden);
+  });
+}
+makeToggle("newPassword",     "toggleNew");
+makeToggle("confirmPassword", "toggleConfirm");
+
 function showMsg(elId, type, text) {
   const el = document.getElementById(elId);
   el.className = "msg-box " + type;
@@ -415,104 +458,106 @@ function setLoading(btnId, textId, on, label) {
 <script type="module">
 import { auth, firestore } from "./firebase.js";
 import {
-  onAuthStateChanged,
-  signOut,
-  updatePassword,
-  reauthenticateWithCredential,
-  EmailAuthProvider
+  onAuthStateChanged, signOut, updatePassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-  doc, getDoc, updateDoc
+  doc, getDoc, setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 let currentUser = null;
 
-// =====================
-// LOAD USER
-// =====================
 onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
+  if (!user) { window.location.href = "login.html"; return; }
   currentUser = user;
-
-  document.getElementById("heroEmail").textContent = user.email;
-  document.getElementById("emailField").value      = user.email;
+  document.getElementById("emailField").value = user.email;
 
   try {
     const snap = await getDoc(doc(firestore, "users", user.uid));
     if (snap.exists()) {
-      const data = snap.data();
-      const nama = data.nama || data.name || user.displayName || "User";
-      document.getElementById("heroName").textContent = nama;
-      document.getElementById("newName").value        = nama;
+      const d = snap.data();
+      const nama = d.nama || d.name || user.displayName || "User";
+
+      document.getElementById("heroName").textContent     = nama;
+      document.getElementById("heroRole").textContent     = d.akunSebagai ? `${d.akunSebagai} - ${d.jenjang || ""}` : "Peserta Kompetisi";
+      document.getElementById("newName").value            = nama;
+      document.getElementById("noWa").value              = d.noWa          || "";
+      document.getElementById("tglLahir").value          = d.tglLahir      || "";
+      document.getElementById("agama").value             = d.agama         || "";
+      document.getElementById("jenisKelamin").value      = d.jenisKelamin  || "";
+      document.getElementById("akunSebagai").value       = d.akunSebagai   || "";
+      document.getElementById("jenjang").value           = d.jenjang       || "";
+      document.getElementById("provinsi").value          = d.provinsi      || "";
+      document.getElementById("kabKota").value           = d.kabKota       || "";
+      document.getElementById("kecamatan").value         = d.kecamatan     || "";
+      document.getElementById("namaSekolah").value       = d.namaSekolah   || "";
+
       localStorage.setItem("nama", nama);
     }
-  } catch (e) {
-    console.error(e);
-  }
+  } catch (e) { console.error(e); }
 });
 
-// =====================
-// SIMPAN NAMA
-// =====================
-window.saveName = async function () {
+window.saveProfil = async function () {
   if (!currentUser) return;
-  const nama = document.getElementById("newName").value.trim();
-  if (!nama) { showMsg("nameMsg","error","Nama tidak boleh kosong."); return; }
+  const nama         = document.getElementById("newName").value.trim();
+  if (!nama) { showMsg("infoMsg","error","Nama tidak boleh kosong."); return; }
 
-  setLoading("saveNameBtn","saveNameText", true, "Simpan Nama");
+  const data = {
+    nama,
+    email:        currentUser.email,
+    uid:          currentUser.uid,
+    noWa:         document.getElementById("noWa").value.trim(),
+    tglLahir:     document.getElementById("tglLahir").value,
+    agama:        document.getElementById("agama").value,
+    jenisKelamin: document.getElementById("jenisKelamin").value,
+    akunSebagai:  document.getElementById("akunSebagai").value,
+    jenjang:      document.getElementById("jenjang").value,
+    provinsi:     document.getElementById("provinsi").value.trim(),
+    kabKota:      document.getElementById("kabKota").value.trim(),
+    kecamatan:    document.getElementById("kecamatan").value.trim(),
+    namaSekolah:  document.getElementById("namaSekolah").value.trim(),
+  };
+
+  setLoading("btnSimpan","btnSimpanText", true, "Simpan");
   try {
-    await updateDoc(doc(firestore,"users",currentUser.uid), { nama });
-    document.getElementById("heroName").textContent = nama;
+    await setDoc(doc(firestore,"users",currentUser.uid), data, { merge: true });
+    document.getElementById("heroName").textContent  = nama;
+    document.getElementById("heroRole").textContent  = data.akunSebagai
+      ? `${data.akunSebagai} - ${data.jenjang}` : "Peserta Kompetisi";
     localStorage.setItem("nama", nama);
-    showMsg("nameMsg","success","Nama berhasil diperbarui!");
+    showMsg("infoMsg","success","Profil berhasil disimpan!");
   } catch (e) {
-    showMsg("nameMsg","error", e.message);
+    showMsg("infoMsg","error", e.message);
   }
-  setLoading("saveNameBtn","saveNameText", false, "Simpan Nama");
+  setLoading("btnSimpan","btnSimpanText", false, "Simpan");
 };
 
-// =====================
-// GANTI PASSWORD
-// =====================
 window.savePassword = async function () {
   if (!currentUser) return;
-  const passBaru  = document.getElementById("newPassword").value;
-  const confirm   = document.getElementById("confirmPassword").value;
+  const passBaru = document.getElementById("newPassword").value;
+  const confirm  = document.getElementById("confirmPassword").value;
 
-  if (!passBaru || !confirm) {
-    showMsg("passMsg","error","Isi semua field password."); return;
-  }
-  if (passBaru.length < 6) {
-    showMsg("passMsg","error","Password minimal 6 karakter."); return;
-  }
-  if (passBaru !== confirm) {
-    showMsg("passMsg","error","Password dan konfirmasi tidak cocok."); return;
-  }
+  if (!passBaru || !confirm) { showMsg("passMsg","error","Isi semua field password."); return; }
+  if (passBaru.length < 6)   { showMsg("passMsg","error","Password minimal 6 karakter."); return; }
+  if (passBaru !== confirm)   { showMsg("passMsg","error","Password tidak cocok."); return; }
 
-  setLoading("savePassBtn","savePassText", true, "Ganti Password");
+  setLoading("btnPass","btnPassText", true, "Ganti Password");
   try {
     await updatePassword(currentUser, passBaru);
-    document.getElementById("newPassword").value    = "";
+    document.getElementById("newPassword").value     = "";
     document.getElementById("confirmPassword").value = "";
     showMsg("passMsg","success","Password berhasil diubah!");
   } catch (e) {
     if (e.code === "auth/requires-recent-login") {
-      showMsg("passMsg","error","Sesi terlalu lama. Silakan logout lalu login ulang.");
+      showMsg("passMsg","error","Sesi terlalu lama. Logout lalu login ulang.");
     } else {
       showMsg("passMsg","error", e.message);
     }
   }
-  setLoading("savePassBtn","savePassText", false, "Ganti Password");
+  setLoading("btnPass","btnPassText", false, "Ganti Password");
 };
 
-// =====================
-// LOGOUT
-// =====================
 window.logoutUser = async function () {
-  if (!confirm("Yakin ingin logout?")) return;
+  if (!confirm("Yakin ingin Sign Out?")) return;
   await signOut(auth);
   localStorage.clear();
   window.location.href = "login.html";
