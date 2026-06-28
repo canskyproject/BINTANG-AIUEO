@@ -1,515 +1,522 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Profile</title>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — BINTANG AIUEO</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="logo.jpg">
 <style>
+* { margin:0; padding:0; box-sizing:border-box; }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+  padding-bottom: 40px;
 }
 
-body{
-background:#f3f4f6;
-padding:20px;
+/* =====================
+   HEADER
+===================== */
+.top-header {
+  height: 70px;
+  background: #1976D2;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0,0,0,.12);
 }
 
-.profile-card{
-
-max-width:600px;
-margin:auto;
-
-background:white;
-
-border-radius:25px;
-
-overflow:hidden;
-
-box-shadow:
-0 5px 20px rgba(0,0,0,.1);
-
+.back-btn {
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  transition: background 0.2s;
 }
 
-.top-bar{
+.back-btn:hover { background: rgba(255,255,255,0.25); }
 
-padding:20px;
-
-font-size:28px;
-
-cursor:pointer;
-
+.header-title {
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
 }
 
-.profile-image{
-
-display:flex;
-justify-content:center;
-position:relative;
-
-margin-top:10px;
-
+/* =====================
+   HERO SECTION
+===================== */
+.hero-section {
+  background: linear-gradient(135deg, #1976D2, #1565C0);
+  padding: 32px 20px 64px;
+  text-align: center;
 }
 
-.profile-image img{
-
-width:140px;
-height:140px;
-
-border-radius:50%;
-
-object-fit:cover;
-
-border:5px solid #1976D2;
-
+.avatar-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 14px;
 }
 
-.profile-image label{
-
-position:absolute;
-
-bottom:5px;
-right:calc(50% - 75px);
-
-width:50px;
-height:50px;
-
-border-radius:50%;
-
-background:#1976D2;
-
-color:white;
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-cursor:pointer;
-
-font-size:20px;
-
+.avatar-wrap img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  display: block;
 }
 
-.profile-content{
-
-padding:30px;
-
+.camera-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: white;
+  color: #1976D2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-.profile-content h2{
-
-text-align:center;
-
-font-size:34px;
-
-margin-bottom:8px;
-
+.hero-name {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
-.role{
-
-text-align:center;
-
-color:#666;
-
-margin-bottom:30px;
-
+.hero-email {
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
 }
 
-.input-group{
-
-margin-bottom:20px;
-
+/* =====================
+   CONTENT
+===================== */
+.main-content {
+  max-width: 600px;
+  margin: -36px auto 0;
+  padding: 0 16px;
 }
 
-.input-group label{
-
-display:block;
-
-margin-bottom:8px;
-
-font-weight:bold;
-
+/* =====================
+   SECTION CARD
+===================== */
+.section-card {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 
-.input-group input{
-
-width:100%;
-
-padding:14px;
-
-border:1px solid #ddd;
-
-border-radius:12px;
-
-font-size:15px;
-
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
 }
 
-.save-btn{
-
-width:100%;
-
-border:none;
-
-padding:14px;
-
-border-radius:12px;
-
-background:#1976D2;
-
-color:white;
-
-font-size:16px;
-
-cursor:pointer;
-
+/* =====================
+   INPUT GROUP
+===================== */
+.input-group {
+  margin-bottom: 14px;
 }
 
-.logout{
+.input-group:last-child { margin-bottom: 0; }
 
-padding:20px;
-
-text-align:center;
-
-color:red;
-
-cursor:pointer;
-
-font-weight:bold;
-
-border-top:1px solid #eee;
-
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 7px;
 }
 
-.logout i{
-
-margin-right:8px;
-
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
+.input-wrap > i:first-child {
+  position: absolute;
+  left: 13px;
+  color: #9ca3af;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 12px 40px 12px 38px;
+  border-radius: 12px;
+  border: 1.5px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #111;
+  background: white;
+}
+
+.input-wrap input:focus {
+  border-color: #1976D2;
+  box-shadow: 0 0 0 3px rgba(25,118,210,0.1);
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 13px;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* =====================
+   ERROR / SUCCESS MSG
+===================== */
+.msg-box {
+  display: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.msg-box.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.msg-box.success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+}
+
+/* =====================
+   SAVE BUTTON
+===================== */
+.save-btn {
+  width: 100%;
+  border: none;
+  padding: 13px;
+  border-radius: 14px;
+  background: #1976D2;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.save-btn:hover:not(:disabled) { background: #1565C0; }
+.save-btn:active { transform: scale(0.98); }
+.save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* =====================
+   LOGOUT BUTTON
+===================== */
+.logout-btn {
+  width: 100%;
+  border: 1.5px solid #fecaca;
+  padding: 13px;
+  border-radius: 14px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logout-btn:hover { background: #fee2e2; }
+
+/* =====================
+   DARK MODE
+===================== */
+body.dark { background: #050b1a; color: #f1f5f9; }
+body.dark .section-card { background: #111827; border-color: #1f2937; }
+body.dark .section-label { color: #6b7280; }
+body.dark .input-group label { color: #cbd5e1; }
+body.dark .input-wrap input { background: #1f2937; border-color: #374151; color: #f1f5f9; }
+body.dark .logout-btn { background: #1f1010; border-color: #7f1d1d; color: #f87171; }
+body.dark .logout-btn:hover { background: #2a1010; }
 </style>
-
 </head>
-
 <body>
 
-<div class="profile-card">
+<!-- HEADER -->
+<div class="top-header">
+  <button class="back-btn" onclick="window.location.href='dashboard.html'">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+  <span class="header-title">Profile Saya</span>
+</div>
 
-<div class="top-bar">
+<!-- HERO -->
+<div class="hero-section">
+  <div class="avatar-wrap">
+    <img id="preview" src="https://i.pravatar.cc/300" alt="Foto Profil">
+    <label class="camera-btn" for="uploadPhoto">
+      <i class="fa-solid fa-camera"></i>
+    </label>
+    <input type="file" id="uploadPhoto" hidden accept="image/*">
+  </div>
+  <div class="hero-name" id="heroName">Memuat...</div>
+  <div class="hero-email" id="heroEmail"></div>
+</div>
 
-<i
-class="fa-solid fa-arrow-left"
-onclick="window.location.href='dashboard.html'">
-</i>
+<!-- CONTENT -->
+<div class="main-content">
+
+  <!-- EDIT NAMA -->
+  <div class="section-card">
+    <div class="section-label">Informasi Akun</div>
+
+    <div class="input-group">
+      <label>Nama Lengkap</label>
+      <div class="input-wrap">
+        <i class="fa-regular fa-user"></i>
+        <input type="text" id="newName" placeholder="Masukkan nama baru">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <div class="input-wrap">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email" id="emailField" placeholder="Email" disabled
+          style="opacity:0.6;cursor:not-allowed;">
+      </div>
+    </div>
+
+    <div id="nameMsg" class="msg-box"></div>
+
+    <button class="save-btn" id="saveNameBtn" onclick="saveName()">
+      <i class="fa-solid fa-floppy-disk"></i>
+      <span id="saveNameText">Simpan Nama</span>
+    </button>
+  </div>
+
+  <!-- GANTI PASSWORD -->
+  <div class="section-card">
+    <div class="section-label">Ganti Password</div>
+
+    <div class="input-group">
+      <label>Password Baru</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="newPassword" placeholder="Minimal 6 karakter">
+        <i class="fa-regular fa-eye toggle-pw" id="toggleNew"></i>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Konfirmasi Password Baru</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="confirmPassword" placeholder="Ulangi password baru">
+        <i class="fa-regular fa-eye toggle-pw" id="toggleConfirm"></i>
+      </div>
+    </div>
+
+    <div id="passMsg" class="msg-box"></div>
+
+    <button class="save-btn" id="savePassBtn" onclick="savePassword()">
+      <i class="fa-solid fa-key"></i>
+      <span id="savePassText">Ganti Password</span>
+    </button>
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="section-card">
+    <button class="logout-btn" onclick="logoutUser()">
+      <i class="fa-solid fa-power-off"></i>
+      Logout
+    </button>
+  </div>
 
 </div>
 
-<div class="profile-image">
+<script>
+// Dark mode sync
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
 
-<img
-id="preview"
-src="https://i.pravatar.cc/300">
+// Toggle password visibility
+function makeToggle(inputId, iconId) {
+  document.getElementById(iconId).addEventListener("click", function () {
+    const input = document.getElementById(inputId);
+    const hidden = input.type === "password";
+    input.type = hidden ? "text" : "password";
+    this.classList.toggle("fa-eye",      !hidden);
+    this.classList.toggle("fa-eye-slash", hidden);
+  });
+}
+makeToggle("newPassword",    "toggleNew");
+makeToggle("confirmPassword","toggleConfirm");
 
-<label for="uploadPhoto">
+// Foto preview
+document.getElementById("uploadPhoto").addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) document.getElementById("preview").src = URL.createObjectURL(file);
+});
 
-<i class="fa-solid fa-camera"></i>
+// Msg helper
+function showMsg(elId, type, text) {
+  const el = document.getElementById(elId);
+  el.className = "msg-box " + type;
+  el.textContent = text;
+  el.style.display = "block";
+  setTimeout(() => { el.style.display = "none"; }, 4000);
+}
 
-</label>
-
-<input
-type="file"
-id="uploadPhoto"
-hidden>
-
-</div>
-
-<div class="profile-content">
-
-<h2 id="username">
-
-Loading...
-
-</h2>
-
-<p class="role">
-
-Peserta Kompetisi
-
-</p>
-
-<div class="input-group">
-
-<label>Nama Baru</label>
-
-<input
-type="text"
-id="newName"
-placeholder="Masukkan nama baru">
-
-</div>
-
-<div class="input-group">
-
-<label>Password Lama</label>
-
-<input
-type="password"
-id="oldPassword">
-
-</div>
-
-<div class="input-group">
-
-<label>Password Baru</label>
-
-<input
-type="password"
-id="newPassword">
-
-</div>
-
-<div class="input-group">
-
-<label>Ulangi Password Baru</label>
-
-<input
-type="password"
-id="confirmPassword">
-
-</div>
-
-<button
-class="save-btn"
-onclick="saveProfile()">
-
-Simpan Perubahan
-
-</button>
-
-</div>
-
-<div
-class="logout"
-onclick="logoutUser()">
-
-<i class="fa-solid fa-power-off"></i>
-
-Logout
-
-</div>
-
-</div>
+function setLoading(btnId, textId, on, label) {
+  document.getElementById(btnId).disabled = on;
+  document.getElementById(textId).textContent = on ? "Memproses..." : label;
+}
+</script>
 
 <script type="module">
-
+import { auth, firestore } from "./firebase.js";
 import {
-
-auth,
-firestore,
-signOut,
-updatePassword
-
-}
-
-from "./firebase.js";
-
+  onAuthStateChanged,
+  signOut,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-
-doc,
-getDoc,
-updateDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const username =
-document.getElementById("username");
-
-const newName =
-document.getElementById("newName");
-
-const preview =
-document.getElementById("preview");
-
-const uploadPhoto =
-document.getElementById("uploadPhoto");
+  doc, getDoc, updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 let currentUser = null;
 
-/* LOAD USER */
+// =====================
+// LOAD USER
+// =====================
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+  currentUser = user;
 
-auth.onAuthStateChanged(
-async(user)=>{
+  document.getElementById("heroEmail").textContent = user.email;
+  document.getElementById("emailField").value      = user.email;
 
-if(!user){
-
-window.location.href =
-"login.html";
-
-return;
-
-}
-
-currentUser = user;
-
-try{
-
-const docRef =
-doc(
-firestore,
-"users",
-user.uid
-);
-
-const snap =
-await getDoc(docRef);
-
-if(snap.exists()){
-
-const data =
-snap.data();
-
-username.innerHTML =
-data.name || "User";
-
-newName.value =
-data.name || "";
-
-}
-
-}catch(error){
-
-console.log(error);
-
-}
-
+  try {
+    const snap = await getDoc(doc(firestore, "users", user.uid));
+    if (snap.exists()) {
+      const data = snap.data();
+      const nama = data.nama || data.name || user.displayName || "User";
+      document.getElementById("heroName").textContent = nama;
+      document.getElementById("newName").value        = nama;
+      localStorage.setItem("nama", nama);
+    }
+  } catch (e) {
+    console.error(e);
+  }
 });
 
-/* FOTO PREVIEW */
+// =====================
+// SIMPAN NAMA
+// =====================
+window.saveName = async function () {
+  if (!currentUser) return;
+  const nama = document.getElementById("newName").value.trim();
+  if (!nama) { showMsg("nameMsg","error","Nama tidak boleh kosong."); return; }
 
-uploadPhoto.addEventListener(
-"change",
-function(){
-
-const file =
-this.files[0];
-
-if(file){
-
-preview.src =
-URL.createObjectURL(file);
-
-}
-
-}
-);
-
-/* SAVE */
-
-window.saveProfile =
-async function(){
-
-try{
-
-if(!currentUser){
-
-alert("Belum login");
-
-return;
-
-}
-
-const nama =
-newName.value;
-
-await updateDoc(
-
-doc(
-firestore,
-"users",
-currentUser.uid
-),
-
-{
-name:nama
-}
-
-);
-
-username.innerHTML =
-nama;
-
-/* PASSWORD */
-
-const passBaru =
-document.getElementById("newPassword").value;
-
-const confirm =
-document.getElementById("confirmPassword").value;
-
-if(
-passBaru !== "" &&
-confirm !== ""
-){
-
-if(passBaru !== confirm){
-
-alert(
-"Password tidak sama"
-);
-
-return;
-
-}
-
-await updatePassword(
-currentUser,
-passBaru
-);
-
-}
-
-alert(
-"Profile berhasil diperbarui 😄"
-);
-
-}catch(error){
-
-alert(
-error.message
-);
-
-}
-
+  setLoading("saveNameBtn","saveNameText", true, "Simpan Nama");
+  try {
+    await updateDoc(doc(firestore,"users",currentUser.uid), { nama });
+    document.getElementById("heroName").textContent = nama;
+    localStorage.setItem("nama", nama);
+    showMsg("nameMsg","success","Nama berhasil diperbarui!");
+  } catch (e) {
+    showMsg("nameMsg","error", e.message);
+  }
+  setLoading("saveNameBtn","saveNameText", false, "Simpan Nama");
 };
 
-/* LOGOUT */
+// =====================
+// GANTI PASSWORD
+// =====================
+window.savePassword = async function () {
+  if (!currentUser) return;
+  const passBaru  = document.getElementById("newPassword").value;
+  const confirm   = document.getElementById("confirmPassword").value;
 
-window.logoutUser =
-async function(){
+  if (!passBaru || !confirm) {
+    showMsg("passMsg","error","Isi semua field password."); return;
+  }
+  if (passBaru.length < 6) {
+    showMsg("passMsg","error","Password minimal 6 karakter."); return;
+  }
+  if (passBaru !== confirm) {
+    showMsg("passMsg","error","Password dan konfirmasi tidak cocok."); return;
+  }
 
-await signOut(auth);
-
-localStorage.clear();
-
-window.location.href =
-"login.html";
-
+  setLoading("savePassBtn","savePassText", true, "Ganti Password");
+  try {
+    await updatePassword(currentUser, passBaru);
+    document.getElementById("newPassword").value    = "";
+    document.getElementById("confirmPassword").value = "";
+    showMsg("passMsg","success","Password berhasil diubah!");
+  } catch (e) {
+    if (e.code === "auth/requires-recent-login") {
+      showMsg("passMsg","error","Sesi terlalu lama. Silakan logout lalu login ulang.");
+    } else {
+      showMsg("passMsg","error", e.message);
+    }
+  }
+  setLoading("savePassBtn","savePassText", false, "Ganti Password");
 };
 
+// =====================
+// LOGOUT
+// =====================
+window.logoutUser = async function () {
+  if (!confirm("Yakin ingin logout?")) return;
+  await signOut(auth);
+  localStorage.clear();
+  window.location.href = "login.html";
+};
 </script>
 
 </body>
